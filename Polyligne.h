@@ -61,13 +61,13 @@ public:
     // Contrat :
     //
 
-    bool AjouterLigne (Ligne *ligne  );
+    bool AjouterLigne (Ligne fligne  );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    bool Translater ( int dx, int dy );
+    string Translater ( int dx, int dy );
     // Mode d'emploi :
     //Appelle la fonction translater de ligne sur chaques lignes du vector lignes
     // Contrat :
@@ -85,7 +85,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-vector<Ligne*> lignes;
+vector<Ligne> lignes;
 };
 
 //--------------------------- Autres définitions dépendantes de <Polyligne>

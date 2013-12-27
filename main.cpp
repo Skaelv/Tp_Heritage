@@ -16,13 +16,13 @@ int main ()
 {
 	Controller Cont;
 	string commande;
-	cout << "# Entrez une commande" << endl;
+	cout << " # Entrez une commande" << endl;
 	getline(cin,commande);
 	cout << commande << endl;
 	while (commande!="EXIT")
 	{
 		Cont.Validation(commande);
-		cout << "Entrez une commande" << endl;
+		cout << " # Entrez une commande" << endl;
 		getline(cin,commande);
 	}
 

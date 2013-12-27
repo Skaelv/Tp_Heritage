@@ -10,7 +10,7 @@
 #define Command_H_
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include "Modele.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -27,23 +27,18 @@ class Command
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    virtual void Execute ();
+    virtual void Execute (Modele& fmodele);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual void Redo ();
+    virtual void Undo (Modele& fmodele);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual void Undo ();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
     virtual ~Command ( );
     // Mode d'emploi :
     //

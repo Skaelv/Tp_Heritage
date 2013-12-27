@@ -5,6 +5,10 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../AjouterCercleCommand.cpp \
+../AjouterLigneCommand.cpp \
+../AjouterObjetAgregeCommand.cpp \
+../AjouterPolyligneCommand.cpp \
+../AjouterRectangleCommand.cpp \
 ../Cercle.cpp \
 ../Command.cpp \
 ../Controller.cpp \
@@ -20,6 +24,10 @@ CPP_SRCS += \
 
 OBJS += \
 ./AjouterCercleCommand.o \
+./AjouterLigneCommand.o \
+./AjouterObjetAgregeCommand.o \
+./AjouterPolyligneCommand.o \
+./AjouterRectangleCommand.o \
 ./Cercle.o \
 ./Command.o \
 ./Controller.o \
@@ -35,6 +43,10 @@ OBJS += \
 
 CPP_DEPS += \
 ./AjouterCercleCommand.d \
+./AjouterLigneCommand.d \
+./AjouterObjetAgregeCommand.d \
+./AjouterPolyligneCommand.d \
+./AjouterRectangleCommand.d \
 ./Cercle.d \
 ./Command.d \
 ./Controller.d \

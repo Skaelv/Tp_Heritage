@@ -23,7 +23,7 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 
- void Ligne::Translater ( int dx, int dy )
+ string Ligne::Translater ( int dx, int dy )
 // Algorithme :
 //
 {

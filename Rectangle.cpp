@@ -21,13 +21,12 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-bool Rectangle::Translater ( float dx, float dy )
+string Rectangle::Translater ( float dx, float dy )
 // Algorithme :
 //
 {
-	this->p1->Translater(dx,dy);
-	this->p2->Translater(dx,dy);
-	return true;
+	p1.Translater(dx,dy);
+	p2.Translater(dx,dy);
 } //----- Fin de Méthode
 
 
@@ -51,7 +50,7 @@ Rectangle::Rectangle ( const Rectangle & unRectangle ):p1(unRectangle.p1),p2(unR
 } //----- Fin de Rectangle (constructeur de copie)
 
 
-Rectangle::Rectangle (Point *p1,Point *p2 ):p1(p1),p2(p2)
+Rectangle::Rectangle (string name, int x1,int y1,int x2,int y2 ):EltGeo(name),p1(Point(x1,y1)),p2(Point(x2,y2))
 // Algorithme :
 //
 {

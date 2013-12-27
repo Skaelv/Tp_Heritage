@@ -50,7 +50,7 @@ public:
     // Contrat :
     //
 
-    bool Translater ( int dx,int dy);
+    string Translater ( int dx,int dy);
     // Mode d'emploi :
     //
     // Contrat :
@@ -61,11 +61,6 @@ public:
     // Contrat :
     //
 
-    Point GetCentre ();
-    // Mode d'emploi :
-    //Renvoie le centre du cercle
-    // Contrat :
-    //
 
     int GetRayon ();
     // Mode d'emploi :

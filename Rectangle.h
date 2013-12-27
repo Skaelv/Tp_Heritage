@@ -29,7 +29,7 @@ class Rectangle : public EltGeo
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	bool Translater ( float dx, float dy );
+	string Translater ( float dx, float dy );
     // Mode d'emploi :
     //Appelle la méthode Point::Translater(dx,dy) des sommets p1 et p2 du rectangle
     // Contrat :
@@ -51,7 +51,7 @@ public:
     // Contrat :
     //
 
-    Rectangle ( Point *p1,Point *p2);
+    Rectangle ( string name, int x1,int y1,int x2,int y2);
     // Mode d'emploi :
     //Ajoute les deux sommets du rectangle
     // Contrat :
@@ -70,8 +70,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-Point *p1;
-Point *p2;
+Point p1;
+Point p2;
 };
 
 //--------------------------- Autres définitions dépendantes de <Rectangle>

@@ -16,6 +16,10 @@
 #include "Command.h"
 #include "DeleteCommand.h"
 #include "AjouterCercleCommand.h"
+#include "AjouterRectangleCommand.h"
+#include "AjouterLigneCommand.h"
+#include "AjouterPolyligneCommand.h"
+#include "AjouterObjetAgregeCommand.h"
 using namespace std;
 
 //------------------------------------------------------------- Constantes
@@ -45,31 +49,10 @@ public:
     //Renvoie true si l'objet est dans le modele courant
     // Contrat :Sous traite a la methode de l'attribut modele
     //
-	void AjouterCercle(AjouterCercleCommand *command);
-    // Mode d'emploi :
-    //Execute la commande d'ajout de cercle passé en parametre
-    // Contrat :
-    //
 
-	void AjouterRectangle(Command *command);
+	void ExecuterCommand ( Command *command );
     // Mode d'emploi :
-    //Execute la commande d'ajout de rectangle passé en parametre
-    // Contrat :
-    //
-
-	void AjouterLigne(Command *command);
-    // Mode d'emploi :
-    //Execute la commande d'ajout de ligne passé en parametre
-    // Contrat :
-    //
-	void AjouterPolyligne(Command *command);
-    // Mode d'emploi :
-    //Execute la commande d'ajout de polyLigne passé en parametre
-    // Contrat :
-    //
-	void AjouterObjetAgrege ( Command *command );
-    // Mode d'emploi :
-    //Execute la commande d'ajout d'objet agrege passé en parametre
+    //Execute la commande passé en parametre
     // Contrat :
     //
 
@@ -78,9 +61,6 @@ public:
     //
     // Contrat :
     //
-	void SupprimerCommand(DeleteCommand *command);
-
-	void SupprimerObjet(string name);
 
 	void Translater(Command *command);
     // Mode d'emploi :

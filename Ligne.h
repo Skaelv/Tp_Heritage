@@ -28,7 +28,7 @@ class Ligne : public EltGeo
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	void Translater ( int dx, int dy );
+	string Translater ( int dx, int dy );
     // Mode d'emploi :
     //
     // Contrat :

@@ -24,14 +24,7 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-void Command::Execute ()
-// Algorithme :
-//
-{
-}
-
-
-void Command::Redo ()
+void Command::Execute (Modele& fmodele)
 // Algorithme :
 //
 {
@@ -39,7 +32,7 @@ void Command::Redo ()
 
 
 
-void Command::Undo ()
+void Command::Undo (Modele& fmodele)
 // Algorithme :
 //
 {

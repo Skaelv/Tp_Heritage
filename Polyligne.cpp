@@ -21,20 +21,20 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-bool Polyligne::AjouterLigne (Ligne *ligne )
+bool Polyligne::AjouterLigne (Ligne fligne )
 // Algorithme :
 //
 {
-	this->lignes.push_back(ligne);
+	lignes.push_back(fligne);
 	return true;
 } //----- Fin de Méthode
 
-bool Polyligne::Translater ( int dx, int dy )
+string Polyligne::Translater ( int dx, int dy )
 // Algorithme :
 //
 {
 	//TODO Boucle sur le vecteur lignes appelant la methode translater de chaque lignes
-	return true;
+
 } //----- Fin de Méthode
 
 //------------------------------------------------- Surcharge d'opérateurs

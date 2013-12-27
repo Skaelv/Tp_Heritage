@@ -40,7 +40,7 @@ bool Modele::Charger(string fichier)
 bool Modele::Vider()
 // Algorithme :
 {
-	//Effacer dynamiquement les EltGeo crées
+	//Effacer dynamiquement les EltGeo crées stockés dans la map listeEltGeo(pointeurs)
 	listeEltGeo.clear();
 	return true;
 } //----- Fin de Méthode
@@ -50,14 +50,39 @@ bool Modele::Vider()
 void Modele::AjouterCercle(string name,string commande, int fx,int fy, int fr)
 //Algorithme
 {
-	pairMap_type objet;
 	pairStringEltGeo_type element;
 	element.first = commande;
 	element.second = new Cercle(name,fx,fy,fr);
-	objet.first = name;
-	objet.second = element;
-	listeEltGeo.insert(objet);
+	listeEltGeo[name] = element;
+	cout << "OK"<< endl << "# New Object : "<< name <<endl;
 }
+
+void Modele::AjouterRectangle(string name,string commande, int fx1,int fy1, int fx2,int fy2)
+//Algorithme
+{
+	pairStringEltGeo_type element;
+	element.first = commande;
+	element.second = new Rectangle(name,fx1,fy1,fx2,fy2);
+	listeEltGeo[name] = element;
+	cout << "OK"<< endl << "# New Object : "<< name <<endl;
+
+}
+
+void Modele::AjouterLigne(string name,string commande, int fx1,int fy1, int fx2,int fy2)
+//Algorithme
+{
+}
+
+void Modele::AjouterPolyligne(string name,string commande, vector<pair<int,int> > fligne)
+//Algorithme
+{
+}
+
+void Modele::AjouterObjetAgrege(string name,string commande, vector<string> nameObjet)
+//Algorithme
+{
+}
+
 
 void Modele::SupprimerCommande(vector<string> &nameObjet)
 //Algorithme
@@ -66,8 +91,7 @@ void Modele::SupprimerCommande(vector<string> &nameObjet)
 	for (unsigned int i=1;i<nameObjet.size(); ++i)
 	{
 		//Renvoie la commande stocké dans une paire dans la map
-		cmd[i-1] = listeEltGeo.find(nameObjet[i])->first;
-		cout << cmd[i-1] << endl;
+		cmd[i-1] = listeEltGeo.find(nameObjet[i])->second.first;
 		listeEltGeo.erase(listeEltGeo.find(nameObjet[i]));
 	}
 	nameObjet = cmd;//Passage par reference : renvoie le tableau des commandes
@@ -75,19 +99,20 @@ void Modele::SupprimerCommande(vector<string> &nameObjet)
 }
 
 void Modele::SupprimerObjet(string name)
-//Algorithme
+//Algorithme Efface dynamiquement le pointeur *EltGeo avant d'effacer
+//la ligne de la map
 {
+	delete (listeEltGeo.find(name)->second.second);
 	listeEltGeo.erase(listeEltGeo.find(name));
 }
 
 void Modele::EnumererCommande()
 //Algorithme
 {
-	cout << "Modele::EnumererObjet" <<endl;
+
 	for(map_it_type iterator = listeEltGeo.begin(); iterator != listeEltGeo.end(); iterator++)
 	{
-		cout << "Entree dans le for" <<endl;
-	cout << iterator->first << endl;
+	cout << iterator->second.first << endl;
 	}
 
 }

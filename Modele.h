@@ -14,6 +14,10 @@
 #include "EltGeo.h"
 #include "Point.h"
 #include "Cercle.h"
+#include "Rectangle.h"
+#include "Ligne.h"
+#include "Polyligne.h"
+#include "ObjetAgrege.h"
 #include <string>
 #include <vector>
 using namespace std;
@@ -64,6 +68,26 @@ public:
 
 	void AjouterCercle(string name,string command, int fx,int fy, int fr);
 	// Mode d'emploi :Creation d'un cercle stocké dans listeEltGeo
+    // Contrat :
+    //
+
+	void AjouterRectangle(string name,string commande, int fx1,int fy1, int fx2,int fy2);
+	// Mode d'emploi :Creation d'un rectangle stocké dans listeEltGeo
+    // Contrat :
+    //
+
+	void AjouterLigne(string name,string commande, int fx1,int fy1, int fx2,int fy2);
+	// Mode d'emploi :Creation d'une ligne stocké dans listeEltGeo
+    // Contrat :
+    //
+
+	void AjouterPolyligne(string name,string commande, vector<pair<int,int> > fligne);
+	// Mode d'emploi :Creation d'une polyligne stocké dans listeEltGeo
+    // Contrat :
+    //
+
+	void AjouterObjetAgrege(string name,string commande, vector<string> nameObjet);
+	// Mode d'emploi :Creation d'un objetagrege stocké dans listeEltGeo
     // Contrat :
     //
 

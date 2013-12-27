@@ -53,12 +53,22 @@ bool Controller::Validation ( string commande )
 		}
 		if (mots[0]=="UNDO")
 		{
-			//this.DefaireCommande();
-			return true;
+			if (!undo.empty())
+			{
+				undo.top()->Undo(modele);//Execute la fonction Undo de la derniere commande stocké dans la pile
+				redo.push(undo.top());//Copie la commande de la pile undo vers redo
+				undo.pop();//Supprime la commande de la pile undo
+			}
+		return true;
 		}
 		if (mots[0]=="REDO")
 		{
-			//this.RefaireCommande();
+			if (!redo.empty())
+			{
+				redo.top()->Execute(modele);//Execute la fonction Execute de la derniere commande stocké dans la pile
+				undo.push(redo.top());//Copie la commande de la pile undo vers redo
+				redo.pop();//Supprime la commande de la pile undo
+			}
 			return true;
 		}
 	}
@@ -83,46 +93,63 @@ bool Controller::Validation ( string commande )
 				return false;
 			}
 		}//Fin du for
-		this->SupprimerCommand( new DeleteCommand(mots,modele));
+		this->ExecuterCommand( new DeleteCommand(mots,modele));
 		cout << "OK"<< endl;
 	}
 	else if ( (mots[0]=="OA") and (mots.size()>2) )
 	{
-
-		cout << "OK"<< endl << "# New Object : "<< mots[1] <<endl;
 		return true;
 	}
 	else if ( (mots[0]=="C") and (mots.size()==5) and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) and (atoi(mots[4].c_str())) )
 	{
 		if (!this->ObjetExistant(mots[1]))
 		{
-			this->AjouterCercle(new AjouterCercleCommand(mots[1],commande,
+			this->ExecuterCommand(new AjouterCercleCommand(mots[1],commande,
 														 	 atoi(mots[2].c_str()),
 														 	 atoi(mots[3].c_str()),
-															 atoi(mots[4].c_str()),
-															 modele
+															 atoi(mots[4].c_str())
 														));
 
-
-			cout << "OK"<< endl << "# New Object : "<< mots[1] <<endl;
 			return true;
 		}
 	}
 
-	else if ( ((mots[0]=="R")or(mots[0]=="L")) and (mots.size()==6) and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) and (atoi(mots[4].c_str())) and (atoi(mots[5].c_str())) )
+	else if ( (mots[0]=="R") and (mots.size()==6) and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) and (atoi(mots[4].c_str())) and (atoi(mots[5].c_str())) )
 	{
 		if (!this->ObjetExistant(mots[1]))
 		{
-//			this->AjouterRectangle(mots);
-			cout << "OK"<< endl << "# New Object : "<< mots[1] <<endl;
-			return true;
-		}	}
+
+			this->ExecuterCommand(new AjouterRectangleCommand(mots[1],commande,
+															atoi(mots[2].c_str()),
+															atoi(mots[3].c_str()),
+															atoi(mots[4].c_str()),
+															atoi(mots[5].c_str())
+			));
+
+		return true;
+		}
+	}
+	else if ( (mots[0]=="L") and (mots.size()==6) and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) and (atoi(mots[4].c_str())) and (atoi(mots[5].c_str())) )
+	{
+		if (!this->ObjetExistant(mots[1]))
+		{
+
+			this->ExecuterCommand(new AjouterLigneCommand(mots[1],commande,
+															atoi(mots[2].c_str()),
+															atoi(mots[3].c_str()),
+															atoi(mots[4].c_str()),
+															atoi(mots[5].c_str())
+			));
+
+		return true;
+		}
+	}
 	else if ( (mots[0]=="PL") and (mots.size()>=4) and (mots.size() % 2 == 0) )
 	{
 		unsigned int i;
 		for (i=2; i<mots.size();i++)
 		{
-			if (!atoi(mots[i].c_str()))
+			if (!atoi(mots[i].c_str())) //Test sur la validité des arguments integer
 			{
 				cout << "ERR"<< endl << " #Invalid Parameters"<<endl;
 				return false;
@@ -130,8 +157,7 @@ bool Controller::Validation ( string commande )
 		}
 		if (!this->ObjetExistant(mots[1]))
 		{
-//			this->AjouterPolyligne(mots);
-			cout << "OK"<< endl << "# New Object : "<< mots[1] <<endl;
+//			this->ExecuterCommand(new AjouterPolyligneCommand(mots[1],commande,lignes));
 			return true;
 		}
 	}
@@ -149,55 +175,17 @@ bool Controller::ObjetExistant(string objet)
 	return modele.ObjetExistant(objet);
 } //----- Fin de Méthode
 
-void Controller::AjouterCercle(AjouterCercleCommand *command)
+void Controller::ExecuterCommand ( Command *command )
 // Algorithme :
 {
-
-	command->Execute();
-//	undo.push(command);
+	command->Execute(modele);
+	undo.push(command);
 } //----- Fin de Méthode
 
-void Controller::AjouterRectangle(Command *command)
-// Algorithme :
-{
-} //----- Fin de Méthode
-
-void Controller::AjouterLigne(Command *command)
-// Algorithme :
-{
-} //----- Fin de Méthode
-
-void Controller::AjouterPolyligne(Command *command)
-// Algorithme :
-{
-} //----- Fin de Méthode
-
-void Controller::AjouterObjetAgrege ( Command *command )
-// Algorithme :
-{
-} //----- Fin de Méthode
-
-void Controller::SupprimerCommand(DeleteCommand *command)
-// Algorithme :
-{
-	command->Execute();
-	modele = command->GetModele();
-} //----- Fin de Méthode
-
-void Controller::SupprimerObjet(string name)
-// Algorithme :
-{
-} //----- Fin de Méthode
-
-void Controller::Translater(Command *command)
-// Algorithme :
-{
-} //----- Fin de Méthode
 
 void Controller::EnumererObjet()
 // Algorithme :
 {
-	cout << "Controller::EnumererObjet" <<endl;
 	modele.EnumererCommande();
 } //----- Fin de Méthode
 
@@ -241,6 +229,7 @@ Controller::~Controller ( )
 // Algorithme :
 //
 {
+
 #ifdef MAP
     cout << "Appel au destructeur de <Controller>" << endl;
 #endif

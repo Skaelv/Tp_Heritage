@@ -27,11 +27,10 @@ using namespace std;
 
 //------------------------------------------------- Surcharge d'opérateurs
 
-AjouterCercleCommand::AjouterCercleCommand (string fname, string fcommande,int fx, int fy,int fr, Modele& fmodele)
+AjouterCercleCommand::AjouterCercleCommand (string fname, string fcommande,int fx, int fy,int fr)
 //Algorithme
 //
 {
-	modele = fmodele;
 	name = fname;
 	commande = fcommande;
 	x = fx;
@@ -39,19 +38,19 @@ AjouterCercleCommand::AjouterCercleCommand (string fname, string fcommande,int f
 	r = fr;
 }
 
-void AjouterCercleCommand::Execute ()
+void AjouterCercleCommand::Execute (Modele& fmodele)
 // Algorithme :
 //
 {
-	modele.AjouterCercle(name,commande,x,y,r);
+	fmodele.AjouterCercle(name,commande,x,y,r);
 }
 
 
-void AjouterCercleCommand::Undo ()
+void AjouterCercleCommand::Undo (Modele& fmodele)
 // Algorithme :
 //
 {
-	modele.SupprimerObjet(name);
+	fmodele.SupprimerObjet(name);
 }
 
 

@@ -21,27 +21,13 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-bool Cercle::Translater ( int dx, int dy )
+string Cercle::Translater ( int dx, int dy )
 // Algorithme :
 //
 {
         centre.Translater(dx,dy);
-        return true;
 } //----- Fin de Méthode
 
-Point Cercle::GetCentre ()
-// Algorithme
-//
-{
-        return centre;
-}
-
-int Cercle::GetRayon ()
-// Algorithme
-//
-{
-        return rayon;
-}
 
 //------------------------------------------------- Surcharge d'opérateurs
 Cercle & Cercle::operator = ( const Cercle & unCercle )
