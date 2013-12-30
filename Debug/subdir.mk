@@ -20,6 +20,7 @@ CPP_SRCS += \
 ../Point.cpp \
 ../Polyligne.cpp \
 ../Rectangle.cpp \
+../TranslaterCommand.cpp \
 ../main.cpp 
 
 OBJS += \
@@ -39,6 +40,7 @@ OBJS += \
 ./Point.o \
 ./Polyligne.o \
 ./Rectangle.o \
+./TranslaterCommand.o \
 ./main.o 
 
 CPP_DEPS += \
@@ -58,6 +60,7 @@ CPP_DEPS += \
 ./Point.d \
 ./Polyligne.d \
 ./Rectangle.d \
+./TranslaterCommand.d \
 ./main.d 
 
 

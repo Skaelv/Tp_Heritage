@@ -32,10 +32,8 @@ using namespace std;
 
 bool Controller::Validation ( string commande )
 // Algorithme :
-//TODO	-Vérifier que l'objet que l'on souhaite -effacer existe,
-//											-créer n'existe pas déja
-// Grace à la méthode Controller::ObjetExistant déja implémenté
 {
+	//Decoupe la commande en parametre et ressort chaque mots dans un vecteur de string : mots
 	istringstream ss(commande);
 	istream_iterator<string> begin(ss), end;
 	vector<string> mots(begin, end);
@@ -55,9 +53,7 @@ bool Controller::Validation ( string commande )
 		{
 			if (!undo.empty())
 			{
-				undo.top()->Undo(modele);//Execute la fonction Undo de la derniere commande stocké dans la pile
-				redo.push(undo.top());//Copie la commande de la pile undo vers redo
-				undo.pop();//Supprime la commande de la pile undo
+				this->Undo();
 			}
 		return true;
 		}
@@ -65,9 +61,7 @@ bool Controller::Validation ( string commande )
 		{
 			if (!redo.empty())
 			{
-				redo.top()->Execute(modele);//Execute la fonction Execute de la derniere commande stocké dans la pile
-				undo.push(redo.top());//Copie la commande de la pile undo vers redo
-				redo.pop();//Supprime la commande de la pile undo
+				this->Redo();
 			}
 			return true;
 		}
@@ -78,7 +72,7 @@ bool Controller::Validation ( string commande )
 	}
 	else if ( (mots.size()==4) and (mots[0]=="MOVE") and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) )
 	{
-		return true;
+		this->ExecuterCommand(new TranslaterCommand(atoi(mots[2].c_str()),atoi(mots[3].c_str())));
 	}
 	else if ( (mots[0]=="DELETE") and (mots.size()>1) )
 	{
@@ -93,8 +87,9 @@ bool Controller::Validation ( string commande )
 				return false;
 			}
 		}//Fin du for
-		this->ExecuterCommand( new DeleteCommand(mots,modele));
+		this->ExecuterCommand( new DeleteCommand(mots));
 		cout << "OK"<< endl;
+		return true;
 	}
 	else if ( (mots[0]=="OA") and (mots.size()>2) )
 	{
@@ -157,7 +152,15 @@ bool Controller::Validation ( string commande )
 		}
 		if (!this->ObjetExistant(mots[1]))
 		{
-//			this->ExecuterCommand(new AjouterPolyligneCommand(mots[1],commande,lignes));
+			vector<pair<int,int> > lignes;
+			pair<int,int> l;
+			for (unsigned int i=3;i<mots.size(); i+=2)
+				{
+					l.first = atoi(mots[i-1].c_str());
+					l.second = atoi(mots[i].c_str());
+					lignes.push_back(l);//
+				}
+			this->ExecuterCommand(new AjouterPolyligneCommand(mots[1],commande,lignes));
 			return true;
 		}
 	}
@@ -168,13 +171,6 @@ bool Controller::Validation ( string commande )
 } //----- Fin de Méthode
 
 
-
-bool Controller::ObjetExistant(string objet)
-// Algorithme :
-{
-	return modele.ObjetExistant(objet);
-} //----- Fin de Méthode
-
 void Controller::ExecuterCommand ( Command *command )
 // Algorithme :
 {
@@ -182,6 +178,27 @@ void Controller::ExecuterCommand ( Command *command )
 	undo.push(command);
 } //----- Fin de Méthode
 
+void Controller::Undo()
+//Algorithme :
+{
+	undo.top()->Undo(modele);//Execute la fonction Undo de la derniere commande stocké dans la pile
+	redo.push(undo.top());//Copie la commande de la pile undo vers redo
+	undo.pop();//Supprime la commande de la pile undo
+}
+
+void Controller::Redo()
+//Algorithme :
+{
+	redo.top()->Execute(modele);//Execute la fonction Execute de la derniere commande stocké dans la pile
+	undo.push(redo.top());//Copie la commande de la pile undo vers redo
+	redo.pop();//Supprime la commande de la pile undo
+}
+
+bool Controller::ObjetExistant(string objet)
+// Algorithme :
+{
+	return modele.ObjetExistant(objet);
+} //----- Fin de Méthode
 
 void Controller::EnumererObjet()
 // Algorithme :
@@ -229,6 +246,15 @@ Controller::~Controller ( )
 // Algorithme :
 //
 {
+	for (int i = redo.size();i>0;i--)
+	{
+		delete redo.top();
+	}
+	for (int i = redo.size();i>0;i--)
+	{
+		delete undo.top();
+	}
+
 
 #ifdef MAP
     cout << "Appel au destructeur de <Controller>" << endl;

@@ -12,9 +12,9 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-
 //------------------------------------------------------ Include personnel
 #include "Polyligne.h"
+
 
 //------------------------------------------------------------- Constantes
 
@@ -33,6 +33,12 @@ string Polyligne::Translater ( int dx, int dy )
 // Algorithme :
 //
 {
+	string commande;
+	for (vector<Ligne>::iterator iter=lignes.begin();iter<lignes.end(); iter++ )
+	{
+		commande+= " " + iter->Translater(dx,dy);
+	}
+	return commande;
 	//TODO Boucle sur le vecteur lignes appelant la methode translater de chaque lignes
 
 } //----- Fin de Méthode
@@ -57,10 +63,17 @@ Polyligne::Polyligne ( const Polyligne & unPolyligne )
 } //----- Fin de Polyligne (constructeur de copie)
 
 
-Polyligne::Polyligne ( )
+Polyligne::Polyligne (string fname, vector<pair<int,int> > flignes )
 // Algorithme :
 //
 {
+	vector<pair<int,int> >::iterator debutLigne;
+	for (debutLigne=flignes.begin();debutLigne<flignes.end()-1;debutLigne++)
+	{
+		Ligne ligne = Ligne(debutLigne->first, debutLigne->second, ++debutLigne->first, debutLigne->second);
+		this->AjouterLigne(ligne);
+		debutLigne--;
+	}
 #ifdef MAP
     cout << "Appel au constructeur de <Polyligne>" << endl;
 #endif

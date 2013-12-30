@@ -25,8 +25,8 @@ string Rectangle::Translater ( float dx, float dy )
 // Algorithme :
 //
 {
-	p1.Translater(dx,dy);
-	p2.Translater(dx,dy);
+	string commande = " " + p1.Translater(dx,dy) + " " + p2.Translater(dx,dy);
+	return commande;
 } //----- Fin de Méthode
 
 

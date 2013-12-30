@@ -12,6 +12,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <sstream>
 
 //------------------------------------------------------ Include personnel
 #include "Cercle.h"
@@ -25,7 +26,11 @@ string Cercle::Translater ( int dx, int dy )
 // Algorithme :
 //
 {
-        centre.Translater(dx,dy);
+	stringstream ssr;
+	ssr << rayon;
+	string strr = ssr.str();
+	string commande = centre.Translater(dx,dy) + " " + strr ;
+	return commande;
 } //----- Fin de Méthode
 
 

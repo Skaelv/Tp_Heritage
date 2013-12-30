@@ -12,7 +12,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-
+#include<sstream>
 //------------------------------------------------------ Include personnel
 #include "Point.h"
 
@@ -21,13 +21,19 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-bool Point::Translater (int dx, int dy)
+string Point::Translater (int dx, int dy)
 // Algorithme :
 //
 {
-	this->x+=dx;
-	this->y+=dy;
-	return true;
+	stringstream ssx;
+	stringstream ssy;
+	x += dx;y+=dy;
+	ssx << x;ssy<< y;
+	string strx = ssx.str();
+	string stry = ssy.str();
+	string commande = strx + " " + stry;
+
+	return commande;
 } //----- Fin de Méthode
 
 
@@ -36,8 +42,8 @@ Point & Point::operator = ( const Point & unPoint )
 // Algorithme :
 //
 {
-	this->x=unPoint.x;
-	this->y=unPoint.y;
+	x=unPoint.x;
+	y=unPoint.y;
 	return *this;
 } //----- Fin de operator =
 

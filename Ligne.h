@@ -50,7 +50,7 @@ public:
     // Contrat :
     //
 
-    Ligne ( Point *p1, Point *p2 );
+    Ligne ( int x1,int y1,int x2,int y2,string name="" );
     // Mode d'emploi :
     //Constructeur d'une ligne, ses extrémités lui sont passées
     //en paramètres.
@@ -69,8 +69,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-Point *p1;
-Point *p2;
+Point p1;
+Point p2;
 };
 
 //--------------------------- Autres définitions dépendantes de <Ligne>

@@ -65,17 +65,26 @@ void Modele::AjouterRectangle(string name,string commande, int fx1,int fy1, int 
 	element.second = new Rectangle(name,fx1,fy1,fx2,fy2);
 	listeEltGeo[name] = element;
 	cout << "OK"<< endl << "# New Object : "<< name <<endl;
-
 }
 
 void Modele::AjouterLigne(string name,string commande, int fx1,int fy1, int fx2,int fy2)
 //Algorithme
 {
+	pairStringEltGeo_type element;
+	element.first = commande;
+	element.second = new Ligne(fx1,fy1,fx2,fy2,name);
+	listeEltGeo[name] = element;
+	cout << "OK"<< endl << "# New Object : "<< name <<endl;
 }
 
 void Modele::AjouterPolyligne(string name,string commande, vector<pair<int,int> > fligne)
 //Algorithme
 {
+	pairStringEltGeo_type element;
+	element.first = commande;
+	element.second = new Polyligne(name,fligne);
+	listeEltGeo[name] = element;
+	cout << "OK"<< endl << "# New Object : "<< name <<endl;
 }
 
 void Modele::AjouterObjetAgrege(string name,string commande, vector<string> nameObjet)
@@ -84,17 +93,18 @@ void Modele::AjouterObjetAgrege(string name,string commande, vector<string> name
 }
 
 
-void Modele::SupprimerCommande(vector<string> &nameObjet)
+void Modele::SupprimerCommande(vector<string>& nameObjet)
 //Algorithme
 {
-	vector<string> cmd;
-	for (unsigned int i=1;i<nameObjet.size(); ++i)
+	vector<string> temp;
+//TODO Probleme de suppression ...Bug du programme
+	for (vector<string>::iterator iter=nameObjet.begin();iter<nameObjet.end(); iter++)
 	{
-		//Renvoie la commande stocké dans une paire dans la map
-		cmd[i-1] = listeEltGeo.find(nameObjet[i])->second.first;
-		listeEltGeo.erase(listeEltGeo.find(nameObjet[i]));
+		temp.push_back(listeEltGeo.find(iter->c_str())->second.first);//
+		delete (listeEltGeo.find(iter->c_str())->second.second);
+		listeEltGeo.erase(listeEltGeo.find(iter->c_str()));
 	}
-	nameObjet = cmd;//Passage par reference : renvoie le tableau des commandes
+	nameObjet = temp;//Passage par reference : renvoie le tableau des commandes
 	//servant à créer les objets que l'on vient de supprimer
 }
 
@@ -123,6 +133,12 @@ bool Modele::ObjetExistant(string objet)
 	return (listeEltGeo.find(objet)!=listeEltGeo.end()) ? true : false;
 }
 
+
+void Modele::Translater(int dx,int dy)
+//Algorithme
+{
+
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 Modele & Modele::operator = ( const Modele & unModele )

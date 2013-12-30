@@ -28,34 +28,27 @@ using namespace std;
 
 //------------------------------------------------- Surcharge d'opérateurs
 
-DeleteCommand::DeleteCommand (vector<string> fname,Modele& fmodele)
+DeleteCommand::DeleteCommand (vector<string> fname)
 //Algorithme
 //
 {
-	modele = fmodele;
-	nameObjet = fname;
+	nomElt = fname;
 }
 
-void DeleteCommand::Execute ()
+void DeleteCommand::Execute (Modele& fmodele)
 // Algorithme :
 //
 {
-
-	modele.SupprimerCommande(nameObjet);
+	fmodele.SupprimerCommande(nomElt);
 }
 
 
-Modele DeleteCommand::GetModele ()
-// Algorithme
-{
-	return modele;
-}
-
-
-void DeleteCommand::Undo ()
+void DeleteCommand::Undo (Modele& fmodele)
 // Algorithme : Recréer les commandes stockées dans nameObjet
 {
-	//nameObjet contient les commandes à refaire
+	//TODO nameObjet contient les commandes à refaire : Pas besoin de reppasser par
+	//le Controller (commandes validées), vérification dans Modele avec ObjetExistant
+	//pour etre sur qu'un objet du meme nom n'as pas été recrée entre temps
 }
 
 

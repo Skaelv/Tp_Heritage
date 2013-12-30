@@ -55,7 +55,7 @@ public:
     // Contrat :
     //
 
-    bool Translater (int dx, int dy );
+    string Translater (int dx, int dy );
     // Mode d'emploi :
     //Translate le point de +dx en abscisse
     //	     				+dy en ordonnée

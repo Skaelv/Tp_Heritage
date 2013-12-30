@@ -55,7 +55,7 @@ public:
     // Contrat :
     //
 
-    Polyligne ( );
+    Polyligne ( string fname, vector< pair<int,int> > flignes );
     // Mode d'emploi :
     //
     // Contrat :
@@ -85,7 +85,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-vector<Ligne> lignes;
+vector< Ligne > lignes;
 };
 
 //--------------------------- Autres définitions dépendantes de <Polyligne>

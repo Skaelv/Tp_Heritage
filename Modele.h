@@ -110,6 +110,12 @@ public:
 	// Mode d'emploi : Retourne true si l'objet existe dans listeEltGeo
     // Contrat :
     //
+
+	void Translater(int dx,int dy);
+	// Mode d'emploi : Retourne true si l'objet existe dans listeEltGeo
+    // Contrat :
+    //
+
 	//------------------------------------------------- Surcharge d'opérateurs
     Modele & operator = ( const Modele & unModele );
     // Mode d'emploi :

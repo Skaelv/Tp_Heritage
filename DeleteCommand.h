@@ -31,30 +31,25 @@ class DeleteCommand : public Command
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	 DeleteCommand (vector<string> fname,Modele& modele);
+	 DeleteCommand (vector<string> fname);
      // Mode d'emploi :Constructeur
      //
      // Contrat :
      //
 
 
-	void Execute ();
+	void Execute (Modele& fmodele);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    void Undo ();
+    void Undo (Modele& fmodele);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    Modele GetModele();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
     virtual ~DeleteCommand ( );
     // Mode d'emploi :
@@ -68,9 +63,9 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-vector<string> nameObjet; //Stocke les noms des objets à supprimer
+vector<string> nomElt; //Stocke les noms des objets à supprimer
 						  //Apres appel de Execute : stocke les commandes pour recréer l'objet
-Modele modele;
+
 };
 
 //--------------------------- Autres définitions dépendantes de <DeleteCommand>

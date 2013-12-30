@@ -56,6 +56,18 @@ public:
     // Contrat :
     //
 
+	void Redo();
+    // Mode d'emploi :
+    //Execute la commande passé en parametre
+    // Contrat :
+    //
+
+	void Undo();
+    // Mode d'emploi :
+    //Execute la commande passé en parametre
+    // Contrat :
+    //
+
 	void EnumererObjet();
     // Mode d'emploi :
     //
