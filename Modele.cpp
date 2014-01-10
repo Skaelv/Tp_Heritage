@@ -163,7 +163,6 @@ void Modele::Translater(int dx,int dy, string fname)
 {
 	listeEltGeo.find(fname)->second->Translater(dx,dy);
 	cout <<"# "<< fname << " has been moved"<<endl;
-
 }
 
 //------------------------------------------------- Surcharge d'opérateurs

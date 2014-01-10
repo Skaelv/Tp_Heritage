@@ -233,7 +233,7 @@ void Controller::Charger(string url)
 	cout << "OK"<< endl;
 	modele.Vider();
 	cout << "# Chargement d'un nouveau modèle vide"<< endl;
-	fichier = ifstream(url);//TODO continuer le chargement d'un fichier
+//	fichier = ifstream(url);//TODO continuer le chargement d'un fichier
 
 } //----- Fin de Méthode
 

@@ -14,9 +14,9 @@ using namespace std;
 #include <iostream>
 #include <list>
 
+
 //------------------------------------------------------ Include personnel
 #include "ObjetAgrege.h"
-
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
@@ -31,7 +31,11 @@ void Translater(int dx, int dy)
 //Algorithme :
 //
 {
-//TODO Translation d'un objetAgrege
+	for (list<EltGeo *>::iterator iter=listObjet.begin();iter=listObjet.end();iter++)
+	{
+
+	}
+
 }
 
 

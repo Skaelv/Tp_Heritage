@@ -141,7 +141,7 @@ protected:
 	stack<Command *> undo;
 	stack<Command *> redo;
 	Modele modele;
-	ifstream fichier;
+	ifstream * fichier;
 };
 
 //--------------------------- Autres définitions dépendantes de <Controller>
