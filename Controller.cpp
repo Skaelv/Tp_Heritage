@@ -234,15 +234,12 @@ void Controller::Vider()
 void Controller::Charger(string url)
 // Algorithme :
 {
-	cout << "OK"<< endl;
-	modele.Vider();
-	cout << "# Chargement d'un nouveau modele vide"<< endl;
-//	fichier = ifstream(url);//TODO continuer le chargement d'un fichier
-
 	//TODO Boucle ligne par ligne puis envoyer chaque ligne à Validation
 	fichier = ifstream(url);
 	if ( !fichier.fail() )
 	{
+		modele.Vider();
+		cout << "# Chargement d'un nouveau modele vide"<< endl;
 		string commande;
 		while(getline(fichier,commande))
 		{
