@@ -12,6 +12,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <fstream>
 #include <cstdlib>
 #include <string>
 #include <vector>
@@ -25,19 +26,28 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-bool Modele::Sauvegarder ( string fichier )
-// Algorithme :
+void Modele::Sauvegarder ( string path )
 {
-	return true;
-} //----- Fin de Méthode
+
+	ofstream saving(path.c_str());
+	if (!saving.fail())
+	{
+		for ( map<string,EltGeo*>::iterator iter = listeEltGeo.begin(); iter != listeEltGeo.end(); iter++)
+		{
+			saving << iter->second->GetCommande() << endl;
+			cout << "# File saved"<< endl;
+		}
+	}//TODO Sauvegarde des fichiers
+	else
+	{
+		cout << "# Saving failed"<< endl;
+	}
+}
 
 bool Modele::Charger(string fichier)
 // Algorithme :
 {
 	this->Vider();
-	//TODO chargement d'un fichier
-	//Methode : renvoyer un vecteur de string(commandes) au controlleur qui
-	//appellera pour chaque commande : this->Validation
 	return true;
 } //----- Fin de Méthode
 
@@ -164,6 +174,8 @@ void Modele::Translater(int dx,int dy, string fname)
 	listeEltGeo.find(fname)->second->Translater(dx,dy);
 	cout <<"# "<< fname << " has been moved"<<endl;
 }
+
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 Modele & Modele::operator = ( const Modele & unModele )

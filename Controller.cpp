@@ -46,6 +46,7 @@ bool Controller::Validation ( string commande )
 		}
 		if (mots[0]=="CLEAR")
 		{
+			//TODO ClearCommand permettant de recharger le modele
 			this->Vider();
 			return true;
 		}
@@ -74,8 +75,9 @@ bool Controller::Validation ( string commande )
 			return true;
 		}
 	}
-	else if ( (mots.size()==2) and ( (mots[0]=="SAVE") or (mots[0]=="LOAD") ) )
+	else if ( (mots.size()==2) and (mots[0]=="LOAD")  )
 	{
+		modele.Sauvegarder(mots[1]);
 		return true;
 	}
 	else if ( (mots.size()==4) and (mots[0]=="MOVE") and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) and (this->ObjetExistant(mots[1])) )
@@ -112,7 +114,6 @@ bool Controller::Validation ( string commande )
 			agrege.push_back(mots[i]);
 			if (!this->ObjetExistant(mots[i]))
 			{
-
 				cout << "ERR"<< endl << "#At least one object do not exist : " << mots[i] << endl;
 				return false;
 			}
@@ -120,7 +121,7 @@ bool Controller::Validation ( string commande )
 		this->ExecuterCommand( new AjouterObjetAgregeCommand(agrege,mots[1],commande));
 		return true;
 	}
-	else if ( (mots[0]=="C") and (mots.size()==5) and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) and (atoi(mots[4].c_str())) and (!this->ObjetExistant(mots[1])) )
+	else if ( (mots[0]=="C") and (mots.size()==5) and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) and (atoi(mots[4].c_str())>0) and (!this->ObjetExistant(mots[1])) )
 	{
 		this->ExecuterCommand(new AjouterCercleCommand(mots[1],commande,
 													 	 atoi(mots[2].c_str()),

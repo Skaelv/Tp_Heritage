@@ -31,8 +31,8 @@ using namespace std;
 //
 //
 //------------------------------------------------------------------------
-typedef pair<string, EltGeo*> pairStringEltGeo_type;
-typedef map<string, EltGeo* >::iterator map_it_type;
+typedef pair<string, EltGeo *> pairStringEltGeo_type;
+typedef map<string, EltGeo * >::iterator map_it_type;
 typedef pair<string, string> pairString;
 
 
@@ -48,7 +48,7 @@ public:
     // Contrat :
     //
 
-	bool Sauvegarder ( string fichier );
+	void Sauvegarder ( string fichier );
 	// Mode d'emploi :
     //		Sauvegarde le modèle courant avec les informations passées en paramètre
     // Contrat :
@@ -163,7 +163,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-	map < string , EltGeo*> listeEltGeo;
+	map < string , EltGeo *> listeEltGeo;
 };
 
 //--------------------------- Autres définitions dépendantes de <Modele>

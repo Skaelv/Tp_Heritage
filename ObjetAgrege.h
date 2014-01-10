@@ -35,8 +35,13 @@ public:
     //
     // Contrat :
     //
+	void Translater(int dx, int dy);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
-    bool IsAgrege();
+	bool IsAgrege();
     // Mode d'emploi :
     //Renvoie true pour un ObjetAgrege
     // Contrat :

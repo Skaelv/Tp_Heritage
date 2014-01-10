@@ -27,15 +27,14 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
-void Translater(int dx, int dy)
+void ObjetAgrege::Translater(int dx, int dy)
 //Algorithme :
 //
 {
-	for (list<EltGeo *>::iterator iter=listObjet.begin();iter=listObjet.end();iter++)
-	{
-
-	}
-
+	for (list<EltGeo *>::iterator iter=listObjet.begin();iter!=listObjet.end();iter++)
+		{
+			(*iter)->Translater(dx,dy);
+		}
 }
 
 
