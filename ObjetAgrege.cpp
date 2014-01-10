@@ -31,10 +31,6 @@ void Translater(int dx, int dy)
 //Algorithme :
 //
 {
-	for (list<EltGeo *>::iterator iter=listObjet.begin();iter=listObjet.end();iter++)
-	{
-
-	}
 
 }
 

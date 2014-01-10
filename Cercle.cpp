@@ -65,7 +65,7 @@ Cercle::Cercle ( const Cercle & unCercle )
 } //----- Fin de Cercle (constructeur de copie)
 
 
-Cercle::Cercle ( int fx,int fy, int frayon,string fname,string fcommande):EltGeo::EltGeo(fname,fcommande)
+Cercle::Cercle ( int fx,int fy, int frayon,string fname,string fcommande):EltGeo(fname,fcommande)
 // Algorithme :
 //
 {
