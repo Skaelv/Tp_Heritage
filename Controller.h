@@ -12,6 +12,7 @@
 //--------------------------------------------------- Interfaces utilisées
 #include <string>
 #include <stack>
+#include <fstream>
 #include "Modele.h"
 #include "Command.h"
 #include "DeleteCommand.h"

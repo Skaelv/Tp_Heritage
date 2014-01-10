@@ -75,17 +75,20 @@ bool Controller::Validation ( string commande )
 			return true;
 		}
 	}
-	else if ( (mots.size()==2) and (mots[0]=="LOAD")  )
+	else if ( (mots.size()==2) and (mots[0]=="SAVE")  )
 	{
 		modele.Sauvegarder(mots[1]);
-		return true;
 	}
-	else if ( (mots.size()==4) and (mots[0]=="MOVE") and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) and (this->ObjetExistant(mots[1])) )
+	else if ( (mots.size()==2) && (mots[0]=="LOAD")  )
+	{
+			Charger(mots[1]);
+	}
+	else if ( (mots.size()==4) && (mots[0]=="MOVE") && (atoi(mots[2].c_str())) && (atoi(mots[3].c_str())) && (this->ObjetExistant(mots[1])) )
 	{
 		this->ExecuterCommand( new TranslaterCommand(atoi(mots[2].c_str()),atoi(mots[3].c_str()),mots[1].c_str() ) );
 		return true;
 	}
-	else if ( (mots[0]=="DELETE") and (mots.size()>1) )
+	else if ( (mots[0]=="DELETE") && (mots.size()>1) )
 	{
 		unsigned int i;
 		map<string,string> deleteMap;
@@ -105,12 +108,11 @@ bool Controller::Validation ( string commande )
 		this->ExecuterCommand( new DeleteCommand(deleteMap) );
 		return true;
 	}
-	else if ( (mots[0]=="OA") and (mots.size()>2) and (!this->ObjetExistant(mots[1])) )
+	else if ( (mots[0]=="OA") && (mots.size()>2) && (!this->ObjetExistant(mots[1])) )
 	{
 		vector<string> agrege;
 		for (unsigned int i=2; i<mots.size();i++)
 		{
-
 			agrege.push_back(mots[i]);
 			if (!this->ObjetExistant(mots[i]))
 			{
@@ -131,7 +133,7 @@ bool Controller::Validation ( string commande )
 		return true;
 	}
 
-	else if ( (mots[0]=="R") and (mots.size()==6) and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) and (atoi(mots[4].c_str())) and (atoi(mots[5].c_str())) and (!this->ObjetExistant(mots[1])) )
+	else if ( (mots[0]=="R") && (mots.size()==6) && (atoi(mots[2].c_str())) && (atoi(mots[3].c_str())) && (atoi(mots[4].c_str())) && (atoi(mots[5].c_str())) && (!this->ObjetExistant(mots[1])) )
 	{
 		this->ExecuterCommand(new AjouterRectangleCommand(mots[1],commande,
 														atoi(mots[2].c_str()),
@@ -141,7 +143,7 @@ bool Controller::Validation ( string commande )
 		));
 		return true;
 	}
-	else if ( (mots[0]=="L") and (mots.size()==6) and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) and (atoi(mots[4].c_str())) and (atoi(mots[5].c_str())) and (!this->ObjetExistant(mots[1])) )
+	else if ( (mots[0]=="L") && (mots.size()==6) && (atoi(mots[2].c_str())) && (atoi(mots[3].c_str())) && (atoi(mots[4].c_str())) && (atoi(mots[5].c_str())) && (!this->ObjetExistant(mots[1])) )
 	{
 		this->ExecuterCommand(new AjouterLigneCommand(mots[1],commande,
 														atoi(mots[2].c_str()),
@@ -151,7 +153,7 @@ bool Controller::Validation ( string commande )
 		));
 		return true;
 	}
-	else if ( (mots[0]=="PL") and (mots.size()>=4) and (mots.size() % 2 == 0) and (!this->ObjetExistant(mots[1])) )
+	else if ( (mots[0]=="PL") && (mots.size()>=4) && (mots.size() % 2 == 0) && (!this->ObjetExistant(mots[1])) )
 	{
 		unsigned int i;
 		for (i=2; i<mots.size();i++)
@@ -173,6 +175,7 @@ bool Controller::Validation ( string commande )
 		this->ExecuterCommand(new AjouterPolyligneCommand(mots[1],commande,lignes));
 		return true;
 	}
+	
 
 	//Si aucune boucle possédant un retour True n'est rencontrée :
 	cout << "ERR" << endl << " #Invalid Parameters"<<endl;
@@ -231,10 +234,23 @@ void Controller::Vider()
 void Controller::Charger(string url)
 // Algorithme :
 {
-	cout << "OK"<< endl;
-	modele.Vider();
-	cout << "# Chargement d'un nouveau modèle vide"<< endl;
-//	fichier = ifstream(url);//TODO continuer le chargement d'un fichier
+	//TODO Boucle ligne par ligne puis envoyer chaque ligne à Validation
+	ifstream fichier(url.c_str());
+	if ( !fichier.fail() )
+	{
+		modele.Vider();
+		cout << "# Chargement d'un nouveau modele vide"<< endl;
+		string commande;
+		while(getline(fichier,commande))
+		{
+			Validation(commande);
+		}
+		cout << "# Chargement fini" << endl;
+	}
+	else
+	{
+		cout << "# File not exists" << endl;
+	}
 
 } //----- Fin de Méthode
 
@@ -288,7 +304,6 @@ Controller::~Controller ( )
 	{
 		delete undo.top();
 	}
-
 
 #ifdef MAP
     cout << "Appel au destructeur de <Controller>" << endl;

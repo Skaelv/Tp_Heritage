@@ -47,12 +47,14 @@ bool EltGeo::IsAgrege()
 //Algorithme :
 //
 {
+	return false;
 }
 
 string EltGeo::DeleteElement(string objetASupprimer)
 //Algorithme :
 //
 {
+	return "";
 }
 
 void EltGeo::AddElement(EltGeo * objetAInserer)
