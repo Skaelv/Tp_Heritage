@@ -36,9 +36,42 @@ public:
     // Contrat :
     //
 
+	virtual void Translater(int dx,int dy);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
+	string GetCommande();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
-//------------------------------------------------- Surcharge d'opérateurs
+	string GetName();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+	virtual bool IsAgrege();
+    // Mode d'emploi :
+    //Sert a determiner si l'objet est un objet agrege ou non
+    // Contrat :
+    //
+
+	virtual string DeleteElement(string objetASupprimer);
+    // Mode d'emploi :
+    // Methode utile pour supprimer l'objet si il appartient a la liste de l'objet agrege
+    // Contrat : Virtual mais appelé uniquement pour les Objets Agreges.
+    //
+
+	virtual void AddElement(EltGeo * objetAInserer);
+    // Mode d'emploi :
+    // Methode utile pour ajouterl'objet à l'element agrege courant
+    // Contrat : Virtual mais appelé uniquement pour les Objets Agreges.
+    //
+	//------------------------------------------------- Surcharge d'opérateurs
     EltGeo & operator = ( const EltGeo & unEltGeo );
     // Mode d'emploi :
     //
@@ -53,7 +86,7 @@ public:
     // Contrat :
     //
 
-    EltGeo ( string fname ="");
+    EltGeo ( string fname ="",string fcommande="");
     // Mode d'emploi :
     //
     // Contrat :
@@ -72,6 +105,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
     string name;
+    string commande;
 };
 
 //--------------------------- Autres définitions dépendantes de <EltGeo>

@@ -29,19 +29,34 @@ bool Polyligne::AjouterLigne (Ligne fligne )
 	return true;
 } //----- Fin de Méthode
 
-string Polyligne::Translater ( int dx, int dy )
+void Polyligne::Translater ( int dx, int dy )
 // Algorithme :
 //
 {
-	string commande;
+	commande="PL " + name;
 	for (vector<Ligne>::iterator iter=lignes.begin();iter<lignes.end(); iter++ )
 	{
-		commande+= " " + iter->Translater(dx,dy);
-	}
-	return commande;
-	//TODO Boucle sur le vecteur lignes appelant la methode translater de chaque lignes
 
+
+		if (iter==lignes.begin())
+			{
+			commande+= iter->GetP1().Translater(dx,dy);
+			}
+		iter->Translater(dx,dy);
+		commande+= iter->GetP2().Translater(0,0);
+
+	}
 } //----- Fin de Méthode
+
+
+
+bool Polyligne::IsAgrege()
+//Algorithme
+//
+{
+	return false;
+}
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 Polyligne & Polyligne::operator = ( const Polyligne & unPolyligne )
@@ -63,16 +78,25 @@ Polyligne::Polyligne ( const Polyligne & unPolyligne )
 } //----- Fin de Polyligne (constructeur de copie)
 
 
-Polyligne::Polyligne (string fname, vector<pair<int,int> > flignes )
+Polyligne::Polyligne ( vector<pair<int,int> > flignes ,string fname,string fcommande):EltGeo(fname,fcommande)
 // Algorithme :
 //
 {
-	vector<pair<int,int> >::iterator debutLigne;
-	for (debutLigne=flignes.begin();debutLigne<flignes.end()-1;debutLigne++)
+	int x1,x2,y1,y2;
+	vector<pair<int,int> >::iterator iter;
+	for (iter=flignes.begin();iter<flignes.end()-1;)
 	{
-		Ligne ligne = Ligne(debutLigne->first, debutLigne->second, ++debutLigne->first, debutLigne->second);
+		//Impossible d'injecter iter-> directement dans ligne
+		//car l'incrementation d'iter ne se fait qu'a la fin de l'instruction
+		x1 =iter->first;
+		y1 = iter->second;
+		iter++;
+		x2 = iter->first;
+		y2 = iter->second;
+		Ligne ligne = Ligne(x1,y1,x2,y2);
 		this->AjouterLigne(ligne);
-		debutLigne--;
+		ligne.Translater(0,0);
+		cout<< ligne.GetCommande()<<endl;
 	}
 #ifdef MAP
     cout << "Appel au constructeur de <Polyligne>" << endl;

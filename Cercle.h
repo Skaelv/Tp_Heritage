@@ -50,12 +50,12 @@ public:
     // Contrat :
     //
 
-    string Translater ( int dx,int dy);
+    void Translater ( int dx,int dy);
     // Mode d'emploi :
     //
     // Contrat :
     //
-    Cercle ( string name="",int fx=0,int fy=0, int frayon = 0);
+    Cercle ( int fx=0,int fy=0, int frayon = 0,string name="",string fcommande="");
     // Mode d'emploi :
     //
     // Contrat :
@@ -68,6 +68,11 @@ public:
     // Contrat :
     //
 
+    bool IsAgrege();
+    // Mode d'emploi :
+    //Renvoie false pour un cercle
+    // Contrat :
+    //
 
     virtual ~Cercle ( );
     // Mode d'emploi :

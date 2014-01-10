@@ -22,10 +22,44 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 // type EltGeo::Méthode ( liste des paramètres )
+void EltGeo::Translater(int fdx, int fdy)
 // Algorithme :
 //
-//{
-//} //----- Fin de Méthode
+{
+} //----- Fin de Méthode
+
+string EltGeo::GetCommande()
+// Algorithme :
+//
+{
+	return commande;
+} //----- Fin de Méthode
+
+string EltGeo::GetName()
+// Algorithme :
+//
+{
+	return name;
+} //----- Fin de Méthode
+
+
+bool EltGeo::IsAgrege()
+//Algorithme :
+//
+{
+}
+
+string EltGeo::DeleteElement(string objetASupprimer)
+//Algorithme :
+//
+{
+}
+
+void EltGeo::AddElement(EltGeo * objetAInserer)
+//Algorithme :
+//
+{
+}
 
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -47,7 +81,7 @@ EltGeo::EltGeo ( const EltGeo & unEltGeo )
 } //----- Fin de EltGeo (constructeur de copie)
 
 
-EltGeo::EltGeo ( string fname ):name(fname)
+EltGeo::EltGeo ( string fname,string fcommande ):name(fname),commande(fcommande)
 // Algorithme :
 //
 {

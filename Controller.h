@@ -15,6 +15,7 @@
 #include "Modele.h"
 #include "Command.h"
 #include "DeleteCommand.h"
+#include "TranslaterCommand.h"
 #include "AjouterCercleCommand.h"
 #include "AjouterRectangleCommand.h"
 #include "AjouterLigneCommand.h"
@@ -93,6 +94,17 @@ public:
     // Contrat : sous traite à la fonction vider du modele
     //
 
+	void Charger(string url);
+	// Mode d'emploi :
+    //Vide le modele courant et charge le modele dont l'url est envoyé en parametre
+    // Contrat : sous traite à la fonction vider du modele
+    //
+
+	void Sauvegarder(string url);
+	// Mode d'emploi :
+    //Sauvegarde le modele courant dans un nouveau fichier dont l'url est envoyé en parametre
+    // Contrat : sous traite à la fonction vider du modele
+    //
 //------------------------------------------------- Surcharge d'opérateurs
     Controller & operator = ( const Controller & unController );
     // Mode d'emploi :
@@ -129,7 +141,7 @@ protected:
 	stack<Command *> undo;
 	stack<Command *> redo;
 	Modele modele;
-
+	ifstream fichier;
 };
 
 //--------------------------- Autres définitions dépendantes de <Controller>

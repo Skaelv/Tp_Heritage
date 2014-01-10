@@ -12,6 +12,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <sstream>
 
 //------------------------------------------------------ Include personnel
 #include "Rectangle.h"
@@ -21,13 +22,23 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-string Rectangle::Translater ( float dx, float dy )
+void Rectangle::Translater ( int dx, int dy )
 // Algorithme :
 //
 {
-	string commande = " " + p1.Translater(dx,dy) + " " + p2.Translater(dx,dy);
-	return commande;
+	cout << "Rectangle.Translater"<<endl;
+	commande ="";
+    commande ="R " + name + p1.Translater(dx,dy) + p2.Translater(dx,dy);
 } //----- Fin de Méthode
+
+
+
+bool Rectangle::IsAgrege()
+//Algorithme
+//
+{
+	return false;
+}
 
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -50,7 +61,7 @@ Rectangle::Rectangle ( const Rectangle & unRectangle ):p1(unRectangle.p1),p2(unR
 } //----- Fin de Rectangle (constructeur de copie)
 
 
-Rectangle::Rectangle (string name, int x1,int y1,int x2,int y2 ):EltGeo(name),p1(Point(x1,y1)),p2(Point(x2,y2))
+Rectangle::Rectangle ( int fx1,int fy1,int fx2,int fy2,string fname,string fcommande ):EltGeo(fname,fcommande),p1(Point(fx1,fy1)),p2(Point(fx2,fy2))
 // Algorithme :
 //
 {

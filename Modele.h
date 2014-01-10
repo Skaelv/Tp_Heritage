@@ -32,8 +32,8 @@ using namespace std;
 //
 //------------------------------------------------------------------------
 typedef pair<string, EltGeo*> pairStringEltGeo_type;
-typedef pair<string,pairStringEltGeo_type> pairMap_type;
-typedef map<string, pairStringEltGeo_type >::iterator map_it_type;
+typedef map<string, EltGeo* >::iterator map_it_type;
+typedef pair<string, string> pairString;
 
 
 class Modele
@@ -91,7 +91,7 @@ public:
     // Contrat :
     //
 
-	void SupprimerCommande(vector<string> &nameObjet);
+	void SupprimerCommande(map<string,string>  &nameObjet);
 	// Mode d'emploi :Supprime les objets et leurs commandes
 	//Renvoie par reference les commandes de creation
     // Contrat :
@@ -101,17 +101,31 @@ public:
 	//Mode d'emploi :Supprime un objet unique
     // Contrat :
     //
+
+	string DeleteAgrege(string objetASupprimer);
+	//Mode d'emploi :Parcoure la liste d'objet et appelle la methode DeleteElement
+	//si l'objet est un objet agregé afin qu'il supprime l'element si il est dans
+	//sa propres liste
+    // Contrat :
+    //
+
+	void AddAgrege(string nameObject,string nameAgrege);
+	// Mode d'emploi : ajoute nameObject a l'objet nameAgrege
+    // Contrat : Methode utilisée par la commande DeleteCommand pour reconstituer l'objet agrege
+    //
+
+
 	void EnumererCommande();
 	// Mode d'emploi : Liste les commandes des objets stockés dans le modele courant
     // Contrat :
     //
 
-	bool ObjetExistant(string objet);
+	bool ObjetExistant(string fname);
 	// Mode d'emploi : Retourne true si l'objet existe dans listeEltGeo
     // Contrat :
     //
 
-	void Translater(int dx,int dy);
+	void Translater(int dx,int dy,  string fname);
 	// Mode d'emploi : Retourne true si l'objet existe dans listeEltGeo
     // Contrat :
     //
@@ -149,7 +163,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-	map < string , pairStringEltGeo_type> listeEltGeo;
+	map < string , EltGeo*> listeEltGeo;
 };
 
 //--------------------------- Autres définitions dépendantes de <Modele>

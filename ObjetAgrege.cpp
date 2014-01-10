@@ -12,6 +12,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <list>
 
 //------------------------------------------------------ Include personnel
 #include "ObjetAgrege.h"
@@ -30,8 +31,53 @@ void Translater(int dx, int dy)
 //Algorithme :
 //
 {
-
+//TODO Translation d'un objetAgrege
 }
+
+
+bool ObjetAgrege::IsAgrege()
+//Algorithme
+//
+{
+	return true;
+}
+
+
+void ObjetAgrege::AddElement(EltGeo * element)
+{
+	listObjet.push_back(element);
+	commande+= " " + element->GetName();
+}
+
+
+string ObjetAgrege::DeleteElement(string objetASupprimer)
+//Algorithme
+//
+{
+	bool isInObject = false;
+	commande="OA "+name;
+	for (list<EltGeo *>::iterator iter=listObjet.begin();iter!=listObjet.end();)
+	{
+		if ((*iter)->GetName() == objetASupprimer)
+		{
+
+			iter = listObjet.erase(iter); //Supprime l'iterateur courant et passe au suivant
+			isInObject= true;
+
+		}
+		else
+		{
+			commande+=" "+(*iter)->GetName();//Modification de la commande pour
+			//y retirer l'element supprimé.
+			iter++;
+		}
+	}
+	string temp;
+	return temp = (isInObject) ? " " + name : "";//Renvoie le nom de l'objet ou rien
+	//selon si l'objet à supprimer etait dans la liste de l'objet courant
+}
+
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 ObjetAgrege & ObjetAgrege::operator = ( const ObjetAgrege & unObjetAgrege )
@@ -53,10 +99,11 @@ ObjetAgrege::ObjetAgrege ( const ObjetAgrege & unObjetAgrege )
 } //----- Fin de ObjetAgrege (constructeur de copie)
 
 
-ObjetAgrege::ObjetAgrege ( )
+ObjetAgrege::ObjetAgrege (list<EltGeo *> flistObjet, string fname,string fcommande):EltGeo(fname,fcommande),listObjet(flistObjet)
 // Algorithme :
 //
 {
+
 #ifdef MAP
     cout << "Appel au constructeur de <ObjetAgrege>" << endl;
 #endif

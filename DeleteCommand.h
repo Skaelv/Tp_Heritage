@@ -12,7 +12,6 @@
 #include "Command.h"
 #include "Modele.h"
 //--------------------------------------------------- Interfaces utilisées
-
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -31,7 +30,7 @@ class DeleteCommand : public Command
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	 DeleteCommand (vector<string> fname);
+	 DeleteCommand (map<string,string> fname);
      // Mode d'emploi :Constructeur
      //
      // Contrat :
@@ -46,7 +45,7 @@ public:
 
     void Undo (Modele& fmodele);
     // Mode d'emploi :
-    //
+    //Recréer l'objet supprimé tel qu'il était avant sa suppression
     // Contrat :
     //
 
@@ -63,8 +62,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-vector<string> nomElt; //Stocke les noms des objets à supprimer
-						  //Apres appel de Execute : stocke les commandes pour recréer l'objet
+map<string,string> mapElt; //Stocke les noms des objets à supprimer
+							  //et leur commandes pour recréer l'objet après destruction
 
 };
 

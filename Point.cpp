@@ -25,15 +25,14 @@ string Point::Translater (int dx, int dy)
 // Algorithme :
 //
 {
-	stringstream ssx;
-	stringstream ssy;
-	x += dx;y+=dy;
-	ssx << x;ssy<< y;
-	string strx = ssx.str();
-	string stry = ssy.str();
-	string commande = strx + " " + stry;
-
-	return commande;
+    stringstream ssx;
+    stringstream ssy;
+    x += dx;y+=dy;
+    ssx << x;ssy<< y;
+    string strx = ssx.str();
+    string stry = ssy.str();
+    string str =" " + strx + " " + stry;
+    return str;
 } //----- Fin de Méthode
 
 

@@ -29,13 +29,17 @@ class Rectangle : public EltGeo
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	string Translater ( float dx, float dy );
+	void Translater ( int dx, int dy );
     // Mode d'emploi :
     //Appelle la méthode Point::Translater(dx,dy) des sommets p1 et p2 du rectangle
     // Contrat :
     //
 
-
+    bool IsAgrege();
+    // Mode d'emploi :
+    //Renvoie false pour un rectangle
+    // Contrat :
+    //
 //------------------------------------------------- Surcharge d'opérateurs
     Rectangle & operator = ( const Rectangle & unRectangle );
     // Mode d'emploi :
@@ -51,7 +55,7 @@ public:
     // Contrat :
     //
 
-    Rectangle ( string name, int x1,int y1,int x2,int y2);
+    Rectangle ( int fx1,int fy1,int fx2,int fy2,string fname="",string fcommande="");
     // Mode d'emploi :
     //Ajoute les deux sommets du rectangle
     // Contrat :

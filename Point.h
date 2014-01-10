@@ -59,8 +59,9 @@ public:
     // Mode d'emploi :
     //Translate le point de +dx en abscisse
     //	     				+dy en ordonnée
-    // Contrat :
+    // Contrat : Renvoie les positions précédés d'un espace
     //
+
     virtual ~Point ( );
     // Mode d'emploi :
     //

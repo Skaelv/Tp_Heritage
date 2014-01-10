@@ -24,6 +24,11 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
+Command::Command()
+//Algorithme
+{
+}
+
 void Command::Execute (Modele& fmodele)
 // Algorithme :
 //

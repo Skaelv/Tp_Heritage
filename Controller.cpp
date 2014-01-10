@@ -55,6 +55,10 @@ bool Controller::Validation ( string commande )
 			{
 				this->Undo();
 			}
+			else
+			{
+				cout<< "# No command to execute" <<endl;
+			}
 		return true;
 		}
 		if (mots[0]=="REDO")
@@ -63,6 +67,10 @@ bool Controller::Validation ( string commande )
 			{
 				this->Redo();
 			}
+			else
+			{
+				cout<< "# No command to execute" <<endl;
+			}
 			return true;
 		}
 	}
@@ -70,99 +78,99 @@ bool Controller::Validation ( string commande )
 	{
 		return true;
 	}
-	else if ( (mots.size()==4) and (mots[0]=="MOVE") and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) )
+	else if ( (mots.size()==4) and (mots[0]=="MOVE") and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) and (this->ObjetExistant(mots[1])) )
 	{
-		this->ExecuterCommand(new TranslaterCommand(atoi(mots[2].c_str()),atoi(mots[3].c_str())));
+		this->ExecuterCommand( new TranslaterCommand(atoi(mots[2].c_str()),atoi(mots[3].c_str()),mots[1].c_str() ) );
+		return true;
 	}
 	else if ( (mots[0]=="DELETE") and (mots.size()>1) )
 	{
 		unsigned int i;
+		map<string,string> deleteMap;
 		 //Ne supprime aucun objet si un objet n'existe pas
 		for (i=1;i<mots.size();i++)
 		{
 			if (!this->ObjetExistant(mots[i]))
 			//Si un objet n'existe pas on ne supprime rien
 			{
-				cout << "ERR"<< endl << "#Objet inexistant : " << mots[i] << endl;
+				cout << "ERR"<< endl << "#At least one object do not exist : " << mots[i] << endl;
 				return false;
 			}
+			deleteMap[mots[i].c_str()] = ""; //Reserve un espace pour stockage des commandes
+									 //de recréation des objets avec Undo
+
 		}//Fin du for
-		this->ExecuterCommand( new DeleteCommand(mots));
-		cout << "OK"<< endl;
+		this->ExecuterCommand( new DeleteCommand(deleteMap) );
 		return true;
 	}
-	else if ( (mots[0]=="OA") and (mots.size()>2) )
+	else if ( (mots[0]=="OA") and (mots.size()>2) and (!this->ObjetExistant(mots[1])) )
 	{
-		return true;
-	}
-	else if ( (mots[0]=="C") and (mots.size()==5) and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) and (atoi(mots[4].c_str())) )
-	{
-		if (!this->ObjetExistant(mots[1]))
-		{
-			this->ExecuterCommand(new AjouterCercleCommand(mots[1],commande,
-														 	 atoi(mots[2].c_str()),
-														 	 atoi(mots[3].c_str()),
-															 atoi(mots[4].c_str())
-														));
-
-			return true;
-		}
-	}
-
-	else if ( (mots[0]=="R") and (mots.size()==6) and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) and (atoi(mots[4].c_str())) and (atoi(mots[5].c_str())) )
-	{
-		if (!this->ObjetExistant(mots[1]))
+		vector<string> agrege;
+		for (unsigned int i=2; i<mots.size();i++)
 		{
 
-			this->ExecuterCommand(new AjouterRectangleCommand(mots[1],commande,
-															atoi(mots[2].c_str()),
-															atoi(mots[3].c_str()),
-															atoi(mots[4].c_str()),
-															atoi(mots[5].c_str())
-			));
+			agrege.push_back(mots[i]);
+			if (!this->ObjetExistant(mots[i]))
+			{
 
-		return true;
+				cout << "ERR"<< endl << "#At least one object do not exist : " << mots[i] << endl;
+				return false;
+			}
 		}
+		this->ExecuterCommand( new AjouterObjetAgregeCommand(agrege,mots[1],commande));
+		return true;
 	}
-	else if ( (mots[0]=="L") and (mots.size()==6) and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) and (atoi(mots[4].c_str())) and (atoi(mots[5].c_str())) )
+	else if ( (mots[0]=="C") and (mots.size()==5) and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) and (atoi(mots[4].c_str())) and (!this->ObjetExistant(mots[1])) )
 	{
-		if (!this->ObjetExistant(mots[1]))
-		{
-
-			this->ExecuterCommand(new AjouterLigneCommand(mots[1],commande,
-															atoi(mots[2].c_str()),
-															atoi(mots[3].c_str()),
-															atoi(mots[4].c_str()),
-															atoi(mots[5].c_str())
-			));
-
+		this->ExecuterCommand(new AjouterCercleCommand(mots[1],commande,
+													 	 atoi(mots[2].c_str()),
+													 	 atoi(mots[3].c_str()),
+														 atoi(mots[4].c_str())
+													));
 		return true;
-		}
 	}
-	else if ( (mots[0]=="PL") and (mots.size()>=4) and (mots.size() % 2 == 0) )
+
+	else if ( (mots[0]=="R") and (mots.size()==6) and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) and (atoi(mots[4].c_str())) and (atoi(mots[5].c_str())) and (!this->ObjetExistant(mots[1])) )
+	{
+		this->ExecuterCommand(new AjouterRectangleCommand(mots[1],commande,
+														atoi(mots[2].c_str()),
+														atoi(mots[3].c_str()),
+														atoi(mots[4].c_str()),
+														atoi(mots[5].c_str())
+		));
+		return true;
+	}
+	else if ( (mots[0]=="L") and (mots.size()==6) and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) and (atoi(mots[4].c_str())) and (atoi(mots[5].c_str())) and (!this->ObjetExistant(mots[1])) )
+	{
+		this->ExecuterCommand(new AjouterLigneCommand(mots[1],commande,
+														atoi(mots[2].c_str()),
+														atoi(mots[3].c_str()),
+														atoi(mots[4].c_str()),
+														atoi(mots[5].c_str())
+		));
+		return true;
+	}
+	else if ( (mots[0]=="PL") and (mots.size()>=4) and (mots.size() % 2 == 0) and (!this->ObjetExistant(mots[1])) )
 	{
 		unsigned int i;
 		for (i=2; i<mots.size();i++)
 		{
-			if (!atoi(mots[i].c_str())) //Test sur la validité des arguments integer
+			if (!atoi(mots[i].c_str())) //Test la validité des arguments integer
 			{
 				cout << "ERR"<< endl << " #Invalid Parameters"<<endl;
 				return false;
 			}
 		}
-		if (!this->ObjetExistant(mots[1]))
-		{
-			vector<pair<int,int> > lignes;
-			pair<int,int> l;
-			for (unsigned int i=3;i<mots.size(); i+=2)
-				{
-					l.first = atoi(mots[i-1].c_str());
-					l.second = atoi(mots[i].c_str());
-					lignes.push_back(l);//
-				}
-			this->ExecuterCommand(new AjouterPolyligneCommand(mots[1],commande,lignes));
-			return true;
-		}
+		vector<pair<int,int> > lignes;
+		pair<int,int> l;
+		for (unsigned int i=3;i<mots.size(); i+=2)
+			{
+				l.first = atoi(mots[i-1].c_str());
+				l.second = atoi(mots[i].c_str());
+				lignes.push_back(l);//
+			}
+		this->ExecuterCommand(new AjouterPolyligneCommand(mots[1],commande,lignes));
+		return true;
 	}
 
 	//Si aucune boucle possédant un retour True n'est rencontrée :
@@ -174,6 +182,7 @@ bool Controller::Validation ( string commande )
 void Controller::ExecuterCommand ( Command *command )
 // Algorithme :
 {
+	cout << "OK"<< endl;
 	command->Execute(modele);
 	undo.push(command);
 } //----- Fin de Méthode
@@ -181,6 +190,7 @@ void Controller::ExecuterCommand ( Command *command )
 void Controller::Undo()
 //Algorithme :
 {
+	cout << "OK"<< endl;
 	undo.top()->Undo(modele);//Execute la fonction Undo de la derniere commande stocké dans la pile
 	redo.push(undo.top());//Copie la commande de la pile undo vers redo
 	undo.pop();//Supprime la commande de la pile undo
@@ -189,6 +199,7 @@ void Controller::Undo()
 void Controller::Redo()
 //Algorithme :
 {
+	cout << "OK"<< endl;
 	redo.top()->Execute(modele);//Execute la fonction Execute de la derniere commande stocké dans la pile
 	undo.push(redo.top());//Copie la commande de la pile undo vers redo
 	redo.pop();//Supprime la commande de la pile undo
@@ -209,7 +220,29 @@ void Controller::EnumererObjet()
 void Controller::Vider()
 // Algorithme :
 {
+	cout << "OK"<< endl;
+	modele.Vider();
+	cout << "# Chargement d'un nouveau modèle vide"<< endl;
 } //----- Fin de Méthode
+
+
+
+void Controller::Charger(string url)
+// Algorithme :
+{
+	cout << "OK"<< endl;
+	modele.Vider();
+	cout << "# Chargement d'un nouveau modèle vide"<< endl;
+	fichier = ifstream(url);//TODO continuer le chargement d'un fichier
+
+} //----- Fin de Méthode
+
+void Controller::Sauvegarder(string url)
+// Algorithme :
+{
+
+} //----- Fin de Méthode
+
 
 
 //------------------------------------------------- Surcharge d'opérateurs

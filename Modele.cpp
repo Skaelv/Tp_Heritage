@@ -34,13 +34,20 @@ bool Modele::Sauvegarder ( string fichier )
 bool Modele::Charger(string fichier)
 // Algorithme :
 {
+	this->Vider();
+	//TODO chargement d'un fichier
+	//Methode : renvoyer un vecteur de string(commandes) au controlleur qui
+	//appellera pour chaque commande : this->Validation
 	return true;
 } //----- Fin de Méthode
 
 bool Modele::Vider()
 // Algorithme :
 {
-	//Effacer dynamiquement les EltGeo crées stockés dans la map listeEltGeo(pointeurs)
+	for(map_it_type iterator = listeEltGeo.begin(); iterator != listeEltGeo.end(); iterator++)
+	{
+		delete iterator->second;
+	}
 	listeEltGeo.clear();
 	return true;
 } //----- Fin de Méthode
@@ -50,59 +57,54 @@ bool Modele::Vider()
 void Modele::AjouterCercle(string name,string commande, int fx,int fy, int fr)
 //Algorithme
 {
-	pairStringEltGeo_type element;
-	element.first = commande;
-	element.second = new Cercle(name,fx,fy,fr);
-	listeEltGeo[name] = element;
-	cout << "OK"<< endl << "# New Object : "<< name <<endl;
+	listeEltGeo[name] =  new Cercle(fx,fy,fr,name,commande);
+	cout << "# New Object : "<< name <<endl;
 }
 
 void Modele::AjouterRectangle(string name,string commande, int fx1,int fy1, int fx2,int fy2)
 //Algorithme
 {
-	pairStringEltGeo_type element;
-	element.first = commande;
-	element.second = new Rectangle(name,fx1,fy1,fx2,fy2);
-	listeEltGeo[name] = element;
-	cout << "OK"<< endl << "# New Object : "<< name <<endl;
+	listeEltGeo[name] = new Rectangle(fx1,fy1,fx2,fy2,name,commande);
+	cout << "# New Object : "<< name <<endl;
 }
 
 void Modele::AjouterLigne(string name,string commande, int fx1,int fy1, int fx2,int fy2)
 //Algorithme
 {
-	pairStringEltGeo_type element;
-	element.first = commande;
-	element.second = new Ligne(fx1,fy1,fx2,fy2,name);
-	listeEltGeo[name] = element;
-	cout << "OK"<< endl << "# New Object : "<< name <<endl;
+	listeEltGeo[name] = new Ligne(fx1,fy1,fx2,fy2,name,commande);
+	cout  << "# New Object : "<< name <<endl;
 }
 
 void Modele::AjouterPolyligne(string name,string commande, vector<pair<int,int> > fligne)
 //Algorithme
 {
-	pairStringEltGeo_type element;
-	element.first = commande;
-	element.second = new Polyligne(name,fligne);
-	listeEltGeo[name] = element;
-	cout << "OK"<< endl << "# New Object : "<< name <<endl;
+	listeEltGeo[name] = new Polyligne(fligne,name,commande);
+	cout << "# New Object : "<< name <<endl;
 }
 
 void Modele::AjouterObjetAgrege(string name,string commande, vector<string> nameObjet)
 //Algorithme
 {
+	list<EltGeo *> objetAg;
+	for (vector<string>::iterator iter=nameObjet.begin();iter<nameObjet.end(); iter++)
+		{
+		objetAg.push_back(listeEltGeo.find(iter->c_str())->second);
+		}
+	listeEltGeo[name] = new ObjetAgrege(objetAg,name,commande);
+	cout<< "# New Object : "<< name <<endl;
 }
 
 
-void Modele::SupprimerCommande(vector<string>& nameObjet)
+void Modele::SupprimerCommande(map<string,string>  &nameObjet)
 //Algorithme
 {
-	vector<string> temp;
-//TODO Probleme de suppression ...Bug du programme
-	for (vector<string>::iterator iter=nameObjet.begin();iter<nameObjet.end(); iter++)
+	map<string,string> temp;
+	for (map<string,string>::iterator iter=nameObjet.begin();iter!=nameObjet.end(); iter++)
 	{
-		temp.push_back(listeEltGeo.find(iter->c_str())->second.first);//
-		delete (listeEltGeo.find(iter->c_str())->second.second);
-		listeEltGeo.erase(listeEltGeo.find(iter->c_str()));
+		//La commande suivante stocke la commande et la liste des objets agreges auquel l'objet appartenait
+		temp[listeEltGeo.find(iter->first)->second->GetCommande()]=this->DeleteAgrege(iter->first);
+		delete (listeEltGeo.find(iter->first)->second);
+		listeEltGeo.erase(listeEltGeo.find(iter->first));
 	}
 	nameObjet = temp;//Passage par reference : renvoie le tableau des commandes
 	//servant à créer les objets que l'on vient de supprimer
@@ -110,10 +112,32 @@ void Modele::SupprimerCommande(vector<string>& nameObjet)
 
 void Modele::SupprimerObjet(string name)
 //Algorithme Efface dynamiquement le pointeur *EltGeo avant d'effacer
-//la ligne de la map
+//la ligne de listeEltGeo
 {
-	delete (listeEltGeo.find(name)->second.second);
+	delete (listeEltGeo.find(name)->second);
 	listeEltGeo.erase(listeEltGeo.find(name));
+}
+
+string Modele::DeleteAgrege(string objetASupprimer)
+//Algorithme : Envoie objetASupprimer a tous les objetAgreges pour qu'ils vérifient
+//si l'objet est dans leur liste et le retirent si tel est le cas avant suppression dans la memoire
+{
+
+	string listAgrege="";
+	for(map_it_type iterator = listeEltGeo.begin(); iterator != listeEltGeo.end(); iterator++)
+	{
+		if(iterator->second->IsAgrege())
+		{
+			listAgrege+= iterator->second->DeleteElement(objetASupprimer);
+		}
+	}
+	return listAgrege;
+
+}
+
+void Modele::AddAgrege(string nameObject,string nameAgrege)
+{
+	listeEltGeo.find(nameAgrege)->second->AddElement(listeEltGeo.find(nameObject)->second);
 }
 
 void Modele::EnumererCommande()
@@ -122,21 +146,23 @@ void Modele::EnumererCommande()
 
 	for(map_it_type iterator = listeEltGeo.begin(); iterator != listeEltGeo.end(); iterator++)
 	{
-	cout << iterator->second.first << endl;
+	cout << iterator->second->GetCommande() << endl;
 	}
 
 }
 
-bool Modele::ObjetExistant(string objet)
+bool Modele::ObjetExistant(string fname)
 //Algorithme
 {
-	return (listeEltGeo.find(objet)!=listeEltGeo.end()) ? true : false;
+	return (listeEltGeo.find(fname)!=listeEltGeo.end()) ? true : false;
 }
 
 
-void Modele::Translater(int dx,int dy)
+void Modele::Translater(int dx,int dy, string fname)
 //Algorithme
 {
+	listeEltGeo.find(fname)->second->Translater(dx,dy);
+	cout <<"# "<< fname << " has been moved"<<endl;
 
 }
 
@@ -174,6 +200,11 @@ Modele::~Modele ( )
 // Algorithme :
 //
 {
+	for(map_it_type iterator = listeEltGeo.begin(); iterator != listeEltGeo.end(); iterator++)
+	{
+		delete iterator->second;
+	}
+
 #ifdef MAP
     cout << "Appel au destructeur de <Modele>" << endl;
 #endif

@@ -36,7 +36,21 @@ public:
     // Contrat :
     //
 
+    bool IsAgrege();
+    // Mode d'emploi :
+    //Renvoie true pour un ObjetAgrege
+    // Contrat :
+    //
 
+    string DeleteElement(string objetASupprimer);
+    // Mode d'emploi :
+    //Verifie si le nom d'objet en parametre est dans la liste d'objet agrege
+    //Le supprime si c'est le cas, et renvoie le nom des objets agreges auxquels
+    //appartenait l'objet supprimé
+    // Contrat :
+    //
+
+    void AddElement(EltGeo * element);
 //------------------------------------------------- Surcharge d'opérateurs
     ObjetAgrege & operator = ( const ObjetAgrege & unObjetAgrege );
     // Mode d'emploi :
@@ -52,7 +66,7 @@ public:
     // Contrat :
     //
 
-    ObjetAgrege ( );
+    ObjetAgrege (list<EltGeo*> flistObjet,string fname="",string fcommande="" );
     // Mode d'emploi :
     //
     // Contrat :

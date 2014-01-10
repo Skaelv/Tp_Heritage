@@ -27,7 +27,14 @@ class Command
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    virtual void Execute (Modele& fmodele);
+
+    Command ( );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+	virtual void Execute (Modele& fmodele);
     // Mode d'emploi :
     //
     // Contrat :

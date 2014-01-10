@@ -39,6 +39,12 @@ public:
     // Contrat :
     //
 
+    bool IsAgrege();
+    // Mode d'emploi :
+    //Renvoie false pour une polyligne
+    // Contrat :
+    //
+
 
 //------------------------------------------------- Surcharge d'opérateurs
     Polyligne & operator = ( const Polyligne & unPolyligne );
@@ -55,7 +61,7 @@ public:
     // Contrat :
     //
 
-    Polyligne ( string fname, vector< pair<int,int> > flignes );
+    Polyligne (  vector< pair<int,int> > flignes ,string fname="",string fcommande="");
     // Mode d'emploi :
     //
     // Contrat :
@@ -67,7 +73,7 @@ public:
     // Contrat :
     //
 
-    string Translater ( int dx, int dy );
+    void Translater ( int dx, int dy );
     // Mode d'emploi :
     //Appelle la fonction translater de ligne sur chaques lignes du vector lignes
     // Contrat :

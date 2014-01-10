@@ -22,16 +22,24 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-string Cercle::Translater ( int dx, int dy )
+void Cercle::Translater ( int dx, int dy )
 // Algorithme :
 //
 {
 	stringstream ssr;
 	ssr << rayon;
-	string strr = ssr.str();
-	string commande = centre.Translater(dx,dy) + " " + strr ;
-	return commande;
+	string strr = " " + ssr.str();
+	commande ="";
+	commande = "C " + name  + centre.Translater(dx,dy) + strr;
 } //----- Fin de Méthode
+
+
+bool Cercle::IsAgrege()
+//Algorithme
+//
+{
+	return false;
+}
 
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -57,7 +65,7 @@ Cercle::Cercle ( const Cercle & unCercle )
 } //----- Fin de Cercle (constructeur de copie)
 
 
-Cercle::Cercle ( string name,int fx,int fy, int frayon)
+Cercle::Cercle ( int fx,int fy, int frayon,string fname,string fcommande):EltGeo::EltGeo(fname,fcommande)
 // Algorithme :
 //
 {
