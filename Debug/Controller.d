@@ -3,7 +3,7 @@ Controller.d: ../Controller.cpp ../Controller.h ../Modele.h ../EltGeo.h \
  ../ObjetAgrege.h ../Command.h ../DeleteCommand.h ../TranslaterCommand.h \
  ../AjouterCercleCommand.h ../AjouterRectangleCommand.h \
  ../AjouterLigneCommand.h ../AjouterPolyligneCommand.h \
- ../AjouterObjetAgregeCommand.h
+ ../AjouterObjetAgregeCommand.h ../ClearCommand.h
 
 ../Controller.h:
 
@@ -38,3 +38,5 @@ Controller.d: ../Controller.cpp ../Controller.h ../Modele.h ../EltGeo.h \
 ../AjouterPolyligneCommand.h:
 
 ../AjouterObjetAgregeCommand.h:
+
+../ClearCommand.h:

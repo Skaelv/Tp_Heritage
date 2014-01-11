@@ -22,6 +22,7 @@
 #include "AjouterLigneCommand.h"
 #include "AjouterPolyligneCommand.h"
 #include "AjouterObjetAgregeCommand.h"
+#include "ClearCommand.h"
 using namespace std;
 
 //------------------------------------------------------------- Constantes
@@ -139,8 +140,6 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-	stack<Command *> undo;
-	stack<Command *> redo;
 	Modele modele;
 };
 

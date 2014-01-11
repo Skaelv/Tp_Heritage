@@ -59,6 +59,15 @@ bool Modele::Vider()
 		delete iterator->second;
 	}
 	listeEltGeo.clear();
+	for (int i = redo.size();i>0;i--)
+	{
+		delete redo.top();
+	}
+	for (int i = undo.size();i>0;i--)
+	{
+		delete undo.top();
+	}
+	cout << undo.size() <<endl;
 	return true;
 } //----- Fin de Méthode
 
@@ -176,6 +185,46 @@ void Modele::Translater(int dx,int dy, string fname)
 }
 
 
+void Modele::Undo()
+//Algorithme :
+{
+	if (!undo.empty())
+	{
+		undo.top()->Undo(*this);//Execute la fonction Undo de la derniere commande stocké dans la pile
+		redo.push(undo.top());//Copie la commande de la pile undo vers redo
+		undo.pop();//Supprime la commande de la pile undo
+
+	}
+	else
+	{
+		cout<< "# No command to execute" <<endl;
+	}
+}
+
+void Modele::Redo()
+//Algorithme :
+{
+	if (!redo.empty())
+	{
+		redo.top()->Execute(*this);//Execute la fonction Execute de la derniere commande stocké dans la pile
+		undo.push(redo.top());//Copie la commande de la pile undo vers redo
+		redo.pop();//Supprime la commande de la pile undo
+	}
+	else
+	{
+		cout<< "# No command to execute" <<endl;
+	}
+}
+
+void Modele::Execute(Command *command)
+//Algorithme
+//*this passé par reference modifie directement le modele courant dans la fonction
+{
+	command->Execute(*this);
+	undo.push(command);
+}
+
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 Modele & Modele::operator = ( const Modele & unModele )
@@ -191,16 +240,35 @@ Modele::Modele ( const Modele & unModele )
 // Algorithme :
 //
 {
+//	listeEltGeo=unModele.listeEltGeo;
+//	undo=unModele.undo;
+//	redo= unModele.redo;
+//	for(map_it_type iterator = unModele.listeEltGeo.begin(); iterator != unModele.listeEltGeo.end(); iterator++)
+//		{
+//			listeEltGeo[iterator->first]=iterator->second;
+//		}
+//		for (int i = unModele.redo.size();i>0;i--)
+//		{
+//			unModele.redo.top();
+//		}
+//		for (int i = redo.size();i>0;i--)
+//		{
+//			delete undo.top();
+//		}
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Modele>" << endl;
 #endif
 } //----- Fin de Modele (constructeur de copie)
 
 
-Modele::Modele ( )
+Modele::Modele ()//Command *command
 // Algorithme :
 //
 {
+//	if (command!=0)
+//	{
+//		undo.push(command);
+//	}
 #ifdef MAP
     cout << "Appel au constructeur de <Modele>" << endl;
 #endif
@@ -209,11 +277,19 @@ Modele::Modele ( )
 
 Modele::~Modele ( )
 // Algorithme :
-//
+//Suppression dynamique des Elements Geo et des commandes du modele
 {
 	for(map_it_type iterator = listeEltGeo.begin(); iterator != listeEltGeo.end(); iterator++)
 	{
 		delete iterator->second;
+	}
+	for (int i = redo.size();i>0;i--)
+	{
+		delete redo.top();
+	}
+	for (int i = redo.size();i>0;i--)
+	{
+		delete undo.top();
 	}
 
 #ifdef MAP

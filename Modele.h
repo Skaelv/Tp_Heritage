@@ -19,7 +19,9 @@
 #include "Polyligne.h"
 #include "ObjetAgrege.h"
 #include <string>
+#include <stack>
 #include <vector>
+#include "Command.h"
 using namespace std;
 
 //------------------------------------------------------------- Constantes
@@ -130,6 +132,21 @@ public:
     // Contrat :
     //
 
+	void Execute(Command *command);
+	// Mode d'emploi : Execute la commande et la stocke dans la pile Undo
+    // Contrat :
+    //
+
+	void Redo();
+	// Mode d'emploi : Execute la methode Execute de la commande stockée dans la pile Undo
+    // Contrat :
+    //
+
+	void Undo();
+	// Mode d'emploi : Execute la methode Undo de la commande stockée dans la pile Undo
+    // Contrat :
+    //
+
 	//------------------------------------------------- Surcharge d'opérateurs
     Modele & operator = ( const Modele & unModele );
     // Mode d'emploi :
@@ -145,7 +162,7 @@ public:
     // Contrat :
     //
 
-    Modele ( );
+    Modele ( );//Command *command = 0
     // Mode d'emploi :
     //
     // Contrat :
@@ -164,6 +181,8 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 	map < string , EltGeo *> listeEltGeo;
+	stack<Command *> undo;
+	stack<Command *> redo;
 };
 
 //--------------------------- Autres définitions dépendantes de <Modele>

@@ -10,6 +10,7 @@ CPP_SRCS += \
 ../AjouterPolyligneCommand.cpp \
 ../AjouterRectangleCommand.cpp \
 ../Cercle.cpp \
+../ClearCommand.cpp \
 ../Command.cpp \
 ../Controller.cpp \
 ../DeleteCommand.cpp \
@@ -30,6 +31,7 @@ OBJS += \
 ./AjouterPolyligneCommand.o \
 ./AjouterRectangleCommand.o \
 ./Cercle.o \
+./ClearCommand.o \
 ./Command.o \
 ./Controller.o \
 ./DeleteCommand.o \
@@ -50,6 +52,7 @@ CPP_DEPS += \
 ./AjouterPolyligneCommand.d \
 ./AjouterRectangleCommand.d \
 ./Cercle.d \
+./ClearCommand.d \
 ./Command.d \
 ./Controller.d \
 ./DeleteCommand.d \

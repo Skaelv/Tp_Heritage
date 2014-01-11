@@ -46,32 +46,17 @@ bool Controller::Validation ( string commande )
 		}
 		if (mots[0]=="CLEAR")
 		{
-			//TODO ClearCommand permettant de recharger le modele
-			this->Vider();
+			this->ExecuterCommand(new ClearCommand(modele));
 			return true;
 		}
 		if (mots[0]=="UNDO")
 		{
-			if (!undo.empty())
-			{
-				this->Undo();
-			}
-			else
-			{
-				cout<< "# No command to execute" <<endl;
-			}
-		return true;
+			this->Undo();
+			return true;
 		}
 		if (mots[0]=="REDO")
 		{
-			if (!redo.empty())
-			{
-				this->Redo();
-			}
-			else
-			{
-				cout<< "# No command to execute" <<endl;
-			}
+			this->Redo();
 			return true;
 		}
 	}
@@ -187,26 +172,21 @@ void Controller::ExecuterCommand ( Command *command )
 // Algorithme :
 {
 	cout << "OK"<< endl;
-	command->Execute(modele);
-	undo.push(command);
+	modele.Execute(command);
 } //----- Fin de Méthode
 
 void Controller::Undo()
 //Algorithme :
 {
 	cout << "OK"<< endl;
-	undo.top()->Undo(modele);//Execute la fonction Undo de la derniere commande stocké dans la pile
-	redo.push(undo.top());//Copie la commande de la pile undo vers redo
-	undo.pop();//Supprime la commande de la pile undo
+	modele.Undo();
 }
 
 void Controller::Redo()
 //Algorithme :
 {
 	cout << "OK"<< endl;
-	redo.top()->Execute(modele);//Execute la fonction Execute de la derniere commande stocké dans la pile
-	undo.push(redo.top());//Copie la commande de la pile undo vers redo
-	redo.pop();//Supprime la commande de la pile undo
+	modele.Redo();
 }
 
 bool Controller::ObjetExistant(string objet)
@@ -226,7 +206,7 @@ void Controller::Vider()
 {
 	cout << "OK"<< endl;
 	modele.Vider();
-	cout << "# Chargement d'un nouveau modèle vide"<< endl;
+	cout << "# Loading new empty model"<< endl;
 } //----- Fin de Méthode
 
 
@@ -234,22 +214,21 @@ void Controller::Vider()
 void Controller::Charger(string url)
 // Algorithme :
 {
-	//TODO Boucle ligne par ligne puis envoyer chaque ligne à Validation
 	ifstream fichier(url.c_str());
 	if ( !fichier.fail() )
 	{
 		modele.Vider();
-		cout << "# Chargement d'un nouveau modele vide"<< endl;
+		cout << "# Loading new empty model"<< endl;
 		string commande;
 		while(getline(fichier,commande))
 		{
 			Validation(commande);
 		}
-		cout << "# Chargement fini" << endl;
+		cout << "# Model loaded" << endl;
 	}
 	else
 	{
-		cout << "# File not exists" << endl;
+		cout << "# File do not exist" << endl;
 	}
 
 } //----- Fin de Méthode
@@ -296,14 +275,7 @@ Controller::~Controller ( )
 // Algorithme :
 //
 {
-	for (int i = redo.size();i>0;i--)
-	{
-		delete redo.top();
-	}
-	for (int i = redo.size();i>0;i--)
-	{
-		delete undo.top();
-	}
+
 
 #ifdef MAP
     cout << "Appel au destructeur de <Controller>" << endl;
