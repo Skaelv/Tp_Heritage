@@ -181,8 +181,8 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 	map < string , EltGeo *> listeEltGeo;
-	stack<Command *> undo;
-	stack<Command *> redo;
+	vector<Command *> undo;
+	vector<Command *> redo;
 };
 
 //--------------------------- Autres définitions dépendantes de <Modele>
