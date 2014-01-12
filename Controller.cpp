@@ -71,7 +71,8 @@ bool Controller::Validation ( string commande )
 	}
 	else if ( (mots.size()==2) && (mots[0]=="LOAD")  )
 	{
-			Charger(mots[1]);
+		this->ExecuterCommand(new ChargerCommand(mots[1], this));
+		return true;
 	}
 	else if ( (mots.size()==4) && (mots[0]=="MOVE") && (atoi(mots[2].c_str())) && (atoi(mots[3].c_str())) && (this->ObjetExistant(mots[1])) )
 	{
