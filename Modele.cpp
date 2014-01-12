@@ -64,11 +64,13 @@ bool Modele::Vider()
 		delete redo.back();
 		redo.pop_back();
 	}
+	redo.clear();
 	for (int i = undo.size();i>0;i--)
 	{
 		delete undo.back();
 		undo.pop_back();
 	}
+	undo.clear();
 	return true;
 } //----- Fin de Méthode
 
@@ -134,8 +136,11 @@ void Modele::SupprimerObjet(string name)
 //Algorithme Efface dynamiquement le pointeur *EltGeo avant d'effacer
 //la ligne de listeEltGeo
 {
-	delete (listeEltGeo.find(name)->second);
+	cout << listeEltGeo.size()<<endl;
+	cout <<  name<<endl;
+	delete listeEltGeo.find(name)->second;
 	listeEltGeo.erase(listeEltGeo.find(name));
+	cout << listeEltGeo.size()<<endl;
 }
 
 string Modele::DeleteAgrege(string objetASupprimer)
@@ -191,9 +196,11 @@ void Modele::Undo()
 {
 	if (!undo.empty())
 	{
-		undo.back()->Undo(*this);//Execute la fonction Undo de la derniere commande stocké dans la pile
-		redo.push_back(undo.back());//Copie la commande de la pile undo vers redo
-		undo.back();//Supprime la commande de la pile undo
+		Command * tmp = undo.back();
+		//Supprime la commande de la pile undo
+		undo.pop_back();
+		tmp->Undo(*this);//Execute la fonction Undo de la derniere commande stocké dans la pile
+		redo.push_back(tmp);//Copie la commande de la pile undo vers redo
 
 	}
 	else
@@ -207,9 +214,11 @@ void Modele::Redo()
 {
 	if (!redo.empty())
 	{
-		redo.back()->Execute(*this);//Execute la fonction Execute de la derniere commande stocké dans la pile
-		undo.push_back(redo.back());//Copie la commande de la pile undo vers redo
-		redo.pop_back();//Supprime la commande de la pile undo
+		Command * tmp = redo.back();
+		//Supprime la commande de la pile redo
+		redo.pop_back();
+		tmp->Execute(*this);//Execute la fonction Execute de la derniere commande stocké dans la pile
+		undo.push_back(tmp);//Copie la commande de la pile undo vers redo
 	}
 	else
 	{
@@ -234,19 +243,19 @@ Modele & Modele::operator = ( const Modele & unModele )
 {
 	listeEltGeo.clear();
 	for(map<string,EltGeo *>::const_iterator iterator = unModele.listeEltGeo.begin(); iterator != unModele.listeEltGeo.end(); iterator++)
-		{
-			listeEltGeo[iterator->first]=iterator->second;
-		}
+	{
+		listeEltGeo[iterator->first]=iterator->second;
+	}
 	redo.clear();
-		for (vector<Command *>::const_iterator iter=unModele.redo.begin();iter!=unModele.redo.end(); iter++ )
-		{
-			redo.push_back(*iter);
-		}
+	for (vector<Command *>::const_iterator iter=unModele.redo.begin();iter!=unModele.redo.end(); iter++ )
+	{
+		redo.push_back(*iter);
+	}
 	undo.clear();
-		for (vector<Command *>::const_iterator iter=unModele.undo.begin();iter!=unModele.undo.end(); iter++ )
-		{
-			undo.push_back(*iter);
-		}
+	for (vector<Command *>::const_iterator iter=unModele.undo.begin();iter!=unModele.undo.end(); iter++ )
+	{
+		undo.push_back(*iter);
+	}
 	return *this;
 } //----- Fin de operator =
 

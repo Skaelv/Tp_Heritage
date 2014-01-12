@@ -37,6 +37,11 @@ bool Controller::Validation ( string commande )
 	istringstream ss(commande);
 	istream_iterator<string> begin(ss), end;
 	vector<string> mots(begin, end);
+	if (mots.size()==0)
+	{
+		cout << "ERR" << endl << " #Invalid Parameters"<<endl;
+		return false;
+	}
 	if (mots.size()==1)
 	{
 		if (mots[0]=="LIST")

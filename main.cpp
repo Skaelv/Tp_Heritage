@@ -13,11 +13,10 @@ using namespace std;
 
 int main ()
 {
-	Controller Cont;
+Controller Cont;
 	string commande;
 	cout << " # Entrez une commande" << endl;
 	getline(cin,commande);
-	cout << commande << endl;
 	while (commande!="EXIT")
 	{
 		Cont.Validation(commande);
