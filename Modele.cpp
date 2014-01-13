@@ -60,18 +60,13 @@ bool Modele::Vider()
 		delete iterator->second;
 	}
 	listeEltGeo.clear();
-	for (int i = redo.size();i>0;i--)
+
+	for (int i = cmd.size();i>0;i--)
 	{
-		delete redo.back();
-		redo.pop_back();
+		delete cmd.back();
+		cmd.pop_back();
 	}
-	redo.clear();
-	for (int i = undo.size();i>0;i--)
-	{
-		delete undo.back();
-		undo.pop_back();
-	}
-	undo.clear();
+	cmd.clear();
 	return true;
 } //----- Fin de Méthode
 
@@ -192,14 +187,10 @@ void Modele::Translater(int dx,int dy, string fname)
 void Modele::Undo()
 //Algorithme :
 {
-	if (!undo.empty())
+	if ( (!cmd.empty()) && (cmdIter!=cmd.end()) )
 	{
-		Command * tmp = undo.back();
-		//Supprime la commande de la pile undo
-		undo.pop_back();
-		tmp->Undo(*this);//Execute la fonction Undo de la derniere commande stocké dans la pile
-		redo.push_back(tmp);//Copie la commande de la pile undo vers redo
-
+		(*cmdIter)->Undo(*this);
+		cmdIter++;
 	}
 	else
 	{
@@ -210,13 +201,10 @@ void Modele::Undo()
 void Modele::Redo()
 //Algorithme :
 {
-	if (!redo.empty())
+	if (cmd.begin()!=cmdIter)
 	{
-		Command * tmp = redo.back();
-		//Supprime la commande de la pile redo
-		redo.pop_back();
-		tmp->Execute(*this);//Execute la fonction Execute de la derniere commande stocké dans la pile
-		undo.push_back(tmp);//Copie la commande de la pile undo vers redo
+		cmdIter--;
+		(*cmdIter)->Execute(*this);
 	}
 	else
 	{
@@ -224,12 +212,33 @@ void Modele::Redo()
 	}
 }
 
+
+void Modele::ClearRedo()
+//Algorithme :
+{
+	//TODO Comprendre ce qu'il se passe la dedans!
+	for (list<Command *>::iterator iter=cmd.begin();iter!=cmdIter;)
+	{
+		delete *iter;
+		iter++;
+		printf("/n #cmd.begin est %p",iter);
+		cout<<"Modele::ClearRedo"<<endl;
+		cmd.pop_front();
+	}
+}
+
+
 void Modele::Execute(Command *command)
 //Algorithme
 //*this passé par reference modifie directement le modele courant dans la fonction
 {
+	ClearRedo();//Efface la liste des Commandes qui ont été annulées(undo) à la création d'une nouvelle commande
 	command->Execute(*this);
-	undo.push_back(command);
+	cmd.push_front(command);
+	cmdIter--;
+	printf("/n #cmdIter est %p",cmdIter);
+	printf("/n #cmd.end est %p",cmd.end());
+	printf("/n #cmd.begin est %p",cmd.begin());
 }
 
 
@@ -244,15 +253,10 @@ Modele & Modele::operator = ( const Modele & unModele )
 	{
 		listeEltGeo[iterator->first]=iterator->second;
 	}
-	redo.clear();
-	for (vector<Command *>::const_iterator iter=unModele.redo.begin();iter!=unModele.redo.end(); iter++ )
+	cmd.clear();
+	for (list<Command *>::const_iterator iter=unModele.cmd.begin();iter!=unModele.cmd.end(); iter++ )
 	{
-		redo.push_back(*iter);
-	}
-	undo.clear();
-	for (vector<Command *>::const_iterator iter=unModele.undo.begin();iter!=unModele.undo.end(); iter++ )
-	{
-		undo.push_back(*iter);
+		cmd.push_back(*iter);
 	}
 	return *this;
 } //----- Fin de operator =
@@ -268,17 +272,11 @@ Modele::Modele ( const Modele & unModele )
 		{
 			listeEltGeo[iterator->first]=iterator->second;
 		}
-	redo.clear();
-		for (vector<Command *>::const_iterator iter=unModele.redo.begin();iter!=unModele.redo.end(); iter++ )
+	cmd.clear();
+		for (list<Command *>::const_iterator iter=unModele.cmd.begin();iter!=unModele.cmd.end(); iter++ )
 		{
-			redo.push_back(*iter);
+			cmd.push_back(*iter);
 		}
-	undo.clear();
-		for (vector<Command *>::const_iterator iter=unModele.undo.begin();iter!=unModele.undo.end(); iter++ )
-		{
-			undo.push_back(*iter);
-		}
-
 		#ifdef MAP
     cout << "Appel au constructeur de copie de <Modele>" << endl;
 #endif
@@ -289,6 +287,7 @@ Modele::Modele ()
 // Algorithme :
 //
 {
+	cmdIter=cmd.begin();
 #ifdef MAP
     cout << "Appel au constructeur de <Modele>" << endl;
 #endif
@@ -304,13 +303,9 @@ Modele::~Modele ( )
 	{
 		delete iterator->second;
 	}
-	for (int i = redo.size();i>0;i--)
+	for (list<Command *>::iterator iter=cmd.begin();iter!=cmd.end();iter++)
 	{
-		delete redo.back();
-	}
-	for (int i = redo.size();i>0;i--)
-	{
-		delete undo.back();
+		delete (*iter);
 	}
 
 #ifdef MAP

@@ -147,6 +147,12 @@ public:
     // Contrat :
     //
 
+	void ClearRedo();
+	// Mode d'emploi :Supprime la liste des Redo après appel à une fonction de création
+	//d'objet ou de translation
+    // Contrat :
+    //
+
 	//------------------------------------------------- Surcharge d'opérateurs
     Modele & operator = ( const Modele & unModele );
     // Mode d'emploi :
@@ -181,8 +187,8 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 	map < string , EltGeo *> listeEltGeo;
-	vector<Command *> undo;
-	vector<Command *> redo;
+	list<Command *> cmd;
+	list<Command *>::iterator cmdIter;
 };
 
 //--------------------------- Autres définitions dépendantes de <Modele>
