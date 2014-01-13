@@ -65,6 +65,7 @@ Rectangle::Rectangle ( int fx1,int fy1,int fx2,int fy2,string fname,string fcomm
 // Algorithme :
 //
 {
+	Translater(0,0);//Réecrit la commande (Evite les nombres à virgules et les espaces multiples)
 #ifdef MAP
     cout << "Appel au constructeur de <Rectangle>" << endl;
 #endif

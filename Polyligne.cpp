@@ -96,6 +96,7 @@ Polyligne::Polyligne ( vector<pair<int,int> > flignes ,string fname,string fcomm
 		Ligne ligne = Ligne(x1,y1,x2,y2);
 		this->AjouterLigne(ligne);
 	}
+	Translater(0,0);//Réecrit la commande (Evite les nombres à virgules et les espaces multiples)
 #ifdef MAP
     cout << "Appel au constructeur de <Polyligne>" << endl;
 #endif

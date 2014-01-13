@@ -71,6 +71,7 @@ Cercle::Cercle ( int fx,int fy, int frayon,string fname,string fcommande):EltGeo
 {
         centre=Point(fx,fy);
         rayon=frayon;
+    	Translater(0,0);//Réecrit la commande (Evite les nombres à virgules et les espaces multiples)
 
 #ifdef MAP
     cout << "Appel au constructeur de <Cercle>" << endl;

@@ -28,20 +28,21 @@ using namespace std;
 
 void Modele::Sauvegarder ( string path )
 {
-
-	ofstream saving(path.c_str());
+//	ofstream saving("Testsortie");
+	ofstream saving(path.c_str(), std::ios::out);
 	if (!saving.fail())
 	{
 		for ( map<string,EltGeo*>::iterator iter = listeEltGeo.begin(); iter != listeEltGeo.end(); iter++)
 		{
 			saving << iter->second->GetCommande() << endl;
-			cout << "# File saved"<< endl;
 		}
-	}//TODO Sauvegarde des fichiers
+		cout << "# Model saved"<< endl;
+	}
 	else
 	{
 		cout << "# Saving failed"<< endl;
 	}
+	saving.close();
 }
 
 bool Modele::Charger(string fichier)
@@ -136,11 +137,8 @@ void Modele::SupprimerObjet(string name)
 //Algorithme Efface dynamiquement le pointeur *EltGeo avant d'effacer
 //la ligne de listeEltGeo
 {
-	cout << listeEltGeo.size()<<endl;
-	cout <<  name<<endl;
 	delete listeEltGeo.find(name)->second;
 	listeEltGeo.erase(listeEltGeo.find(name));
-	cout << listeEltGeo.size()<<endl;
 }
 
 string Modele::DeleteAgrege(string objetASupprimer)

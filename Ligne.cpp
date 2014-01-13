@@ -79,6 +79,7 @@ Ligne::Ligne (int x1,int y1,int x2,int y2,string fname,string fcommande ):EltGeo
 // Algorithme :
 //
 {
+	Translater(0,0);//Réecrit la commande (Evite les nombres à virgules et les espaces multiples)
 #ifdef MAP
     cout << "Appel au constructeur de <Ligne>" << endl;
 #endif

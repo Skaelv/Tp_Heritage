@@ -12,7 +12,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-#include<sstream>
+#include <sstream>
 //------------------------------------------------------ Include personnel
 #include "Point.h"
 

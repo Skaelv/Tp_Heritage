@@ -1,7 +1,7 @@
 /*************************************************************************
                            ChargerCommand  -  description
                              -------------------
-    début                : 20 déc. 2013
+    dï¿½but                : 20 dï¿½c. 2013
     copyright            : (C) 2013 par kantoine
 *************************************************************************/
 
@@ -9,7 +9,7 @@
 #if ! defined ( CHARGER_COMMAND_H_ )
 #define CHARGER_COMMAND_H_
 
-//--------------------------------------------------- Interfaces utilisées
+//--------------------------------------------------- Interfaces utilisï¿½es
 #include "Modele.h"
 #include "Command.h"
 #include "Controller.h"
@@ -19,17 +19,19 @@
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <ChargerCommand>
+// Rï¿½le de la classe <ChargerCommand>
 //
 //
 //------------------------------------------------------------------------
+
+
 
 class ChargerCommand : public Command
 {
 //----------------------------------------------------------------- PUBLIC
 public:
-//----------------------------------------------------- Méthodes publiques
-	
+//----------------------------------------------------- Mï¿½thodes publiques
+
 	void Execute ();
     // Mode d'emploi :
     //
@@ -41,7 +43,7 @@ public:
     //
     // Contrat :
     //
-	
+
 	//-------------------------------------------- Constructeurs - destructeur
 	ChargerCommand(std::string fname, Controller* c);
 	// Mode d'emploi :
@@ -54,15 +56,15 @@ public:
 //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
-//----------------------------------------------------- Attributs protégés
+//----------------------------------------------------- Attributs protï¿½gï¿½s
 	std::string nomFichier;
 	Controller* control;
 	stack<Command *> saveUndo;
 	stack<Command *> saveRedo;
 
 };
-//--------------------------- Autres définitions dépendantes de <AjouterCercleCommand>
+//--------------------------- Autres dï¿½finitions dï¿½pendantes de <AjouterCercleCommand>
 
 #endif // AjouterCercleCommand_H_

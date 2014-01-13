@@ -1,15 +1,15 @@
 /*************************************************************************
                            AjouterCercleCommand  -  description
                              -------------------
-    début                : 20 déc. 2013
+    dï¿½but                : 20 dï¿½c. 2013
     copyright            : (C) 2013 par kantoine
 *************************************************************************/
 
-//---------- Réalisation de la classe <AjouterCercleCommand> (fichier AjouterCercleCommand.cpp) -------
+//---------- Rï¿½alisation de la classe <AjouterCercleCommand> (fichier AjouterCercleCommand.cpp) -------
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systï¿½me
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -19,7 +19,7 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- Méthodes publiques
+//----------------------------------------------------- Mï¿½thodes publiques
 void ChargerCommand::Execute ()
 // Algorithme :
 //
@@ -37,11 +37,11 @@ void ChargerCommand::Undo (Modele& fmodele)
 	//TODO annuler la commande et Recharger les piles
 }
 
-//------------------------------------------------- Surcharge d'opérateurs
+//------------------------------------------------- Surcharge d'opï¿½rateurs
 ChargerCommand::ChargerCommand(string fname, Controller* c) : nomFichier(fname), control(c)
 {
 	//TODO Sauvegarder les piles UNDO et REDO
-	
+
 }
 
 
@@ -52,4 +52,4 @@ ChargerCommand::~ChargerCommand(void)
 
 //------------------------------------------------------------------ PRIVE
 
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es

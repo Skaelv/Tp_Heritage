@@ -16,6 +16,7 @@
 #include "Modele.h"
 #include "Command.h"
 #include "DeleteCommand.h"
+#include "Command.h"
 #include "TranslaterCommand.h"
 #include "AjouterCercleCommand.h"
 #include "AjouterRectangleCommand.h"

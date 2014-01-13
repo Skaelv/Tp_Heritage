@@ -68,15 +68,16 @@ bool Controller::Validation ( string commande )
 	else if ( (mots.size()==2) and (mots[0]=="SAVE")  )
 	{
 		modele.Sauvegarder(mots[1]);
+		return true;
 	}
 	else if ( (mots.size()==2) && (mots[0]=="LOAD")  )
 	{
-		this->ExecuterCommand(new ChargerCommand(mots[1], this));
+//		this->ExecuterCommand(new ChargerCommand(mots[1], this));
 		return true;
 	}
-	else if ( (mots.size()==4) && (mots[0]=="MOVE") && (atoi(mots[2].c_str())) && (atoi(mots[3].c_str())) && (this->ObjetExistant(mots[1])) )
+	else if ( (mots.size()==4) && (mots[0]=="MOVE") && (strtol(mots[2].c_str(),NULL,0)) && (strtol(mots[3].c_str(),NULL,0)) && (this->ObjetExistant(mots[1])) )
 	{
-		this->ExecuterCommand( new TranslaterCommand(atoi(mots[2].c_str()),atoi(mots[3].c_str()),mots[1].c_str() ) );
+		this->ExecuterCommand( new TranslaterCommand(strtol(mots[2].c_str(),NULL,0),strtol(mots[3].c_str(),NULL,0),mots[1].c_str() ) );
 		return true;
 	}
 	else if ( (mots[0]=="DELETE") && (mots.size()>1) )
@@ -114,33 +115,33 @@ bool Controller::Validation ( string commande )
 		this->ExecuterCommand( new AjouterObjetAgregeCommand(agrege,mots[1],commande));
 		return true;
 	}
-	else if ( (mots[0]=="C") and (mots.size()==5) and (atoi(mots[2].c_str())) and (atoi(mots[3].c_str())) and (atoi(mots[4].c_str())>0) and (!this->ObjetExistant(mots[1])) )
+	else if ( (mots[0]=="C") and (mots.size()==5) and (strtol(mots[2].c_str(),NULL,0)) and (strtol(mots[3].c_str(),NULL,0)) and (strtol(mots[4].c_str(),NULL,0)>0) and (!this->ObjetExistant(mots[1])) )
 	{
 		this->ExecuterCommand(new AjouterCercleCommand(mots[1],commande,
-													 	 atoi(mots[2].c_str()),
-													 	 atoi(mots[3].c_str()),
-														 atoi(mots[4].c_str())
+													 	 strtol(mots[2].c_str(),NULL,0),
+													 	 strtol(mots[3].c_str(),NULL,0),
+														 strtol(mots[4].c_str(),NULL,0)
 													));
 		return true;
 	}
 
-	else if ( (mots[0]=="R") && (mots.size()==6) && (atoi(mots[2].c_str())) && (atoi(mots[3].c_str())) && (atoi(mots[4].c_str())) && (atoi(mots[5].c_str())) && (!this->ObjetExistant(mots[1])) )
+	else if ( (mots[0]=="R") && (mots.size()==6) && (strtol(mots[2].c_str(),NULL,0)) && (strtol(mots[3].c_str(),NULL,0)) && (strtol(mots[4].c_str(),NULL,0)) && (strtol(mots[5].c_str(),NULL,0)) && (!this->ObjetExistant(mots[1])) )
 	{
 		this->ExecuterCommand(new AjouterRectangleCommand(mots[1],commande,
-														atoi(mots[2].c_str()),
-														atoi(mots[3].c_str()),
-														atoi(mots[4].c_str()),
-														atoi(mots[5].c_str())
+														strtol(mots[2].c_str(),NULL,0),
+														strtol(mots[3].c_str(),NULL,0),
+														strtol(mots[4].c_str(),NULL,0),
+														strtol(mots[5].c_str(),NULL,0)
 		));
 		return true;
 	}
-	else if ( (mots[0]=="L") && (mots.size()==6) && (atoi(mots[2].c_str())) && (atoi(mots[3].c_str())) && (atoi(mots[4].c_str())) && (atoi(mots[5].c_str())) && (!this->ObjetExistant(mots[1])) )
+	else if ( (mots[0]=="L") && (mots.size()==6) && (strtol(mots[2].c_str(),NULL,0)) && (strtol(mots[3].c_str(),NULL,0)) && (strtol(mots[4].c_str(),NULL,0)) && (strtol(mots[5].c_str(),NULL,0)) && (!this->ObjetExistant(mots[1])) )
 	{
 		this->ExecuterCommand(new AjouterLigneCommand(mots[1],commande,
-														atoi(mots[2].c_str()),
-														atoi(mots[3].c_str()),
-														atoi(mots[4].c_str()),
-														atoi(mots[5].c_str())
+														strtol(mots[2].c_str(),NULL,0),
+														strtol(mots[3].c_str(),NULL,0),
+														strtol(mots[4].c_str(),NULL,0),
+														strtol(mots[5].c_str(),NULL,0)
 		));
 		return true;
 	}
@@ -149,7 +150,7 @@ bool Controller::Validation ( string commande )
 		unsigned int i;
 		for (i=2; i<mots.size();i++)
 		{
-			if (!atoi(mots[i].c_str())) //Test la validité des arguments integer
+			if (!strtol(mots[i].c_str(),NULL,0)) //Test la validité des arguments integer
 			{
 				cout << "ERR"<< endl << " #Invalid Parameters"<<endl;
 				return false;
@@ -159,8 +160,8 @@ bool Controller::Validation ( string commande )
 		pair<int,int> l;
 		for (unsigned int i=3;i<mots.size(); i+=2)
 			{
-				l.first = atoi(mots[i-1].c_str());
-				l.second = atoi(mots[i].c_str());
+				l.first = strtol(mots[i-1].c_str(),NULL,0);
+				l.second = strtol(mots[i].c_str(),NULL,0);
 				lignes.push_back(l);//
 			}
 		this->ExecuterCommand(new AjouterPolyligneCommand(mots[1],commande,lignes));
