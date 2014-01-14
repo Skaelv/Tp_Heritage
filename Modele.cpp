@@ -216,13 +216,11 @@ void Modele::Redo()
 void Modele::ClearRedo()
 //Algorithme :
 {
-	//TODO Comprendre ce qu'il se passe la dedans!
-	for (list<Command *>::iterator iter=cmd.begin();iter!=cmdIter;)
+	while(cmd.begin()!=cmdIter)
 	{
-		delete *iter;
-		iter++;
-		printf("/n #cmd.begin est %p",iter);
+		printf(" #Cmditer est %p",cmdIter);
 		cout<<"Modele::ClearRedo"<<endl;
+		delete (*cmd.begin());
 		cmd.pop_front();
 	}
 }
@@ -242,6 +240,12 @@ void Modele::Execute(Command *command)
 }
 
 
+void Modele::cmdIterBegin()
+//Algorithme :
+{
+	cmdIter=cmd.begin();
+}
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 Modele & Modele::operator = ( const Modele & unModele )
@@ -256,7 +260,7 @@ Modele & Modele::operator = ( const Modele & unModele )
 	cmd.clear();
 	for (list<Command *>::const_iterator iter=unModele.cmd.begin();iter!=unModele.cmd.end(); iter++ )
 	{
-		cmd.push_back(*iter);
+		cmd.push_back(*iter); //Push_back ici pour recopie d'une list dans une list
 	}
 	return *this;
 } //----- Fin de operator =

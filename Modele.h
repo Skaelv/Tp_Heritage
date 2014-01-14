@@ -132,6 +132,12 @@ public:
     // Contrat :
     //
 
+	void cmdIterBegin();
+	// Mode d'emploi :Supprime la liste des Redo après appel à une fonction de création
+	//d'objet ou de translation
+    // Contrat :
+    //
+
 	void Execute(Command *command);
 	// Mode d'emploi : Execute la commande et la stocke dans la pile Undo
     // Contrat :
