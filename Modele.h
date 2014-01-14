@@ -192,7 +192,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-	map < string , EltGeo *> listeEltGeo;
+	map < string , EltGeo *> * listeEltGeo;
 	list<Command *> cmd;
 	list<Command *>::iterator cmdIter;
 };
