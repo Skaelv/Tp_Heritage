@@ -160,7 +160,6 @@ void Modele::EnumererCommande()
 	{
 	cout << iterator->second->GetCommande() << endl;
 	}
-
 }
 
 bool Modele::ObjetExistant(string fname)

@@ -54,12 +54,6 @@ public:
     // Contrat :
     //
 
-    std::string GetCommande();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
     virtual ~ClearCommand ( );
     // Mode d'emploi :
     //

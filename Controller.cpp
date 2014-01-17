@@ -242,7 +242,6 @@ void Controller::Charger(string url)
 	ifstream fichier(url.c_str());
 	if ( !fichier.fail() )
 	{
-
 		cout << "# Loading new empty model"<< endl;
 		string commande;
 		while(getline(fichier,commande))
@@ -264,7 +263,7 @@ void Controller::Sauvegarder(string url)
 	ofstream saving(url.c_str(), std::ios::out);
 	if(!saving.fail())
 	{
-		while(!(*it)->IsNewModel())
+		while(!(*it)->IsNewModel() && it!=cmd.end())
 		{
 			saving.seekp(0,ios::beg);	//Replace le curseur au début du fichier
 			saving << (*it)->GetCommande() << endl;
