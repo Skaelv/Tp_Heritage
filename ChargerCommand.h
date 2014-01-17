@@ -51,11 +51,7 @@ public:
     // Contrat :
     //
 
-    std::string GetCommande();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+
 
 	//-------------------------------------------- Constructeurs - destructeur
 	ChargerCommand(string fname, Controller * c);

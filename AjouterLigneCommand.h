@@ -55,7 +55,7 @@ public:
 
     bool IsNewModel ();
 
-    std::string GetCommande()
+    std::string GetCommande();
 
 
 //------------------------------------------------------------------ PRIVE

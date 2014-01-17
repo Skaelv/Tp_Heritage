@@ -71,7 +71,7 @@ bool Controller::Validation ( string commande )
 	}
 	else if ( (mots.size()==2) && (mots[0]=="SAVE")  )
 	{
-		modele.Sauvegarder(mots[1]);
+		Sauvegarder(mots[1]);
 		return true;
 	}
 	else if ( (mots.size()==2) && (mots[0]=="LOAD")  )
