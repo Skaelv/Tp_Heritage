@@ -25,47 +25,6 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-
-void Modele::Sauvegarder ( string path )
-{
-//	ofstream saving("Testsortie");
-	ofstream saving(path.c_str(), std::ios::out);
-	if (!saving.fail())
-	{
-		for ( map<string,EltGeo*>::iterator iter = listeEltGeo.begin(); iter != listeEltGeo.end(); iter++)
-		{
-			saving << iter->second->GetCommande() << endl;
-		}
-		cout << "# Model saved"<< endl;
-	}
-	else
-	{
-		cout << "# Saving failed"<< endl;
-	}
-	saving.close();
-}
-
-bool Modele::Charger(string fichier)
-// Algorithme :
-{
-	this->Vider();
-	return true;
-} //----- Fin de Méthode
-
-bool Modele::Vider()
-// Algorithme :
-{
-	for(map_it_type iterator = listeEltGeo.begin(); iterator != listeEltGeo.end(); iterator++)
-	{
-		delete iterator->second;
-	}
-	listeEltGeo.clear();
-
-	return true;
-} //----- Fin de Méthode
-
-
-
 void Modele::AjouterCercle(string name,string commande, int fx,int fy, int fr)
 //Algorithme
 {
@@ -224,9 +183,7 @@ Modele::~Modele ( )
 
 	for(map_it_type iterator = listeEltGeo.begin(); iterator != listeEltGeo.end(); iterator++)
 	{
-
 		delete iterator->second;
-
 	}
 
 #ifdef MAP

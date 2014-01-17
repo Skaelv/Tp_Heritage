@@ -97,12 +97,6 @@ public:
     // Contrat :
     //
 
-	void Vider();
-	// Mode d'emploi :
-    //Vide le modele courant
-    // Contrat : sous traite à la fonction vider du modele
-    //
-
 	void Charger(string url);
 	// Mode d'emploi :
     //Vide le modele courant et charge le modele dont l'url est envoyé en parametre
