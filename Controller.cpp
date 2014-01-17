@@ -264,7 +264,7 @@ void Controller::Sauvegarder(string url)
 	ofstream saving(url.c_str(), std::ios::out);
 	if(!saving.fail())
 	{
-		while(!(*it)->IsNewModel())
+		while(!(*it)->IsNewModel() && (it!=cmd.end()))
 		{
 			saving.seekp(0,ios::beg);
 			(*it)->GetCommande();
