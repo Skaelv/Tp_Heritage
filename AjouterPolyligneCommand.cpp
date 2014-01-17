@@ -51,6 +51,20 @@ void AjouterPolyligneCommand::Undo (Modele& fmodele)
 	fmodele.SupprimerObjet(name);
 }
 
+bool AjouterPolyligneCommand::IsNewModel ()
+// Algorithme :
+//
+{
+	return false;
+}
+
+
+string AjouterPolyligneCommand::GetCommande()
+//Algorithme :
+//
+{
+	return commande;
+}
 
 
 AjouterPolyligneCommand::~AjouterPolyligneCommand ( )

@@ -53,6 +53,11 @@ public:
     // Contrat :
     //
 
+    bool IsNewModel ();
+
+    std::string GetCommande();
+
+
 //------------------------------------------------------------------ PRIVE
 
 protected:

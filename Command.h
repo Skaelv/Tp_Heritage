@@ -41,6 +41,18 @@ public:
     // Contrat :
     //
 
+	virtual string GetCommande();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+	virtual bool IsNewModel ();
+    // Mode d'emploi :
+    //Permet de savoir si la commande sert a créer un nouveau modele.
+    // Contrat :
+    //
+
     virtual void Undo (Modele& fmodele);
     // Mode d'emploi :
     //

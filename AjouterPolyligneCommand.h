@@ -47,6 +47,10 @@ public:
     // Contrat :
     //
 
+    bool IsNewModel ();
+
+    std::string GetCommande();
+
     virtual ~AjouterPolyligneCommand ( );
     // Mode d'emploi :
     //

@@ -38,6 +38,21 @@ AjouterCercleCommand::AjouterCercleCommand (string fname, string fcommande,int f
 	r = fr;
 }
 
+bool AjouterCercleCommand::IsNewModel ()
+// Algorithme :
+//
+{
+	return false;
+}
+
+
+string AjouterCercleCommand::GetCommande()
+//Algorithme :
+//
+{
+	return commande;
+}
+
 void AjouterCercleCommand::Execute (Modele& fmodele)
 // Algorithme :
 //

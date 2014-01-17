@@ -53,6 +53,13 @@ void ClearCommand::Undo (Modele& fmodele)
 }
 
 
+bool ClearCommand::IsNewModel ()
+// Algorithme :
+//
+{
+	return true;
+}
+
 
 ClearCommand::~ClearCommand ( )
 // Algorithme :

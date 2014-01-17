@@ -36,6 +36,16 @@ void ChargerCommand::Undo (Modele& fmodele)
 	fmodele=OldModel;
 }
 
+bool ChargerCommand::IsNewModel ()
+// Algorithme :
+//
+{
+	return true;
+}
+
+
+
+
 //------------------------------------------------- Surcharge d'op�rateurs
 ChargerCommand::ChargerCommand(string fname, Controller * c) : nomFichier(fname), control(c)
 {
