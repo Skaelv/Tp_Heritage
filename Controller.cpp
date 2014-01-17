@@ -71,7 +71,7 @@ bool Controller::Validation ( string commande )
 	}
 	else if ( (mots.size()==2) && (mots[0]=="SAVE")  )
 	{
-		modele.Sauvegarder(mots[1]);
+		Sauvegarder(mots[1]);
 		return true;
 	}
 	else if ( (mots.size()==2) && (mots[0]=="LOAD")  )
@@ -261,14 +261,15 @@ void Controller::Sauvegarder(string url)
 {
 	list<Command *>::iterator it = cmdIter;
 	ofstream saving(url.c_str(), std::ios::out);
+	string s;
 	if(!saving.fail())
 	{
-		while(!(*it)->IsNewModel() && it!=cmd.end())
+		while(it!=cmd.end() && !(*it)->IsNewModel() )
 		{
-			saving.seekp(0,ios::beg);	//Replace le curseur au début du fichier
-			saving << (*it)->GetCommande() << endl;
+			s.insert(0,(*it)->GetCommande()+"\n");	//Ecrit au début de la chaine
 			it++;
 		}
+		saving<<s;
 		saving.close();
 		cout << "# Model saved"<< endl;
 	}
