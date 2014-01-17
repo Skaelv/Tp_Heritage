@@ -132,32 +132,13 @@ public:
     // Contrat :
     //
 
-	void cmdIterBegin();
-	// Mode d'emploi :Supprime la liste des Redo après appel à une fonction de création
-	//d'objet ou de translation
-    // Contrat :
-    //
+
 
 	void Execute(Command *command);
 	// Mode d'emploi : Execute la commande et la stocke dans la pile Undo
     // Contrat :
     //
 
-	void Redo();
-	// Mode d'emploi : Execute la methode Execute de la commande stockée dans la pile Undo
-    // Contrat :
-    //
-
-	void Undo();
-	// Mode d'emploi : Execute la methode Undo de la commande stockée dans la pile Undo
-    // Contrat :
-    //
-
-	void ClearRedo();
-	// Mode d'emploi :Supprime la liste des Redo après appel à une fonction de création
-	//d'objet ou de translation
-    // Contrat :
-    //
 
 	//------------------------------------------------- Surcharge d'opérateurs
     Modele & operator = ( const Modele & unModele );
@@ -192,9 +173,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-	map < string , EltGeo *> * listeEltGeo;
-	list<Command *> cmd;
-	list<Command *>::iterator cmdIter;
+	map < string , EltGeo *> listeEltGeo;
+
 };
 
 //--------------------------- Autres définitions dépendantes de <Modele>

@@ -26,7 +26,6 @@ void Rectangle::Translater ( int dx, int dy )
 // Algorithme :
 //
 {
-	cout << "Rectangle.Translater"<<endl;
 	commande ="";
     commande ="R " + name + p1.Translater(dx,dy) + p2.Translater(dx,dy);
 } //----- Fin de Méthode

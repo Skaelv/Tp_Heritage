@@ -11,7 +11,6 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include <string>
-#include <stack>
 #include <fstream>
 #include "Modele.h"
 #include "Command.h"
@@ -24,6 +23,7 @@
 #include "AjouterPolyligneCommand.h"
 #include "AjouterObjetAgregeCommand.h"
 #include "ClearCommand.h"
+//#include "ChargerCommand.h"
 using namespace std;
 
 //------------------------------------------------------------- Constantes
@@ -35,6 +35,7 @@ using namespace std;
 //
 //
 //------------------------------------------------------------------------
+
 
 class Controller
 {
@@ -72,6 +73,11 @@ public:
     // Contrat :
     //
 
+	void ClearRedo();
+	//Mode d'emploi :
+	// Efface les commandes qui ne pourront plus être recrée car risque de conflit
+	//Contrat :
+	//
 	void EnumererObjet();
     // Mode d'emploi :
     //
@@ -142,6 +148,8 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 	Modele modele;
+	list<Command *> cmd;
+	list<Command *>::iterator cmdIter;
 };
 
 //--------------------------- Autres définitions dépendantes de <Controller>

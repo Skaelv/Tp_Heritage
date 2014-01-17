@@ -20,11 +20,11 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- M�thodes publiques
-void ChargerCommand::Execute ()
+void ChargerCommand::Execute (Modele & fmodele)
 // Algorithme :
 //
 {
-	//fmodele.AjouterCercle(name,commande,x,y,r);
+	OldModel =fmodele;
 	control->Charger(nomFichier);
 }
 
@@ -33,15 +33,12 @@ void ChargerCommand::Undo (Modele& fmodele)
 // Algorithme :
 //
 {
-	//fmodele.SupprimerObjet(name);
-	//TODO annuler la commande et Recharger les piles
+	fmodele=OldModel;
 }
 
 //------------------------------------------------- Surcharge d'op�rateurs
-ChargerCommand::ChargerCommand(string fname, Controller* c) : nomFichier(fname), control(c)
+ChargerCommand::ChargerCommand(string fname, Controller * c) : nomFichier(fname), control(c)
 {
-	//TODO Sauvegarder les piles UNDO et REDO
-
 }
 
 

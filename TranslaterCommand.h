@@ -6,8 +6,8 @@
 *************************************************************************/
 
 //---------- Interface de la classe <TranslaterCommand> (fichier TranslaterCommand.h) ------
-#if ! defined ( TranslaterCommand_H_ )
-#define TranslaterCommand_H_
+#if ! defined ( TRANSLATERCOMMAND_H_ )
+#define TRANSLATERCOMMAND_H_
 #include "EltGeo.h"
 #include "Command.h"
 #include "Modele.h"

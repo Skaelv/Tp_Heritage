@@ -6,14 +6,14 @@
 *************************************************************************/
 
 //---------- Interface de la classe <ChargerCommand> (fichier ChargerCommand.h) ------
-#if ! defined ( CHARGER_COMMAND_H_ )
-#define CHARGER_COMMAND_H_
+#if ! defined ( CHARGERCOMMAND_H_ )
+#define CHARGERCOMMAND_H_
 
 //--------------------------------------------------- Interfaces utilis�es
 #include "Modele.h"
 #include "Command.h"
 #include "Controller.h"
-
+using namespace std;
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -24,15 +24,16 @@
 //
 //------------------------------------------------------------------------
 
-
-
 class ChargerCommand : public Command
 {
+
+
 //----------------------------------------------------------------- PUBLIC
 public:
 //----------------------------------------------------- M�thodes publiques
 
-	void Execute ();
+
+	void Execute (Modele& fmodele);
     // Mode d'emploi :
     //
     // Contrat :
@@ -45,7 +46,7 @@ public:
     //
 
 	//-------------------------------------------- Constructeurs - destructeur
-	ChargerCommand(std::string fname, Controller* c);
+	ChargerCommand(string fname, Controller * c);
 	// Mode d'emploi :
      //
      // Contrat :
@@ -59,12 +60,12 @@ protected:
 //----------------------------------------------------- M�thodes prot�g�es
 
 //----------------------------------------------------- Attributs prot�g�s
-	std::string nomFichier;
-	Controller* control;
-	stack<Command *> saveUndo;
-	stack<Command *> saveRedo;
-
+	string nomFichier;
+	Controller * control;
+	Modele OldModel;
 };
 //--------------------------- Autres d�finitions d�pendantes de <AjouterCercleCommand>
 
+
 #endif // AjouterCercleCommand_H_
+

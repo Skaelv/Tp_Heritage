@@ -6,8 +6,8 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Command> (fichier Command.h) ------
-#if ! defined ( Command_H_ )
-#define Command_H_
+#if ! defined ( COMMAND_H_ )
+#define COMMAND_H_
 
 //--------------------------------------------------- Interfaces utilisées
 //#include "Modele.h"
@@ -20,7 +20,6 @@
 //
 //
 //------------------------------------------------------------------------
-
 class Modele;
 
 class Command

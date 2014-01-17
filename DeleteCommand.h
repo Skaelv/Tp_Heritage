@@ -6,8 +6,8 @@
 *************************************************************************/
 
 //---------- Interface de la classe <DeleteCommand> (fichier DeleteCommand.h) ------
-#if ! defined ( DeleteCommand_H_ )
-#define DeleteCommand_H_
+#if ! defined ( DELETECOMMAND_H_ )
+#define DELETECOMMAND_H_
 #include "EltGeo.h"
 #include "Command.h"
 #include "Modele.h"

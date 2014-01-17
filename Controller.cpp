@@ -51,7 +51,7 @@ bool Controller::Validation ( string commande )
 		}
 		if (mots[0]=="CLEAR")
 		{
-			this->ExecuterCommand(new ClearCommand(modele));
+			this->ExecuterCommand(new ClearCommand());
 			return true;
 		}
 		if (mots[0]=="UNDO")
@@ -72,7 +72,7 @@ bool Controller::Validation ( string commande )
 	}
 	else if ( (mots.size()==2) && (mots[0]=="LOAD")  )
 	{
-//		this->ExecuterCommand(new ChargerCommand(mots[1], this));
+//		this->ExecuterCommand(ChargerCommand(mots[1]));
 		return true;
 	}
 	else if ( (mots.size()==4) && (mots[0]=="MOVE") && (strtol(mots[2].c_str(),NULL,0)) && (strtol(mots[3].c_str(),NULL,0)) && (this->ObjetExistant(mots[1])) )
@@ -175,25 +175,50 @@ bool Controller::Validation ( string commande )
 } //----- Fin de Méthode
 
 
-void Controller::ExecuterCommand ( Command *command )
-// Algorithme :
+void Controller::ExecuterCommand(Command *command)
+//Algorithme
 {
-	cout << "OK"<< endl;
-	modele.Execute(command);
-} //----- Fin de Méthode
+	cout<< "OK"<<endl;
+	ClearRedo();//Efface la liste des Commandes qui ont été annulées(undo) avant la création de la nouvelle commande
+	command->Execute(modele);
+	cmd.push_front(command);
+	cmdIter--;
+//	printf("/n #cmdIter est %p",cmdIter);
+//	printf("/n #cmd.end est %p",cmd.end());
+//	printf("/n #cmd.begin est %p",cmd.begin());
+}
+
 
 void Controller::Undo()
 //Algorithme :
 {
-	cout << "OK"<< endl;
-	modele.Undo();
+	if ( (!cmd.empty()) && (cmdIter!=cmd.end()) )
+	{
+		cout << "OK"<< endl;
+		(*cmdIter)->Undo(modele);
+		cmdIter++;
+	}
+	else
+	{
+		cout<< "# No command to execute" <<endl;
+	}
+
 }
 
 void Controller::Redo()
 //Algorithme :
 {
-	cout << "OK"<< endl;
-	modele.Redo();
+
+	if (cmd.begin()!=cmdIter)
+	{
+		cout << "OK"<< endl;
+		cmdIter--;
+		(*cmdIter)->Execute(modele);
+	}
+	else
+	{
+		cout<< "# No command to execute" <<endl;
+	}
 }
 
 bool Controller::ObjetExistant(string objet)
@@ -208,15 +233,6 @@ void Controller::EnumererObjet()
 	modele.EnumererCommande();
 } //----- Fin de Méthode
 
-void Controller::Vider()
-// Algorithme :
-{
-	cout << "OK"<< endl;
-	modele.Vider();
-	cout << "# Loading new empty model"<< endl;
-} //----- Fin de Méthode
-
-
 
 void Controller::Charger(string url)
 // Algorithme :
@@ -224,7 +240,7 @@ void Controller::Charger(string url)
 	ifstream fichier(url.c_str());
 	if ( !fichier.fail() )
 	{
-		modele.Vider();
+
 		cout << "# Loading new empty model"<< endl;
 		string commande;
 		while(getline(fichier,commande))
@@ -240,11 +256,16 @@ void Controller::Charger(string url)
 
 } //----- Fin de Méthode
 
-void Controller::Sauvegarder(string url)
-// Algorithme :
-{
 
-} //----- Fin de Méthode
+void Controller::ClearRedo()
+//Algorithme :
+{
+	while(cmd.begin()!=cmdIter)
+	{
+		delete (*cmd.begin());
+		cmd.pop_front();
+	}
+}
 
 
 
@@ -272,6 +293,7 @@ Controller::Controller ( )
 // Algorithme :
 //
 {
+	cmdIter=cmd.begin();
 #ifdef MAP
     cout << "Appel au constructeur de <Controller>" << endl;
 #endif
@@ -282,7 +304,10 @@ Controller::~Controller ( )
 // Algorithme :
 //
 {
-
+	for (list<Command *>::iterator iter=cmd.begin();iter!=cmd.end();iter++)
+	{
+		delete (*iter);
+	}
 
 #ifdef MAP
     cout << "Appel au destructeur de <Controller>" << endl;
