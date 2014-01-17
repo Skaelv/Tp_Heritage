@@ -264,8 +264,8 @@ void Controller::Sauvegarder(string url)
 	{
 		while(!(*it)->IsNewModel())
 		{
-			saving.seekp(0,ios::beg);
-			(*it)->GetCommande();
+			saving.seekp(0,ios::beg);	//Replace le curseur au début du fichier
+			saving << (*it)->GetCommande() << endl;
 			it++;
 		}
 		saving.close();
