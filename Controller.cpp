@@ -258,6 +258,26 @@ void Controller::Charger(string url)
 
 } //----- Fin de Méthode
 
+void Controller::Sauvegarder(string url)
+{
+	list<Command *>::iterator it = cmdIter;
+	ofstream saving(url.c_str(), std::ios::out);
+	if(!saving.fail())
+	{
+		while(!(*it)->IsNewModel())
+		{
+			saving.seekp(0,ios::beg);
+			(*it)->GetCommande();
+			it++;
+		}
+		saving.close();
+		cout << "# Model saved"<< endl;
+	}
+	else
+	{
+		cout << "# Saving failed"<< endl;
+	}
+}
 
 void Controller::ClearRedo()
 //Algorithme :
