@@ -54,6 +54,20 @@ void AjouterRectangleCommand::Undo (Modele& fmodele)
 	fmodele.SupprimerObjet(name);
 }
 
+bool AjouterRectangleCommand::IsNewModel ()
+// Algorithme :
+//
+{
+	return false;
+}
+
+
+string AjouterRectangleCommand::GetCommande()
+//Algorithme :
+//
+{
+	return commande;
+}
 
 
 AjouterRectangleCommand::~AjouterRectangleCommand ( )

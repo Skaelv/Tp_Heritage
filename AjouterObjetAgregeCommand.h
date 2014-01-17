@@ -47,6 +47,10 @@ public:
     // Contrat :
     //
 
+    bool IsNewModel ();
+
+    std::string GetCommande();
+
     virtual ~AjouterObjetAgregeCommand ( );
     // Mode d'emploi :
     //

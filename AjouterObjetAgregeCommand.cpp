@@ -51,6 +51,21 @@ void AjouterObjetAgregeCommand::Undo (Modele& fmodele)
 	fmodele.SupprimerObjet(name);
 }
 
+bool AjouterObjetAgregeCommand::IsNewModel ()
+// Algorithme :
+//
+{
+	return false;
+}
+
+
+string AjouterObjetAgregeCommand::GetCommande()
+//Algorithme :
+//
+{
+	return commande;
+}
+
 
 
 AjouterObjetAgregeCommand::~AjouterObjetAgregeCommand ( )

@@ -65,6 +65,10 @@ bool Controller::Validation ( string commande )
 			return true;
 		}
 	}
+	else if (mots[0]=="#")
+	{
+		return true;
+	}
 	else if ( (mots.size()==2) && (mots[0]=="SAVE")  )
 	{
 		modele.Sauvegarder(mots[1]);
@@ -183,9 +187,7 @@ void Controller::ExecuterCommand(Command *command)
 	command->Execute(modele);
 	cmd.push_front(command);
 	cmdIter--;
-//	printf("/n #cmdIter est %p",cmdIter);
-//	printf("/n #cmd.end est %p",cmd.end());
-//	printf("/n #cmd.begin est %p",cmd.begin());
+
 }
 
 

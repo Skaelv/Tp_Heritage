@@ -12,6 +12,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <string>
 
 //------------------------------------------------------ Include personnel
 #include "Command.h"
@@ -35,6 +36,19 @@ void Command::Execute (Modele& fmodele)
 {
 }
 
+bool Command::IsNewModel ()
+// Algorithme :
+//
+{
+	return true;
+}
+
+string Command::GetCommande()
+//Algorithme :
+//
+{
+	return "";
+}
 
 
 void Command::Undo (Modele& fmodele)

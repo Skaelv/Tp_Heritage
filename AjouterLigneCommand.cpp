@@ -56,6 +56,22 @@ void AjouterLigneCommand::Undo (Modele& fmodele)
 }
 
 
+bool AjouterLigneCommand::IsNewModel ()
+// Algorithme :
+//
+{
+	return false;
+}
+
+
+string AjouterLigneCommand::GetCommande()
+//Algorithme :
+//
+{
+	return commande;
+}
+
+
 
 AjouterLigneCommand::~AjouterLigneCommand ( )
 // Algorithme :
