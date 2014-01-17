@@ -14,6 +14,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "ChargerCommand.h"
+#include "Controller.h"
 
 //------------------------------------------------------------- Constantes
 

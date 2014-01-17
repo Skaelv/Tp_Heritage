@@ -12,7 +12,6 @@
 //--------------------------------------------------- Interfaces utilis�es
 #include "Modele.h"
 #include "Command.h"
-#include "Controller.h"
 using namespace std;
 //------------------------------------------------------------- Constantes
 
@@ -23,6 +22,7 @@ using namespace std;
 //
 //
 //------------------------------------------------------------------------
+class Controller;
 
 class ChargerCommand : public Command
 {

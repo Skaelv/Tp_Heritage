@@ -65,14 +65,14 @@ bool Controller::Validation ( string commande )
 			return true;
 		}
 	}
-	else if ( (mots.size()==2) and (mots[0]=="SAVE")  )
+	else if ( (mots.size()==2) && (mots[0]=="SAVE")  )
 	{
 		modele.Sauvegarder(mots[1]);
 		return true;
 	}
 	else if ( (mots.size()==2) && (mots[0]=="LOAD")  )
 	{
-//		this->ExecuterCommand(ChargerCommand(mots[1]));
+		this->ExecuterCommand(new ChargerCommand(mots[1], this));
 		return true;
 	}
 	else if ( (mots.size()==4) && (mots[0]=="MOVE") && (strtol(mots[2].c_str(),NULL,0)) && (strtol(mots[3].c_str(),NULL,0)) && (this->ObjetExistant(mots[1])) )
@@ -115,7 +115,7 @@ bool Controller::Validation ( string commande )
 		this->ExecuterCommand( new AjouterObjetAgregeCommand(agrege,mots[1],commande));
 		return true;
 	}
-	else if ( (mots[0]=="C") and (mots.size()==5) and (strtol(mots[2].c_str(),NULL,0)) and (strtol(mots[3].c_str(),NULL,0)) and (strtol(mots[4].c_str(),NULL,0)>0) and (!this->ObjetExistant(mots[1])) )
+	else if ( (mots[0]=="C") && (mots.size()==5) && (strtol(mots[2].c_str(),NULL,0)) && (strtol(mots[3].c_str(),NULL,0)) && (strtol(mots[4].c_str(),NULL,0)>0) && (!this->ObjetExistant(mots[1])) )
 	{
 		this->ExecuterCommand(new AjouterCercleCommand(mots[1],commande,
 													 	 strtol(mots[2].c_str(),NULL,0),
