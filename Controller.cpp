@@ -260,13 +260,21 @@ void Controller::Sauvegarder(string url)
 {
 	list<Command *>::iterator it = cmdIter;
 	ofstream saving(url.c_str(), std::ios::out);
-	while(!(*it)->IsNewModel())
+	if(!saving.fail())
 	{
-		saving.seekp(0,ios::beg);
-		(*it)->GetCommande();
-		it++;
+		while(!(*it)->IsNewModel())
+		{
+			saving.seekp(0,ios::beg);
+			(*it)->GetCommande();
+			it++;
+		}
+		saving.close();
+		cout << "# Model saved"<< endl;
 	}
-	saving.close();
+	else
+	{
+		cout << "# Saving failed"<< endl;
+	}
 }
 
 void Controller::ClearRedo()
