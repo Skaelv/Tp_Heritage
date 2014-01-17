@@ -50,9 +50,6 @@ public:
     //
     // Contrat :
     //
-
-
-
 	//-------------------------------------------- Constructeurs - destructeur
 	ChargerCommand(string fname, Controller * c);
 	// Mode d'emploi :
