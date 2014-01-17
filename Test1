@@ -1,5 +1,5 @@
-OA Oa poly li1 c1
-R Rect -45 34 5 4
-C c1 1 6 5
-L li1 34 54 65 780
-PL poly 67 56 45 34 -23 45 8 -56
+C C1 1 0 1
+R R1 10 0 0 1
+PL PL1 1 1 0 0 1 1
+L L1 1 -1 1 2
+OA OA1 R1 PL1

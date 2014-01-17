@@ -30,7 +30,7 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-bool Controller::Validation ( string commande )
+bool Controller::Validation ( string commande, bool load )
 // Algorithme :
 {
 	//Decoupe la commande en parametre et ressort chaque mots dans un vecteur de string : mots
@@ -42,7 +42,7 @@ bool Controller::Validation ( string commande )
 		cout << "ERR" << endl << " #Invalid Parameters"<<endl;
 		return false;
 	}
-	if (mots.size()==1)
+	if ( (mots.size()==1) && (!load) )
 	{
 		if (mots[0]=="LIST")
 		{
@@ -69,22 +69,22 @@ bool Controller::Validation ( string commande )
 	{
 		return true;
 	}
-	else if ( (mots.size()==2) && (mots[0]=="SAVE")  )
+	else if ( (mots.size()==2) && (mots[0]=="SAVE") && (!load) )
 	{
 		Sauvegarder(mots[1]);
 		return true;
 	}
-	else if ( (mots.size()==2) && (mots[0]=="LOAD")  )
+	else if ( (mots.size()==2) && (mots[0]=="LOAD") && (!load) )
 	{
 		this->ExecuterCommand(new ChargerCommand(mots[1],this));
 		return true;
 	}
-	else if ( (mots.size()==4) && (mots[0]=="MOVE") && (strtol(mots[2].c_str(),NULL,0)) && (strtol(mots[3].c_str(),NULL,0)) && (this->ObjetExistant(mots[1])) )
+	else if ( (!load) && (mots.size()==4) && (mots[0]=="MOVE") && (strtol(mots[2].c_str(),NULL,0)) && (strtol(mots[3].c_str(),NULL,0)) && (this->ObjetExistant(mots[1])) )
 	{
 		this->ExecuterCommand( new TranslaterCommand(strtol(mots[2].c_str(),NULL,0),strtol(mots[3].c_str(),NULL,0),mots[1].c_str() ) );
 		return true;
 	}
-	else if ( (mots[0]=="DELETE") && (mots.size()>1) )
+	else if ( (!load) && (mots[0]=="DELETE") && (mots.size()>1) )
 	{
 		unsigned int i;
 		map<string,string> deleteMap;
@@ -116,37 +116,67 @@ bool Controller::Validation ( string commande )
 				return false;
 			}
 		}
+		if (!load)
+		{
 		this->ExecuterCommand( new AjouterObjetAgregeCommand(agrege,mots[1],commande));
+		}
+		else
+		{
+			modele.AjouterObjetAgrege(mots[1],commande,agrege);
+		}
 		return true;
+
 	}
-	else if ( (mots[0]=="C") && (mots.size()==5) && (strtol(mots[2].c_str(),NULL,0)) && (strtol(mots[3].c_str(),NULL,0)) && (strtol(mots[4].c_str(),NULL,0)>0) && (!this->ObjetExistant(mots[1])) )
+	else if ( (mots[0]=="C") && (mots.size()==5) && (IsaNumber(mots[2])) && (IsaNumber(mots[3])) && (IsaNumber(mots[4])) && (!this->ObjetExistant(mots[1])) )
 	{
-		this->ExecuterCommand(new AjouterCercleCommand(mots[1],commande,
-													 	 strtol(mots[2].c_str(),NULL,0),
-													 	 strtol(mots[3].c_str(),NULL,0),
-														 strtol(mots[4].c_str(),NULL,0)
-													));
+		if (!load)
+		{
+			this->ExecuterCommand(new AjouterCercleCommand(mots[1],commande,
+																 	 atoi(mots[2].c_str()),
+																 	 atoi(mots[3].c_str()),
+																	 atoi(mots[4].c_str())
+																));
+		}
+		else
+		{
+			modele.AjouterCercle(mots[1],commande,atoi(mots[2].c_str()),atoi(mots[3].c_str()),atoi(mots[4].c_str()));
+		}
+
 		return true;
 	}
 
-	else if ( (mots[0]=="R") && (mots.size()==6) && (strtol(mots[2].c_str(),NULL,0)) && (strtol(mots[3].c_str(),NULL,0)) && (strtol(mots[4].c_str(),NULL,0)) && (strtol(mots[5].c_str(),NULL,0)) && (!this->ObjetExistant(mots[1])) )
+	else if ( (mots[0]=="R") && (mots.size()==6) && IsaNumber(mots[2]) && IsaNumber(mots[3]) && IsaNumber(mots[4]) && IsaNumber(mots[5]) && (!this->ObjetExistant(mots[1])) )
 	{
-		this->ExecuterCommand(new AjouterRectangleCommand(mots[1],commande,
-														strtol(mots[2].c_str(),NULL,0),
-														strtol(mots[3].c_str(),NULL,0),
-														strtol(mots[4].c_str(),NULL,0),
-														strtol(mots[5].c_str(),NULL,0)
-		));
+		if (!load)
+		{
+			this->ExecuterCommand(new AjouterRectangleCommand(mots[1],commande,
+					 	 	 	 	 	 	 	 	 	 	atoi(mots[2].c_str()),
+					 	 	 	 	 	 	 	 	 	 	atoi(mots[3].c_str()),
+					 	 	 	 	 	 	 	 	 	 	atoi(mots[4].c_str()),
+					 	 	 	 	 	 	 	 	 	 	atoi(mots[5].c_str())
+			));
+		}
+		else
+		{
+			modele.AjouterRectangle(mots[1],commande,atoi(mots[2].c_str()),atoi(mots[3].c_str()),atoi(mots[4].c_str()),atoi(mots[5].c_str()));
+		}
 		return true;
 	}
-	else if ( (mots[0]=="L") && (mots.size()==6) && (strtol(mots[2].c_str(),NULL,0)) && (strtol(mots[3].c_str(),NULL,0)) && (strtol(mots[4].c_str(),NULL,0)) && (strtol(mots[5].c_str(),NULL,0)) && (!this->ObjetExistant(mots[1])) )
+	else if ( (mots[0]=="L") && (mots.size()==6) && IsaNumber(mots[2]) && IsaNumber(mots[3]) && IsaNumber(mots[4]) && IsaNumber(mots[5]) && (!this->ObjetExistant(mots[1])) )
 	{
-		this->ExecuterCommand(new AjouterLigneCommand(mots[1],commande,
-														strtol(mots[2].c_str(),NULL,0),
-														strtol(mots[3].c_str(),NULL,0),
-														strtol(mots[4].c_str(),NULL,0),
-														strtol(mots[5].c_str(),NULL,0)
-		));
+		if (!load)
+		{
+			this->ExecuterCommand(new AjouterLigneCommand(mots[1],commande,
+		 	 	 	 	 	atoi(mots[2].c_str()),
+		 	 	 	 	 	atoi(mots[3].c_str()),
+		 	 	 	 	 	atoi(mots[4].c_str()),
+		 	 	 	 	 	atoi(mots[5].c_str())
+			));
+		}
+		else
+		{
+			modele.AjouterLigne(mots[1],commande,atoi(mots[2].c_str()),atoi(mots[3].c_str()),atoi(mots[4].c_str()),atoi(mots[5].c_str()));
+		}
 		return true;
 	}
 	else if ( (mots[0]=="PL") && (mots.size()>=4) && (mots.size() % 2 == 0) && (!this->ObjetExistant(mots[1])) )
@@ -154,7 +184,7 @@ bool Controller::Validation ( string commande )
 		unsigned int i;
 		for (i=2; i<mots.size();i++)
 		{
-			if (!strtol(mots[i].c_str(),NULL,0)) //Test la validité des arguments integer
+			if (!IsaNumber(mots[2])) //Test la validité des arguments integer
 			{
 				cout << "ERR"<< endl << " #Invalid Parameters"<<endl;
 				return false;
@@ -164,8 +194,8 @@ bool Controller::Validation ( string commande )
 		pair<int,int> l;
 		for (unsigned int i=3;i<mots.size(); i+=2)
 			{
-				l.first = strtol(mots[i-1].c_str(),NULL,0);
-				l.second = strtol(mots[i].c_str(),NULL,0);
+				l.first = atoi(mots[i-1].c_str());
+				l.second = atoi(mots[i].c_str());
 				lignes.push_back(l);//
 			}
 		this->ExecuterCommand(new AjouterPolyligneCommand(mots[1],commande,lignes));
@@ -246,7 +276,7 @@ void Controller::Charger(string url)
 		string commande;
 		while(getline(fichier,commande))
 		{
-			Validation(commande);
+			Validation(commande,true);
 		}
 		cout << "# Model loaded" << endl;
 	}
@@ -257,18 +287,28 @@ void Controller::Charger(string url)
 
 } //----- Fin de Méthode
 
+bool Controller::IsaNumber(string number)
+//Algorithme
+{
+	 char * pEnd;
+	  long int l = strtol (number.c_str(),&pEnd,10);
+	  return (*pEnd=='\0');
+
+}
+
 void Controller::Sauvegarder(string url)
 {
 	list<Command *>::iterator it = cmdIter;
 	ofstream saving(url.c_str(), std::ios::out);
+	string s;
 	if(!saving.fail())
 	{
-		while(it!=cmd.end()&&!(*it)->IsNewModel())
+		while(it!=cmd.end() && !(*it)->IsNewModel() )
 		{
-			saving.seekp(0,ios::beg);	//Replace le curseur au début du fichier
-			saving << (*it)->GetCommande() << endl;
+			s.insert(0,(*it)->GetCommande()+"\n");	//Ecrit au début de la chaine
 			it++;
 		}
+		saving<<s;
 		saving.close();
 		cout << "# Model saved"<< endl;
 	}

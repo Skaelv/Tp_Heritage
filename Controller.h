@@ -90,17 +90,18 @@ public:
     // Contrat :
     //
 
-	bool Validation ( string commande );
+	bool Validation ( string commande, bool load=false );
 	// Mode d'emploi :
     //		Retourne true, si commande passée en paramètre est valable
 	//		False sinon
     // Contrat :
     //
 
-	void Vider();
+
+	bool IsaNumber(string number);
 	// Mode d'emploi :
-    //Vide le modele courant
-    // Contrat : sous traite à la fonction vider du modele
+    //
+    // Contrat :
     //
 
 	void Charger(string url);
