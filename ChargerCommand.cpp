@@ -14,7 +14,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "ChargerCommand.h"
-
+#include "Controller.h"
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
@@ -42,7 +42,7 @@ ChargerCommand::ChargerCommand(string fname, Controller * c) : nomFichier(fname)
 }
 
 
-ChargerCommand::~ChargerCommand(void)
+ChargerCommand::~ChargerCommand()
 {
 }
 

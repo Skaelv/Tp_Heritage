@@ -23,7 +23,7 @@
 #include "AjouterPolyligneCommand.h"
 #include "AjouterObjetAgregeCommand.h"
 #include "ClearCommand.h"
-//#include "ChargerCommand.h"
+#include "ChargerCommand.h"
 using namespace std;
 
 //------------------------------------------------------------- Constantes
