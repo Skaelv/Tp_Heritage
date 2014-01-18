@@ -140,11 +140,15 @@ Modele & Modele::operator = ( const Modele & unModele )
 // Algorithme :
 //
 {
+	//TODO
+	if(&(*this) != &unModele)
+	{
 		listeEltGeo.clear();
 		for(map<string,EltGeo *>::const_iterator iterator = unModele.listeEltGeo.begin(); iterator != unModele.listeEltGeo.end(); iterator++)
-			{
-				listeEltGeo[iterator->first]=iterator->second;
-			}
+		{
+			listeEltGeo[iterator->first]=iterator->second;		
+		}
+	}
 	return *this;
 } //----- Fin de operator =
 
