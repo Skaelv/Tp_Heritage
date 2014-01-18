@@ -1,0 +1,8 @@
+Création d'objet :
+Un argument en trop
+
+C C1 1 1 1 -25
+R R1 1 3 3 4 2
+L L1 1 3 4 7 -82
+PL PL1 736 47 38 2 4 78 -24
+EXIT

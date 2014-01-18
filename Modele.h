@@ -50,24 +50,6 @@ public:
     // Contrat :
     //
 
-	void Sauvegarder ( string fichier );
-	// Mode d'emploi :
-    //		Sauvegarde le modèle courant avec les informations passées en paramètre
-    // Contrat :
-    //
-
-	bool Charger(string fichier);
-	// Mode d'emploi :
-    //		Charge le modèle contenu dans le fichier passé en paramètre dans commande
-    // Contrat :
-    //
-
-	bool Vider();
-	// Mode d'emploi : Vide le modele courant
-    // Contrat :
-    //
-
-
 	void AjouterCercle(string name,string command, int fx,int fy, int fr);
 	// Mode d'emploi :Creation d'un cercle stocké dans listeEltGeo
     // Contrat :

@@ -1,0 +1,8 @@
+Création d'objet :
+Deux fois un objet dans un objet agregé
+
+C C1 1 1 1
+R RECT 23 23 45 34
+OA OA1 RECT C1
+OA OA2 RECT OA1 OA1 RECT C1
+EXIT
