@@ -23,8 +23,8 @@ OK
 OK
 # C1 has been moved
  # Entrez une commande
-C C1 78 -93 24
+C C1 10 13 24
 L L1 1 2 3 4
-R Rect -14 13 30 -50
-PL polyligne 144 6 129 88 201 110 146 13
+R Rect -10 10 34 -53
+PL polyligne 10 -6 -5 76 67 98 12 1
  # Entrez une commande

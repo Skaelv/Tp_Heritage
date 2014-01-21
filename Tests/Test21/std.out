@@ -20,7 +20,6 @@ OK
 C C1 10 13 24
 L L1 201 202 203 204
 OA OA1 L1 polyligne Rect L1
-R Rect 90 110 134 47
-PL polyligne 110 94 95 176 167 198 112 101
+R Rect -10 10 34 -53
+PL polyligne 10 -6 -5 76 67 98 12 1
  # Entrez une commande
-

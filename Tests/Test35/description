@@ -1,6 +1,6 @@
 UNDO :
  UNDO sur le chargement d'un modèle
 
-LOAD Tests/Test35/Test35 
+LOAD ../../Tests/Test35/Test35 
 UNDO
 EXIT
