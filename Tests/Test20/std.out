@@ -1,0 +1,30 @@
+ # Entrez une commande
+OK
+# New Object : C1
+ # Entrez une commande
+OK
+# C1 has been moved
+ # Entrez une commande
+OK
+# New Object : Rect
+ # Entrez une commande
+OK
+# Rect has been moved
+ # Entrez une commande
+OK
+# New Object : polyligne
+ # Entrez une commande
+OK
+# polyligne has been moved
+ # Entrez une commande
+OK
+# New Object : L1
+ # Entrez une commande
+OK
+# C1 has been moved
+ # Entrez une commande
+C C1 78 -93 24
+L L1 1 2 3 4
+R Rect -14 13 30 -50
+PL polyligne 144 6 129 88 201 110 146 13
+ # Entrez une commande

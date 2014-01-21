@@ -1,0 +1,5 @@
+Suppression d'objet :
+Suppression d'un objet qui n'existe pas
+C C1 1 1 1
+DELETE C2
+EXIT

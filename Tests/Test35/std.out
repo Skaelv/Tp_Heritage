@@ -1,0 +1,16 @@
+ # Entrez une commande
+LOAD Tests/Test35/Test35 
+UNDO
+EXITOK
+# Loading new empty model
+# New Object : C1
+# New Object : C2
+# New Object : R1
+OK
+# New Object : PL1
+# New Object : OA1
+# Model loaded
+ # Entrez une commande
+OK
+ # Entrez une commande
+

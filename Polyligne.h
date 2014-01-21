@@ -61,7 +61,7 @@ public:
     // Contrat :
     //
 
-    Polyligne (  vector< pair<int,int> > flignes ,string fname="",string fcommande="");
+    Polyligne (  vector< pair<long int,long int> > flignes ,string fname="",string fcommande="");
     // Mode d'emploi :
     //
     // Contrat :
@@ -73,7 +73,7 @@ public:
     // Contrat :
     //
 
-    void Translater ( int dx, int dy );
+    void Translater ( long int dx, long int dy );
     // Mode d'emploi :
     //Appelle la fonction translater de ligne sur chaques lignes du vector lignes
     // Contrat :

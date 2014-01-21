@@ -28,7 +28,7 @@ class AjouterRectangleCommand : public Command
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	 AjouterRectangleCommand (string fname,string fcommande, int fx1, int fy1,int fx2,int fy2);
+	 AjouterRectangleCommand (string fname,string fcommande, long int fx1,long int fy1,long int fx2,long int fy2);
      // Mode d'emploi :
      //
      // Contrat :
@@ -64,7 +64,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 string name,commande;
-int x1,y1,x2,y2;
+long int x1,y1,x2,y2;
 };
 
 //--------------------------- Autres définitions dépendantes de <AjouterRectangleCommand>

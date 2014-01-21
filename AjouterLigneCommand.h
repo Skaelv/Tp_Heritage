@@ -28,7 +28,7 @@ class AjouterLigneCommand : public Command
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	 AjouterLigneCommand (string fname,string fcommande, int fx1, int fy1,int fx2, int fy2);
+	 AjouterLigneCommand (string fname,string fcommande, long int fx1, long int fy1,long int fx2, long int fy2);
      // Mode d'emploi :
      //
      // Contrat :

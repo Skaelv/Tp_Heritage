@@ -190,7 +190,7 @@ bool Controller::Validation ( string commande, bool load )
 				return false;
 			}
 		}
-		vector<pair<int,int> > lignes;
+		vector<pair<long int,long int> > lignes;
 		pair<int,int> l;
 		for (unsigned int i=3;i<mots.size(); i+=2)
 			{

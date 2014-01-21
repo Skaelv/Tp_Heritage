@@ -27,7 +27,7 @@ using namespace std;
 
 //------------------------------------------------- Surcharge d'opérateurs
 
-AjouterPolyligneCommand::AjouterPolyligneCommand (string fname, string fcommande,vector<pair<int,int> > fligne)
+AjouterPolyligneCommand::AjouterPolyligneCommand (string fname, string fcommande,vector<pair<long int,long int> > fligne)
 //Algorithme
 //
 {

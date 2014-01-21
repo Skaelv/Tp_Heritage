@@ -1,0 +1,29 @@
+ # Entrez une commande
+OK
+# New Object : C1
+ # Entrez une commande
+OK
+# New Object : R1
+ # Entrez une commande
+OK
+# New Object : PL1
+ # Entrez une commande
+OK
+# New Object : OA1
+ # Entrez une commande
+OK
+# New Object : OA2
+ # Entrez une commande
+OK
+ # Entrez une commande
+OK
+# New Object : R1
+ # Entrez une commande
+OK
+ # Entrez une commande
+C C1 10 13 24
+OA OA1 C1 PL1
+OA OA2 OA1 C1
+PL PL1 1 1 1 1 23 23
+ # Entrez une commande
+

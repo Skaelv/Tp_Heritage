@@ -1,0 +1,16 @@
+REDO : 
+Redo sur création de chaque objet 
+
+C C1 10 13 24
+UNDO
+REDO
+R R1 1 1 1 1
+UNDO
+REDO
+PL PL1 1 1 1 1 1 1 1 1
+UNDO
+REDO
+L L1 1 1 1 1
+UNDO
+REDO
+EXIT

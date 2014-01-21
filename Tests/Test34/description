@@ -1,0 +1,13 @@
+REDO :
+Tentative de REDO après qu'une nouvelle action ait été effectuée
+ERR
+
+
+C C1 10 13 24
+C C2 1 1 1
+C C3 1 1 1
+UNDO
+UNDO
+MOVE C1 1 1
+REDO
+EXIT

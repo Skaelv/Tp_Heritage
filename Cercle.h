@@ -50,19 +50,19 @@ public:
     // Contrat :
     //
 
-    void Translater ( int dx,int dy);
+    void Translater ( long int dx,long int dy);
     // Mode d'emploi :
     //
     // Contrat :
     //
-    Cercle ( int fx=0,int fy=0, int frayon = 0,string name="",string fcommande="");
+    Cercle ( long int fx=0,long int fy=0, long int frayon = 0,string name="",string fcommande="");
     // Mode d'emploi :
     //
     // Contrat :
     //
 
 
-    int GetRayon ();
+    long int GetRayon ();
     // Mode d'emploi :
     //Renvoie le rayon du cercle
     // Contrat :
@@ -87,7 +87,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 Point centre;
-int rayon;
+long int rayon;
 };
 
 //--------------------------- Autres définitions dépendantes de <Cercle>

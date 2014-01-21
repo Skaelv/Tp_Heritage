@@ -83,8 +83,8 @@ void DeleteCommand::Undo (Modele& fmodele)
 		else if (mots[0]=="PL")
 		{
 
-			vector<pair<int,int> > lignes;
-			pair<int,int> l;
+			vector<pair<long int,long int> > lignes;
+			pair<long int,long int> l;
 			for (unsigned int i=3;i<mots.size(); i+=2)
 				{
 					l.first = atoi(mots[i-1].c_str());

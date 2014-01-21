@@ -28,7 +28,7 @@ class AjouterPolyligneCommand : public Command
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	 AjouterPolyligneCommand (string fname,string fcommande, vector<pair<int,int> > fligne);
+	 AjouterPolyligneCommand (string fname,string fcommande, vector<pair<long int,long int> > fligne);
      // Mode d'emploi :
      //
      // Contrat :
@@ -64,7 +64,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 string name,commande;
-vector<pair<int,int> > lignes;
+vector<pair<long int,long int> > lignes;
 };
 
 //--------------------------- Autres définitions dépendantes de <AjouterPolyligneCommand>

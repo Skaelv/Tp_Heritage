@@ -29,7 +29,7 @@ bool Polyligne::AjouterLigne (Ligne fligne )
 	return true;
 } //----- Fin de Méthode
 
-void Polyligne::Translater ( int dx, int dy )
+void Polyligne::Translater (long int dx,long int dy )
 // Algorithme :
 //
 {
@@ -78,12 +78,12 @@ Polyligne::Polyligne ( const Polyligne & unPolyligne )
 } //----- Fin de Polyligne (constructeur de copie)
 
 
-Polyligne::Polyligne ( vector<pair<int,int> > flignes ,string fname,string fcommande):EltGeo(fname,fcommande)
+Polyligne::Polyligne ( vector<pair<long int,long int> > flignes ,string fname,string fcommande):EltGeo(fname,fcommande)
 // Algorithme :
 //
 {
-	int x1,x2,y1,y2;
-	vector<pair<int,int> >::iterator iter;
+	long int x1,x2,y1,y2;
+	vector<pair<long int,long int> >::iterator iter;
 	for (iter=flignes.begin();iter<flignes.end()-1;)
 	{
 		//Impossible d'injecter iter-> directement dans ligne

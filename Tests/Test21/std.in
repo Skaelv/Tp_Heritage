@@ -1,0 +1,8 @@
+C C1 10 13 24
+R Rect -10 10 34 -53
+PL polyligne 10 -6 -5 76 67 98 12 1
+L L1 1 2 3 4
+OA OA1 L1 polyligne Rect L1
+MOVE OA1 100 100
+LIST
+EXIT

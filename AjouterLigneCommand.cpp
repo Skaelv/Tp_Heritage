@@ -27,7 +27,7 @@ using namespace std;
 
 //------------------------------------------------- Surcharge d'opérateurs
 
-AjouterLigneCommand::AjouterLigneCommand (string fname, string fcommande,int fx1, int fy1,int fx2,int fy2)
+AjouterLigneCommand::AjouterLigneCommand (string fname, string fcommande,long int fx1, long int fy1,long int fx2,long int fy2)
 //Algorithme
 //
 {

@@ -27,7 +27,7 @@ using namespace std;
 
 //------------------------------------------------- Surcharge d'opérateurs
 
-AjouterCercleCommand::AjouterCercleCommand (string fname, string fcommande,int fx, int fy,int fr)
+AjouterCercleCommand::AjouterCercleCommand (string fname, string fcommande,long int fx, long int fy,long int fr)
 //Algorithme
 //
 {

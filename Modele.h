@@ -50,22 +50,22 @@ public:
     // Contrat :
     //
 
-	void AjouterCercle(string name,string command, int fx,int fy, int fr);
+	void AjouterCercle(string name,string command, long int fx,long int fy, long int fr);
 	// Mode d'emploi :Creation d'un cercle stocké dans listeEltGeo
     // Contrat :
     //
 
-	void AjouterRectangle(string name,string commande, int fx1,int fy1, int fx2,int fy2);
+	void AjouterRectangle(string name,string commande, long int fx1,long int fy1, long int fx2,long int fy2);
 	// Mode d'emploi :Creation d'un rectangle stocké dans listeEltGeo
     // Contrat :
     //
 
-	void AjouterLigne(string name,string commande, int fx1,int fy1, int fx2,int fy2);
+	void AjouterLigne(string name,string commande, long int fx1,long int fy1,long int fx2,long int fy2);
 	// Mode d'emploi :Creation d'une ligne stocké dans listeEltGeo
     // Contrat :
     //
 
-	void AjouterPolyligne(string name,string commande, vector<pair<int,int> > fligne);
+	void AjouterPolyligne(string name,string commande, vector<pair<long int,long int> > fligne);
 	// Mode d'emploi :Creation d'une polyligne stocké dans listeEltGeo
     // Contrat :
     //
@@ -109,7 +109,7 @@ public:
     // Contrat :
     //
 
-	void Translater(int dx,int dy,  string fname);
+	void Translater(long int dx,long int dy,  string fname);
 	// Mode d'emploi : Retourne true si l'objet existe dans listeEltGeo
     // Contrat :
     //

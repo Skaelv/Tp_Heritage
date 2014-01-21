@@ -22,7 +22,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void Cercle::Translater ( int dx, int dy )
+void Cercle::Translater ( long int dx,long int dy )
 // Algorithme :
 //
 {
@@ -65,7 +65,7 @@ Cercle::Cercle ( const Cercle & unCercle )
 } //----- Fin de Cercle (constructeur de copie)
 
 
-Cercle::Cercle ( int fx,int fy, int frayon,string fname,string fcommande):EltGeo(fname,fcommande)
+Cercle::Cercle (long int fx,long int fy, long int frayon,string fname,string fcommande):EltGeo(fname,fcommande)
 // Algorithme :
 //
 {

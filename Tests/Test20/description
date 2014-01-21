@@ -1,0 +1,13 @@
+Translation d'objet :
+Fonctionnement normal sur chaque type d'objet
+
+C C1 10 13 24
+MOVE C1 34 -53
+R Rect -10 10 34 -53
+MOVE Rect -4 3
+PL polyligne 10 -6 -5 76 67 98 12 1
+MOVE polyligne 134 12
+L L1 1 2 3 4
+MOVE C1 34 -53
+LIST
+EXIT

@@ -28,7 +28,7 @@ class AjouterCercleCommand : public Command
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	 AjouterCercleCommand (string fname,string fcommande, int fx, int fy,int fr);
+	 AjouterCercleCommand (string fname,string fcommande, long int fx, long int fy,long int fr);
      // Mode d'emploi :
      //
      // Contrat :
@@ -65,7 +65,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 string name,commande;
-int x,y,r;
+long int x,y,r;
 };
 
 //--------------------------- Autres définitions dépendantes de <AjouterCercleCommand>

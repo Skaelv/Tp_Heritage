@@ -25,7 +25,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void Modele::AjouterCercle(string name,string commande, int fx,int fy, int fr)
+void Modele::AjouterCercle(string name,string commande, long int fx,long int fy,long int fr)
 //Algorithme
 {
 	listeEltGeo[name] =  new Cercle(fx,fy,fr,name,commande);
@@ -33,21 +33,21 @@ void Modele::AjouterCercle(string name,string commande, int fx,int fy, int fr)
 }
 
 
-void Modele::AjouterRectangle(string name,string commande, int fx1,int fy1, int fx2,int fy2)
+void Modele::AjouterRectangle(string name,string commande,long int fx1,long int fy1,long int fx2,long int fy2)
 //Algorithme
 {
 	listeEltGeo[name] = new Rectangle(fx1,fy1,fx2,fy2,name,commande);
 	cout << "# New Object : "<< name <<endl;
 }
 
-void Modele::AjouterLigne(string name,string commande, int fx1,int fy1, int fx2,int fy2)
+void Modele::AjouterLigne(string name,string commande,long int fx1,long int fy1,long int fx2,long int fy2)
 //Algorithme
 {
 	listeEltGeo[name] = new Ligne(fx1,fy1,fx2,fy2,name,commande);
 	cout  << "# New Object : "<< name <<endl;
 }
 
-void Modele::AjouterPolyligne(string name,string commande, vector<pair<int,int> > fligne)
+void Modele::AjouterPolyligne(string name,string commande, vector<pair<long int,long int> > fligne)
 //Algorithme
 {
 	listeEltGeo[name] = new Polyligne(fligne,name,commande);
@@ -128,7 +128,7 @@ bool Modele::ObjetExistant(string fname)
 }
 
 
-void Modele::Translater(int dx,int dy, string fname)
+void Modele::Translater(long int dx,long int dy, string fname)
 //Algorithme
 {
 	listeEltGeo.find(fname)->second->Translater(dx,dy);

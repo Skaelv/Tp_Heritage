@@ -22,7 +22,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void Rectangle::Translater ( int dx, int dy )
+void Rectangle::Translater (long int dx,long int dy )
 // Algorithme :
 //
 {
@@ -60,7 +60,7 @@ Rectangle::Rectangle ( const Rectangle & unRectangle ):p1(unRectangle.p1),p2(unR
 } //----- Fin de Rectangle (constructeur de copie)
 
 
-Rectangle::Rectangle ( int fx1,int fy1,int fx2,int fy2,string fname,string fcommande ):EltGeo(fname,fcommande),p1(Point(fx1,fy1)),p2(Point(fx2,fy2))
+Rectangle::Rectangle (long int fx1,long int fy1,long int fx2,long int fy2,string fname,string fcommande ):EltGeo(fname,fcommande),p1(Point(fx1,fy1)),p2(Point(fx2,fy2))
 // Algorithme :
 //
 {
