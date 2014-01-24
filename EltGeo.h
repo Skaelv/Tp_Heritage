@@ -54,7 +54,7 @@ public:
     // Contrat :
     //
 
-	virtual bool IsAgrege();
+	virtual bool IsAgrege() = 0;
     // Mode d'emploi :
     //Sert a determiner si l'objet est un objet agrege ou non
     // Contrat :

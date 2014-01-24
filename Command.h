@@ -35,7 +35,7 @@ public:
     // Contrat :
     //
 
-	virtual void Execute (Modele& fmodele);
+	virtual void Execute (Modele& fmodele) = 0;
     // Mode d'emploi :
     //
     // Contrat :
