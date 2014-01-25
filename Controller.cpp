@@ -20,6 +20,7 @@
 #include <string>
 #include <iterator>
 #include <cassert>
+#include <set>
 using namespace std;
 #include <iostream>
 #include <cstdlib>
@@ -106,10 +107,10 @@ bool Controller::Validation ( string commande, bool load )
 	}
 	else if ( (mots[0]=="OA") && (mots.size()>2) && (!this->ObjetExistant(mots[1])) )
 	{
-		vector<string> agrege;
+		set<string> agrege;
 		for (unsigned int i=2; i<mots.size();i++)
 		{
-			agrege.push_back(mots[i]);
+			agrege.insert(mots[i]);
 			if (!this->ObjetExistant(mots[i]))
 			{
 				cout << "ERR"<< endl << "#At least one object do not exist : " << mots[i] << endl;

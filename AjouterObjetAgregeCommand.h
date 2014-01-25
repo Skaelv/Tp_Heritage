@@ -28,7 +28,7 @@ class AjouterObjetAgregeCommand : public Command
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	 AjouterObjetAgregeCommand (vector<string> flisteObjet, string fname,string fcommande);
+	AjouterObjetAgregeCommand (std::set<string> flisteObjet, string fname,string fcommande);
      // Mode d'emploi :
      //
      // Contrat :
@@ -64,7 +64,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 string name,commande;
-vector<string> listeObjet;
+std::set<std::string> listeObjet;
 };
 
 //--------------------------- Autres définitions dépendantes de <AjouterObjetAgregeCommand>

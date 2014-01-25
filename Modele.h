@@ -21,6 +21,7 @@
 #include <string>
 #include <stack>
 #include <vector>
+#include <set>
 #include "Command.h"
 using namespace std;
 
@@ -70,7 +71,7 @@ public:
     // Contrat :
     //
 
-	void AjouterObjetAgrege(string name,string commande, vector<string> nameObjet);
+	void AjouterObjetAgrege(string name,string commande, set<string> nameObjet);
 	// Mode d'emploi :Creation d'un objetagrege stocké dans listeEltGeo
     // Contrat :
     //

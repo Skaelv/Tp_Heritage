@@ -12,7 +12,9 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <sstream>
 #include <list>
+#include <set>
 
 
 //------------------------------------------------------ Include personnel
@@ -106,7 +108,6 @@ ObjetAgrege::ObjetAgrege (list<EltGeo *> flistObjet, string fname,string fcomman
 // Algorithme :
 //
 {
-
 #ifdef MAP
     cout << "Appel au constructeur de <ObjetAgrege>" << endl;
 #endif

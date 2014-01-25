@@ -16,6 +16,8 @@ using namespace std;
 #include <cstdlib>
 #include <string>
 #include <vector>
+#include <set>
+#include <sstream>
 
 //------------------------------------------------------ Include personnel
 #include "Modele.h"
@@ -54,14 +56,19 @@ void Modele::AjouterPolyligne(string name,string commande, vector<pair<long int,
 	cout << "# New Object : "<< name <<endl;
 }
 
-void Modele::AjouterObjetAgrege(string name,string commande, vector<string> nameObjet)
+void Modele::AjouterObjetAgrege(string name,string commande, set<string> nameObjet)
 //Algorithme
 {
 	list<EltGeo *> objetAg;
-	for (vector<string>::iterator iter=nameObjet.begin();iter<nameObjet.end(); iter++)
+	ostringstream oss;
+	oss << "OA " << name;
+	for (set<string>::iterator iter=nameObjet.begin();iter!=nameObjet.end(); iter++)
 	{
 			objetAg.push_back(listeEltGeo.find(iter->c_str())->second);
+			oss << " " << iter->c_str() ;
 	}
+	commande = oss.str();
+
 	listeEltGeo[name] = new ObjetAgrege(objetAg,name,commande);
 	cout<< "# New Object : "<< name <<endl;
 }
@@ -117,7 +124,7 @@ void Modele::EnumererCommande()
 {
 	for(map_it_type iterator = listeEltGeo.begin(); iterator != listeEltGeo.end(); iterator++)
 	{
-	cout << iterator->second->GetCommande() << endl;
+		cout << iterator->second->GetCommande() << endl;
 	}
 }
 

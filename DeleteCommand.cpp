@@ -82,7 +82,6 @@ void DeleteCommand::Undo (Modele& fmodele)
 		}
 		else if (mots[0]=="PL")
 		{
-
 			vector<pair<long int,long int> > lignes;
 			pair<long int,long int> l;
 			for (unsigned int i=3;i<mots.size(); i+=2)
@@ -95,7 +94,12 @@ void DeleteCommand::Undo (Modele& fmodele)
 		}
 		else if (mots[0]=="OA")
 		{
-			fmodele.AjouterObjetAgrege(mots[1],iter->first,mots);
+			set<string> agrege;
+			for (unsigned int i=2; i<mots.size();i++)
+			{
+				agrege.insert(mots[i]);
+			}
+			fmodele.AjouterObjetAgrege(mots[1],iter->first,agrege);
 		}
 
 		istringstream ss2(iter->second);

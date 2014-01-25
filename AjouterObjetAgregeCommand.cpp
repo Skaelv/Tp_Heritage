@@ -14,6 +14,7 @@
 using namespace std;
 #include <iostream>
 #include<string>
+#include <set>
 
 //------------------------------------------------------ Include personnel
 #include "AjouterObjetAgregeCommand.h"
@@ -27,7 +28,7 @@ using namespace std;
 
 //------------------------------------------------- Surcharge d'opérateurs
 
-AjouterObjetAgregeCommand::AjouterObjetAgregeCommand (vector<string> flisteObjet,string fname, string fcommande)
+AjouterObjetAgregeCommand::AjouterObjetAgregeCommand (set<string> flisteObjet,string fname, string fcommande)
 //Algorithme
 //
 {
