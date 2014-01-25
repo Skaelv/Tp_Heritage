@@ -292,8 +292,14 @@ bool Controller::IsaNumber(string number)
 {
 	 char * pEnd;
 	  long int l = strtol (number.c_str(),&pEnd,10);
-	  return (*pEnd=='\0');
-
+	  if ( (l<=2147483647)&&(l>=-2147483647) )
+	  {
+		  return (*pEnd=='\0');
+	  }
+	  else
+	  {
+		  return false;
+	  }
 }
 
 void Controller::Sauvegarder(string url)
