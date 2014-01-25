@@ -119,7 +119,7 @@ bool Controller::Validation ( string commande, bool load )
 		}
 		if (!load)
 		{
-		this->ExecuterCommand( new AjouterObjetAgregeCommand(agrege,mots[1],commande));
+			this->ExecuterCommand( new AjouterObjetAgregeCommand(agrege,mots[1],commande));
 		}
 		else
 		{
@@ -273,19 +273,17 @@ void Controller::Charger(string url)
 	ifstream fichier(url.c_str());
 	if ( !fichier.fail() )
 	{
-		cout << "# Loading new empty model"<< endl;
 		string commande;
 		while(getline(fichier,commande))
 		{
 			Validation(commande,true);
 		}
-		cout << "# Model loaded" << endl;
+		cout << "# File loaded" << endl;
 	}
 	else
 	{
 		cout << "# File do not exist" << endl;
 	}
-
 } //----- Fin de Méthode
 
 bool Controller::IsaNumber(string number)

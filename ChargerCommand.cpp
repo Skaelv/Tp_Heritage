@@ -24,7 +24,7 @@ void ChargerCommand::Execute (Modele & fmodele)
 // Algorithme :
 //
 {
-	OldModel =fmodele;
+	OldModel = fmodele;
 	control->Charger(nomFichier);
 }
 

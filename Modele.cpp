@@ -64,8 +64,8 @@ void Modele::AjouterObjetAgrege(string name,string commande, set<string> nameObj
 	oss << "OA " << name;
 	for (set<string>::iterator iter=nameObjet.begin();iter!=nameObjet.end(); iter++)
 	{
-			objetAg.push_back(listeEltGeo.find(iter->c_str())->second);
-			oss << " " << iter->c_str() ;
+		objetAg.push_back(listeEltGeo.find(iter->c_str())->second);
+		oss << " " << iter->c_str() ;
 	}
 	commande = oss.str();
 
@@ -150,10 +150,50 @@ Modele & Modele::operator = ( const Modele & unModele )
 	//TODO
 	if(&(*this) != &unModele)
 	{
+		string type;
 		listeEltGeo.clear();
 		for(map<string,EltGeo *>::const_iterator iterator = unModele.listeEltGeo.begin(); iterator != unModele.listeEltGeo.end(); iterator++)
 		{
-			listeEltGeo[iterator->first]=iterator->second;		
+			//listeEltGeo[iterator->first]=iterator->second;		//On fait la copie de l'adresse alors qu'il faut faire une copie de l'objet
+			
+			//TODO : Pour chaque objet de la unModele.map
+			//Recréer des objets grâce à la commande
+			istringstream ss(iterator->second->GetCommande());
+			istream_iterator<string> begin(ss), end;
+			vector<string> mots(begin, end);
+			if ( mots[0]=="OA" )
+			{
+				list<EltGeo *> objetAg;
+				for (vector<string>::iterator iter=mots.begin();iter!=mots.end(); iter++)
+				{
+					objetAg.push_back(listeEltGeo.find(iter->c_str())->second);
+				}
+				listeEltGeo[iterator->first] = new ObjetAgrege(objetAg,iterator->first,iterator->second->GetCommande());
+			}
+			else if ( mots[0]=="C")
+			{
+				listeEltGeo[iterator->first] = new Cercle(atoi(mots[2].c_str()),atoi(mots[3].c_str()),atoi(mots[4].c_str()),mots[1],iterator->second->GetCommande());
+			}
+			else if ( mots[0] == "R" )
+			{
+				listeEltGeo[iterator->first] = new Rectangle(atoi(mots[2].c_str()),atoi(mots[3].c_str()),atoi(mots[4].c_str()),atoi(mots[5].c_str())),mots[1],iterator->second->GetCommande();
+			}
+			else if ( mots[0]=="L")
+			{
+				listeEltGeo[iterator->first] = new Ligne(atoi(mots[2].c_str()),atoi(mots[3].c_str()),atoi(mots[4].c_str()),atoi(mots[5].c_str()),mots[1],iterator->second->GetCommande());
+			}
+			else if ( mots[0] == "PL" )
+			{
+				vector<pair<long int,long int> > lignes;
+				pair<int,int> l;
+				for (unsigned int i=3;i<mots.size(); i+=2)
+				{
+					l.first = atoi(mots[i-1].c_str());
+					l.second = atoi(mots[i].c_str());
+					lignes.push_back(l);//
+				}
+				listeEltGeo[iterator->first] = new Polyligne(lignes, mots[1],iterator->second->GetCommande());
+			}
 		}
 	}
 	return *this;
@@ -191,11 +231,13 @@ Modele::~Modele ( )
 // Algorithme :
 //Suppression dynamique des Elements Geo
 {
-
 	for(map_it_type iterator = listeEltGeo.begin(); iterator != listeEltGeo.end(); iterator++)
 	{
-		delete iterator->second;
+		if(iterator->second != NULL){
+			delete iterator->second;
+		}
 	}
+
 
 #ifdef MAP
     cout << "Appel au destructeur de <Modele>" << endl;

@@ -71,7 +71,7 @@ public:
     // Contrat :
     //
 
-	void AjouterObjetAgrege(string name,string commande, set<string> nameObjet);
+	void AjouterObjetAgrege(string name, string commande, set<string> nameObjet);
 	// Mode d'emploi :Creation d'un objetagrege stocké dans listeEltGeo
     // Contrat :
     //
