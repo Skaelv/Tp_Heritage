@@ -147,7 +147,6 @@ Modele & Modele::operator = ( const Modele & unModele )
 {
 	if( &(*this) != &unModele )
 	{
-		string type;
 		listeEltGeo.clear( );
 		for( map< string, EltGeo * >::const_iterator iterator = unModele.listeEltGeo.begin( ); iterator != unModele.listeEltGeo.end( ); iterator++ )
 		{
@@ -160,7 +159,7 @@ Modele & Modele::operator = ( const Modele & unModele )
 			if ( mots[0] == "OA" )
 			{
 				list< EltGeo * > objetAg;
-				for ( vector< string >::iterator iter = mots.begin( ); iter != mots.end( ); iter++ )
+				for ( vector< string >::iterator iter = mots.begin( ) + 2; iter != mots.end( ); iter++ )
 				{
 					objetAg.push_back( listeEltGeo.find( iter->c_str( ) )->second );
 				}
@@ -214,7 +213,7 @@ Modele::Modele ( const Modele & unModele )
 		if ( mots[0] == "OA" )
 		{
 			list< EltGeo * > objetAg;
-			for ( vector< string >::iterator iter = mots.begin( ); iter != mots.end( ); iter++ )
+			for ( vector< string >::iterator iter = mots.begin( ) + 2; iter != mots.end( ); iter++ )
 			{
 				objetAg.push_back( listeEltGeo.find( iter->c_str( ) )->second );
 			}
