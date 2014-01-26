@@ -18,7 +18,7 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Ligne>
-//
+//	Modélise une ligne
 //
 //------------------------------------------------------------------------
 
@@ -28,24 +28,24 @@ class Ligne : public EltGeo
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	void Translater ( int dx, int dy);
+	void Translater ( int dx, int dy );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    bool IsAgrege();
+    bool IsAgrege( );
     // Mode d'emploi :
     //Renvoie false pour une ligne
     // Contrat :
     //
 
-    Point GetP1();
+    Point GetP1( );
     // Mode d'emploi :
     //retourne une copie de p1 (utilisé pour reconstituer la commande Polyligne)
     // Contrat :
 
-    Point GetP2();
+    Point GetP2( );
     // Mode d'emploi :
     //retourne une copie de p2 (utilisé pour reconstituer la commande Polyligne)
     // Contrat :
@@ -65,7 +65,7 @@ public:
     // Contrat :
     //
 
-    Ligne ( int x1=0,int y1=0,int x2=0,int y2=0,string name="" ,string commande="");
+    Ligne ( int x1 = 0, int y1 = 0, int x2 = 0, int y2 = 0, string name = "", string commande = "" );
     // Mode d'emploi :
     //Constructeur d'une ligne, ses extrémités lui sont passées
     //en paramètres.
@@ -84,8 +84,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-Point p1;
-Point p2;
+	Point p1;
+	Point p2;
 };
 
 //--------------------------- Autres définitions dépendantes de <Ligne>

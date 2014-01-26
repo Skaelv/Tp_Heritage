@@ -11,6 +11,8 @@
 
 //-------------------------------------------------------- Include système
 #include <iostream>
+#include <string>
+
 using namespace std;
 //------------------------------------------------------ Include personnel
 #include "Polyligne.h"

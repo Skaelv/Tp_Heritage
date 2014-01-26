@@ -8,20 +8,22 @@
 //---------- Interface de la classe <DeleteCommand> (fichier DeleteCommand.h) ------
 #if ! defined ( DELETECOMMAND_H_ )
 #define DELETECOMMAND_H_
+
+//--------------------------------------------------- Interfaces utilisées
+#include <string>
 #include "EltGeo.h"
 #include "Command.h"
 #include "Modele.h"
-//--------------------------------------------------- Interfaces utilisées
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
 // Rôle de la classe <DeleteCommand>
-//
+//	Modélise une commande d'effacement d'une ou plusieurs forme
 //
 //------------------------------------------------------------------------
-
 
 
 class DeleteCommand : public Command
@@ -30,25 +32,27 @@ class DeleteCommand : public Command
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	 DeleteCommand (map<string,string> fname);
+	 
+	void Execute ( Modele& fmodele );
+    // Mode d'emploi :
+    //	Exécute une commande d'effacement de forme(s) du le modèle passé en paramètre
+    // Contrat :
+    //
+
+    void Undo ( Modele& fmodele );
+    // Mode d'emploi :
+    //Recrée l'objet supprimé tel qu'il était avant sa suppression
+    // Contrat :
+    //
+
+	//------------------------------------------------- Surcharge d'opérateurs
+
+	//-------------------------------------------- Constructeurs - destructeur
+	DeleteCommand ( std::map< string, string > fname );
      // Mode d'emploi :Constructeur
-     //
+     //	Construit une nouvelle commande en initialisant les attributs avec les paramètres
      // Contrat :
      //
-
-
-	void Execute (Modele& fmodele);
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    void Undo (Modele& fmodele);
-    // Mode d'emploi :
-    //Recréer l'objet supprimé tel qu'il était avant sa suppression
-    // Contrat :
-    //
-
 
     virtual ~DeleteCommand ( );
     // Mode d'emploi :
@@ -62,7 +66,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-map<string,string> mapElt; //Stocke les noms des objets à supprimer
+	std::map< string, string > mapElt; //Stocke les noms des objets à supprimer
 							  //et leur commandes pour recréer l'objet après destruction
 
 };

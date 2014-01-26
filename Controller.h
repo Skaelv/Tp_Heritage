@@ -11,7 +11,6 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include <string>
-#include <fstream>
 #include "Modele.h"
 #include "Command.h"
 #include "DeleteCommand.h"
@@ -24,7 +23,6 @@
 #include "AjouterObjetAgregeCommand.h"
 #include "ClearCommand.h"
 #include "ChargerCommand.h"
-using namespace std;
 
 //------------------------------------------------------------- Constantes
 
@@ -32,7 +30,7 @@ using namespace std;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Controller>
-//
+//	Modélise le controlleur de notre programme
 //
 //------------------------------------------------------------------------
 
@@ -43,13 +41,7 @@ class Controller
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-	bool ObjetExistant(string objet);
+	bool ObjetExistant( string objet );
     // Mode d'emploi :
     //Renvoie true si l'objet est dans le modele courant
     // Contrat :Sous traite a la methode de l'attribut modele
@@ -61,30 +53,31 @@ public:
     // Contrat :
     //
 
-	void Redo();
+	void Redo( );
     // Mode d'emploi :
-    //Execute la commande passé en parametre
+    //Execute la dernière commande annulée
     // Contrat :
     //
 
-	void Undo();
+	void Undo( );
     // Mode d'emploi :
-    //Execute la commande passé en parametre
+    //Annule la dernière commande exécutée
     // Contrat :
     //
 
-	void ClearRedo();
+	void ClearRedo( );
 	//Mode d'emploi :
 	// Efface les commandes qui ne pourront plus être recrée car risque de conflit
 	//Contrat :
 	//
-	void EnumererObjet();
+
+	void EnumererObjet( );
     // Mode d'emploi :
-    //
+    //	Affiche dans la console les figures présentes actuellement dans le dessin
     // Contrat :
     //
 
-	void Translater(Command *command);
+	void Translater( Command *command );
     // Mode d'emploi :
     //
     // Contrat :
@@ -94,23 +87,24 @@ public:
 	// Mode d'emploi :
     //		Retourne true, si commande passée en paramètre est valable
 	//		False sinon
+    // Contrat : 
+    //
+
+
+	bool IsaNumber( string number );
+	// Mode d'emploi :
+    //	Retourne true si la chaine passée en paramètre est un nombre
+	//	False sinon
     // Contrat :
     //
 
-
-	bool IsaNumber(string number);
+	void Charger( string url );
 	// Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-	void Charger(string url);
-	// Mode d'emploi :
-    //Vide le modele courant et charge le modele dont l'url est envoyé en parametre
+    //Ajoute au modele courant les figures présentes dans le fichier passé en paramètre
     // Contrat : sous traite à la fonction vider du modele
     //
 
-	void Sauvegarder(string url);
+	void Sauvegarder( string url );
 	// Mode d'emploi :
     //Sauvegarde le modele courant dans un nouveau fichier dont l'url est envoyé en parametre
     // Contrat : sous traite à la fonction vider du modele
@@ -149,8 +143,8 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 	Modele modele;
-	list<Command *> cmd;
-	list<Command *>::iterator cmdIter;
+	std::list<Command *> cmd;
+	std::list<Command *>::iterator cmdIter;
 };
 
 //--------------------------- Autres définitions dépendantes de <Controller>

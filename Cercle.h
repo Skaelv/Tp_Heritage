@@ -10,6 +10,7 @@
 #define CERCLE_H_
 
 //--------------------------------------------------- Interfaces utilisées
+#include <string>
 #include "EltGeo.h"
 #include "Point.h"
 //------------------------------------------------------------- Constantes
@@ -18,7 +19,7 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Cercle>
-//
+// Modélise un cercle
 //
 //------------------------------------------------------------------------
 
@@ -28,12 +29,23 @@ class Cercle : public EltGeo
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+	void Translater ( long int dx, long int dy );
     // Mode d'emploi :
-    //
+    //	Translate le cercle par rapport au coordonnées passées en paramètre
     // Contrat :
     //
 
+	long int GetRayon ( );
+    // Mode d'emploi :
+    //	Renvoie le rayon du cercle
+    // Contrat :
+    //
+
+    bool IsAgrege( );
+    // Mode d'emploi :
+    //	Renvoie false pour un cercle
+    // Contrat :
+    //
 
 //------------------------------------------------- Surcharge d'opérateurs
     Cercle & operator = ( const Cercle & unCercle );
@@ -42,35 +54,16 @@ public:
     // Contrat :
     //
 
-
 //-------------------------------------------- Constructeurs - destructeur
     Cercle ( const Cercle & unCercle );
     // Mode d'emploi (constructeur de copie) :
-    //
+    //	Construit une copie d'un cercle
     // Contrat :
     //
-
-    void Translater ( long int dx,long int dy);
+    
+    Cercle ( long int fx=0, long int fy=0, long int frayon = 0, string name="", string fcommande="" );
     // Mode d'emploi :
-    //
-    // Contrat :
-    //
-    Cercle ( long int fx=0,long int fy=0, long int frayon = 0,string name="",string fcommande="");
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-
-    long int GetRayon ();
-    // Mode d'emploi :
-    //Renvoie le rayon du cercle
-    // Contrat :
-    //
-
-    bool IsAgrege();
-    // Mode d'emploi :
-    //Renvoie false pour un cercle
+    //	Initialise les attributs d'un cercle avec les paramètres du constructeur
     // Contrat :
     //
 
@@ -86,8 +79,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-Point centre;
-long int rayon;
+	Point centre;
+	long int rayon;
 };
 
 //--------------------------- Autres définitions dépendantes de <Cercle>

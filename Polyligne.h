@@ -13,9 +13,8 @@
 //--------------------------------------------------- Interfaces utilisées
 #include "EltGeo.h"
 #include "Ligne.h"
-#include <string>
 #include <vector>
-using namespace std;
+#include <string>
 
 //------------------------------------------------------------- Constantes
 
@@ -23,7 +22,7 @@ using namespace std;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Polyligne>
-//
+//	Modélise une polyligne
 //
 //------------------------------------------------------------------------
 
@@ -33,18 +32,23 @@ class Polyligne : public EltGeo
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
     bool IsAgrege();
     // Mode d'emploi :
     //Renvoie false pour une polyligne
     // Contrat :
     //
 
+    bool AjouterLigne ( Ligne fligne );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    void Translater ( long int dx, long int dy );
+    // Mode d'emploi :
+    //Appelle la fonction translater de ligne sur chaques lignes du vector lignes
+    // Contrat :
+    //
 
 //------------------------------------------------- Surcharge d'opérateurs
     Polyligne & operator = ( const Polyligne & unPolyligne );
@@ -61,21 +65,9 @@ public:
     // Contrat :
     //
 
-    Polyligne (  vector< pair<long int,long int> > flignes ,string fname="",string fcommande="");
+    Polyligne (  vector< pair< long int, long int> > flignes , string fname = "", string fcommande = "" );
     // Mode d'emploi :
     //
-    // Contrat :
-    //
-
-    bool AjouterLigne (Ligne fligne  );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    void Translater ( long int dx, long int dy );
-    // Mode d'emploi :
-    //Appelle la fonction translater de ligne sur chaques lignes du vector lignes
     // Contrat :
     //
 
@@ -91,7 +83,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-vector< Ligne > lignes;
+	vector< Ligne > lignes;
 };
 
 //--------------------------- Autres définitions dépendantes de <Polyligne>

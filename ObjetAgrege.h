@@ -12,7 +12,7 @@
 //--------------------------------------------------- Interfaces utilisées
 #include "EltGeo.h"
 #include <list>
-
+#include <string>
 
 //------------------------------------------------------------- Constantes
 
@@ -30,24 +30,19 @@ class ObjetAgrege : public EltGeo
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-	void Translater(int dx, int dy);
+	void Translater( int dx, int dy );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-	bool IsAgrege();
+	bool IsAgrege( );
     // Mode d'emploi :
     //Renvoie true pour un ObjetAgrege
     // Contrat :
     //
 
-    string DeleteElement(string objetASupprimer);
+    string DeleteElement( string objetASupprimer );
     // Mode d'emploi :
     //Verifie si le nom d'objet en parametre est dans la liste d'objet agrege
     //Le supprime si c'est le cas, et renvoie le nom des objets agreges auxquels
@@ -55,7 +50,12 @@ public:
     // Contrat :
     //
 
-    void AddElement(EltGeo * element);
+    void AddElement( EltGeo * element );
+	// Mode d'emploi :
+    //	Ajoute l'élément passé un paramètre à l'objet agrégé
+    // Contrat :
+    //
+
 //------------------------------------------------- Surcharge d'opérateurs
     ObjetAgrege & operator = ( const ObjetAgrege & unObjetAgrege );
     // Mode d'emploi :
@@ -71,7 +71,7 @@ public:
     // Contrat :
     //
 
-    ObjetAgrege (list<EltGeo*> flistObjet,string fname="",string fcommande="" );
+    ObjetAgrege ( list< EltGeo* > flistObjet, string fname = "", string fcommande = "" );
     // Mode d'emploi :
     //
     // Contrat :
@@ -89,7 +89,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-list<EltGeo *> listObjet;
+	list< EltGeo * > listObjet;
 };
 
 //--------------------------- Autres définitions dépendantes de <ObjetAgrege>

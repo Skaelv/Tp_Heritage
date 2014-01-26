@@ -8,11 +8,9 @@
 //---------- Interface de la classe <EltGeo> (fichier EltGeo.h) ------
 #if ! defined ( ELTGEO_H_ )
 #define ELTGEO_H_
-#include <string>
-using namespace std;
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include <string>
 
 //------------------------------------------------------------- Constantes
 
@@ -20,7 +18,7 @@ using namespace std;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <EltGeo>
-//
+//	Modélise la super-classe d'une forme
 //
 //------------------------------------------------------------------------
 
@@ -30,43 +28,37 @@ class EltGeo
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+	virtual void Translater( int dx, int dy );
+    // Mode d'emploi :
+    //	Translate la forme par rapport aux coordonnées passées en paramètre
+    // Contrat :
+    //
+
+	string GetCommande( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-	virtual void Translater(int dx,int dy);
+	string GetName( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-	string GetCommande();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-	string GetName();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-	virtual bool IsAgrege() = 0;
+	virtual bool IsAgrege( ) = 0;
     // Mode d'emploi :
     //Sert a determiner si l'objet est un objet agrege ou non
     // Contrat :
     //
 
-	virtual string DeleteElement(string objetASupprimer);
+	virtual string DeleteElement( string objetASupprimer );
     // Mode d'emploi :
     // Methode utile pour supprimer l'objet si il appartient a la liste de l'objet agrege
     // Contrat : Virtual mais appelé uniquement pour les Objets Agreges.
     //
 
-	virtual void AddElement(EltGeo * objetAInserer);
+	virtual void AddElement( EltGeo * objetAInserer );
     // Mode d'emploi :
     // Methode utile pour ajouterl'objet à l'element agrege courant
     // Contrat : Virtual mais appelé uniquement pour les Objets Agreges.
@@ -86,7 +78,7 @@ public:
     // Contrat :
     //
 
-    EltGeo ( string fname ="",string fcommande="");
+    EltGeo ( string fname = "", string fcommande = "" );
     // Mode d'emploi :
     //
     // Contrat :

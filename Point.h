@@ -10,6 +10,7 @@
 #define POINT_H_
 
 //--------------------------------------------------- Interfaces utilisées
+#include <string>
 
 //------------------------------------------------------------- Constantes
 
@@ -17,7 +18,7 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Point>
-//
+//	Modélise un point
 //
 //------------------------------------------------------------------------
 
@@ -27,12 +28,12 @@ class Point
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+	string Translater ( int dx, int dy );
     // Mode d'emploi :
+    //Translate le point de +dx en abscisse
+    //	     				+dy en ordonnée
+    // Contrat : Renvoie les positions précédés d'un espace
     //
-    // Contrat :
-    //
-
 
 //------------------------------------------------- Surcharge d'opérateurs
     Point & operator = ( const Point & unPoint );
@@ -49,17 +50,10 @@ public:
     // Contrat :
     //
 
-    Point (int x=0, int y=0 );
+    Point (int x = 0, int y = 0 );
     // Mode d'emploi :
     //Constructeur du point (x,y)
     // Contrat :
-    //
-
-    string Translater (int dx, int dy );
-    // Mode d'emploi :
-    //Translate le point de +dx en abscisse
-    //	     				+dy en ordonnée
-    // Contrat : Renvoie les positions précédés d'un espace
     //
 
     virtual ~Point ( );
@@ -74,8 +68,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-int x;
-int y;
+	int x;
+	int y;
 };
 
 //--------------------------- Autres définitions dépendantes de <Point>

@@ -1,11 +1,11 @@
 /*************************************************************************
-                           Cercle  -  description
+                           ClearCommand  -  description
                              -------------------
     début                : 20 déc. 2013
     copyright            : (C) 2013 par kantoine
 *************************************************************************/
 
-//---------- Interface de la classe <Cercle> (fichier Cercle.h) ------
+//---------- Interface de la classe <ClearCommand> (fichier ClearCommand.h) ------
 #if ! defined ( CLEARCOMMANDE_H_ )
 #define CLEARCOMMANDE_H_
 
@@ -18,8 +18,8 @@
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Cercle>
-//
+// Rôle de la classe <ClearCommand>
+//	Modélise une commande d'effacement d'un modèle
 //
 //------------------------------------------------------------------------
 
@@ -29,28 +29,28 @@ class ClearCommand : public Command
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	 ClearCommand ();
-     // Mode d'emploi :
-     //
-     // Contrat :
-     //
-
-
-	void Execute (Modele& fmodele);
+	void Execute ( Modele& fmodele );
     // Mode d'emploi :
-    //
+    //	Exécute une commande d'effacement du modèle passé en paramètre
     // Contrat :
     //
 
-    void Undo (Modele& fmodele);
+    void Undo ( Modele& fmodele );
     // Mode d'emploi :
-    //
+    //	Annule une commande d'effacement du modèle
     // Contrat :
     //
 
     bool IsNewModel ();
     // Mode d'emploi :
     //
+    // Contrat :
+    //
+
+	//-------------------------------------------- Constructeurs - destructeur
+	ClearCommand ();
+    // Mode d'emploi :
+    //	Construit une commande d'effacement d'un modèle
     // Contrat :
     //
 

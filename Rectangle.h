@@ -12,6 +12,7 @@
 //--------------------------------------------------- Interfaces utilisées
 #include "EltGeo.h"
 #include "Point.h"
+#include <string>
 
 //------------------------------------------------------------- Constantes
 
@@ -19,7 +20,7 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Rectangle>
-//
+//	Modélise un rectangle
 //
 //------------------------------------------------------------------------
 
@@ -35,18 +36,18 @@ public:
     // Contrat :
     //
 
-    bool IsAgrege();
+    bool IsAgrege( );
     // Mode d'emploi :
     //Renvoie false pour un rectangle
     // Contrat :
     //
+
 //------------------------------------------------- Surcharge d'opérateurs
     Rectangle & operator = ( const Rectangle & unRectangle );
     // Mode d'emploi :
     //
     // Contrat :
     //
-
 
 //-------------------------------------------- Constructeurs - destructeur
     Rectangle ( const Rectangle & unRectangle );
@@ -55,12 +56,11 @@ public:
     // Contrat :
     //
 
-    Rectangle ( long int fx1,long int fy1,long int fx2,long int fy2,string fname="",string fcommande="");
+    Rectangle ( long int fx1, long int fy1, long int fx2, long int fy2, string fname = "", string fcommande = "" );
     // Mode d'emploi :
     //Ajoute les deux sommets du rectangle
     // Contrat :
     //
-
 
     virtual ~Rectangle ( );
     // Mode d'emploi :
@@ -74,8 +74,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-Point p1;
-Point p2;
+	Point p1;
+	Point p2;
 };
 
 //--------------------------- Autres définitions dépendantes de <Rectangle>

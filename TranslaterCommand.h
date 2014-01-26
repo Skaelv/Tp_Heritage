@@ -8,10 +8,12 @@
 //---------- Interface de la classe <TranslaterCommand> (fichier TranslaterCommand.h) ------
 #if ! defined ( TRANSLATERCOMMAND_H_ )
 #define TRANSLATERCOMMAND_H_
+
+//--------------------------------------------------- Interfaces utilisées
 #include "EltGeo.h"
 #include "Command.h"
 #include "Modele.h"
-//--------------------------------------------------- Interfaces utilisées
+#include <string>
 
 //------------------------------------------------------------- Constantes
 
@@ -19,7 +21,7 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <TranslaterCommand>
-//
+//	Modélise une commande de translation d'un objet
 //
 //------------------------------------------------------------------------
 
@@ -31,21 +33,24 @@ class TranslaterCommand : public Command
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	 TranslaterCommand (int fdx, int fdy, string fname);
-     // Mode d'emploi :Constructeur
-     //
-     // Contrat :
-     //
-
-
 	void Execute (Modele& fmodele);
     // Mode d'emploi :
-    //
+    //	Exécute une commande de translation sur un objet du modèle passé en paramètre
     // Contrat :
     //
 
     void Undo (Modele& fmodele);
     // Mode d'emploi :
+    //	Annule une commande de translation sur un objet du modèle
+    // Contrat :
+    //
+
+	//------------------------------------------------- Surcharge d'opérateurs
+
+	//-------------------------------------------- Constructeurs - destructeur
+
+	TranslaterCommand ( int fdx, int fdy, string fname );
+    // Mode d'emploi :Constructeur
     //
     // Contrat :
     //
@@ -62,8 +67,9 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-int dx,dy;
-string name;
+	int dx;
+	int dy;
+	string name;
 };
 
 //--------------------------- Autres définitions dépendantes de <TranslaterCommand>

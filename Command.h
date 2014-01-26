@@ -10,14 +10,14 @@
 #define COMMAND_H_
 
 //--------------------------------------------------- Interfaces utilisées
-//#include "Modele.h"
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Command>
-//
+//	Modélise une commande
 //
 //------------------------------------------------------------------------
 class Modele;
@@ -28,32 +28,35 @@ class Command
 
 public:
 //----------------------------------------------------- Méthodes publiques
-
-    Command ( );
+    
+	virtual void Execute ( Modele& fmodele ) = 0;
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-	virtual void Execute (Modele& fmodele) = 0;
+	virtual string GetCommande( );
+    // Mode d'emploi :
+    //	Retourne la ligne de commande associée à cette commande
+    // Contrat :
+    //
+
+	virtual bool IsNewModel ( );
+    // Mode d'emploi :
+    //	Permet de savoir si la commande sert a créer un nouveau modele.
+    // Contrat :
+    //
+
+    virtual void Undo ( Modele& fmodele );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-	virtual string GetCommande();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+	//------------------------------------------------- Surcharge d'opérateurs
 
-	virtual bool IsNewModel ();
-    // Mode d'emploi :
-    //Permet de savoir si la commande sert a créer un nouveau modele.
-    // Contrat :
-    //
-
-    virtual void Undo (Modele& fmodele);
+	//-------------------------------------------- Constructeurs - destructeur
+	Command ( );
     // Mode d'emploi :
     //
     // Contrat :

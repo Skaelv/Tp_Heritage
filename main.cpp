@@ -11,6 +11,8 @@
 
 //-------------------------------------------------------- Include système
 #include <iostream>
+#include <istream>
+#include <string>
 
 using namespace std;
 
@@ -30,7 +32,7 @@ int main ( )
 	string commande;
 	cout << " # Entrez une commande" << endl;
 	getline(cin,commande);
-	while (commande!="EXIT")
+	while (commande != "EXIT")
 	{
 		Cont.Validation(commande);
 		cout << " # Entrez une commande" << endl;
