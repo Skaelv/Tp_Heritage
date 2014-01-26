@@ -18,6 +18,7 @@ using namespace std;
 #include <vector>
 #include <set>
 #include <sstream>
+#include <iterator>
 
 //------------------------------------------------------ Include personnel
 #include "Modele.h"

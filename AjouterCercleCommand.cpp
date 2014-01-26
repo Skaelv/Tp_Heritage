@@ -11,9 +11,9 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-using namespace std;
 #include <iostream>
-#include<string>
+#include <string>
+using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "AjouterCercleCommand.h"
@@ -23,10 +23,6 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-
 AjouterCercleCommand::AjouterCercleCommand (string fname, string fcommande,long int fx, long int fy,long int fr)
 //Algorithme
 //
@@ -37,6 +33,10 @@ AjouterCercleCommand::AjouterCercleCommand (string fname, string fcommande,long 
 	y = fy;
 	r = fr;
 }
+
+//------------------------------------------------- Surcharge d'opérateurs
+
+
 
 bool AjouterCercleCommand::IsNewModel ()
 // Algorithme :
