@@ -10,10 +10,10 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-using namespace std;
 #include <iostream>
 #include <string>
 
+using namespace std;
 //------------------------------------------------------ Include personnel
 #include "Command.h"
 
@@ -23,27 +23,20 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-Command::Command()
-//Algorithme
-{
-}
-
-void Command::Execute (Modele& fmodele)
+void Command::Execute ( Modele& fmodele )
 // Algorithme :
 //
 {
 }
 
-bool Command::IsNewModel ()
+bool Command::IsNewModel ( )
 // Algorithme :
 //
 {
 	return true;
 }
 
-string Command::GetCommande()
+string Command::GetCommande ( )
 //Algorithme :
 //
 {
@@ -51,12 +44,19 @@ string Command::GetCommande()
 }
 
 
-void Command::Undo (Modele& fmodele)
+void Command::Undo ( Modele& fmodele )
 // Algorithme :
 //
 {
 }
 
+//------------------------------------------------- Surcharge d'opérateurs
+
+//-------------------------------------------- Constructeurs - destructeur
+Command::Command ( )
+//Algorithme
+{
+}
 
 Command::~Command ( )
 // Algorithme :
@@ -66,7 +66,6 @@ Command::~Command ( )
     cout << "Appel au destructeur de <Command>" << endl;
 #endif
 } //----- Fin de ~Command
-
 
 //------------------------------------------------------------------ PRIVE
 

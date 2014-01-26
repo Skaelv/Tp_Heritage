@@ -10,12 +10,11 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-using namespace std;
 #include <iostream>
 #include <sstream>
 #include <list>
 #include <set>
-
+using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "ObjetAgrege.h"
@@ -24,23 +23,17 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type ObjetAgrege::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-void ObjetAgrege::Translater(int dx, int dy)
+void ObjetAgrege::Translater( int dx, int dy )
 //Algorithme :
-//
+// Déplace tous les objets présents dans l'objet Agrégé
 {
-	for (list<EltGeo *>::iterator iter=listObjet.begin();iter!=listObjet.end();iter++)
-		{
-			(*iter)->Translater(dx,dy);
-		}
+	for ( list< EltGeo * >::iterator iter = listObjet.begin( ); iter != listObjet.end( ); iter++ )
+	{
+		( *iter )->Translater( dx, dy );
+	}
 }
 
-
-bool ObjetAgrege::IsAgrege()
+bool ObjetAgrege::IsAgrege( )
 //Algorithme
 //
 {
@@ -48,41 +41,36 @@ bool ObjetAgrege::IsAgrege()
 }
 
 
-void ObjetAgrege::AddElement(EltGeo * element)
+void ObjetAgrege::AddElement( EltGeo * element )
 {
-	listObjet.push_back(element);
-	commande+= " " + element->GetName();
+	listObjet.push_back( element );
+	commande += " " + element->GetName();
 }
 
-
-string ObjetAgrege::DeleteElement(string objetASupprimer)
+string ObjetAgrege::DeleteElement( string objetASupprimer )
 //Algorithme
 //
 {
 	bool isInObject = false;
-	commande="OA "+name;
-	for (list<EltGeo *>::iterator iter=listObjet.begin();iter!=listObjet.end();)
+	commande = "OA " + name;
+	for ( list< EltGeo * >::iterator iter = listObjet.begin( ); iter != listObjet.end( ); )
 	{
-		if ((*iter)->GetName() == objetASupprimer)
+		if ( ( *iter )->GetName( ) == objetASupprimer )
 		{
-
-			iter = listObjet.erase(iter); //Supprime l'iterateur courant et passe au suivant
+			iter = listObjet.erase( iter ); //Supprime l'iterateur courant et passe au suivant
 			isInObject= true;
-
 		}
 		else
 		{
-			commande+=" "+(*iter)->GetName();//Modification de la commande pour
+			commande += " " + ( *iter )->GetName( );//Modification de la commande pour
 			//y retirer l'element supprimé.
 			iter++;
 		}
 	}
 	string temp;
-	return temp = (isInObject) ? " " + name : "";//Renvoie le nom de l'objet ou rien
+	return temp = ( isInObject ) ? " " + name : "";//Renvoie le nom de l'objet ou rien
 	//selon si l'objet à supprimer etait dans la liste de l'objet courant
 }
-
-
 
 //------------------------------------------------- Surcharge d'opérateurs
 ObjetAgrege & ObjetAgrege::operator = ( const ObjetAgrege & unObjetAgrege )
@@ -104,7 +92,7 @@ ObjetAgrege::ObjetAgrege ( const ObjetAgrege & unObjetAgrege )
 } //----- Fin de ObjetAgrege (constructeur de copie)
 
 
-ObjetAgrege::ObjetAgrege (list<EltGeo *> flistObjet, string fname,string fcommande):EltGeo(fname,fcommande),listObjet(flistObjet)
+ObjetAgrege::ObjetAgrege ( list< EltGeo * > flistObjet, string fname, string fcommande ) : EltGeo( fname, fcommande ), listObjet( flistObjet )
 // Algorithme :
 //
 {

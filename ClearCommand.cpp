@@ -11,10 +11,10 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-using namespace std;
 #include <iostream>
 #include<string>
 
+using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "ClearCommand.h"
@@ -24,42 +24,40 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-
-ClearCommand::ClearCommand ()
-//Algorithme
-//
-{
-
-}
-
-void ClearCommand::Execute (Modele& fmodele)
+void ClearCommand::Execute ( Modele& fmodele )
 // Algorithme :
 {
-	OldModel=fmodele;
-	fmodele = Modele();//Mets un nouveau modele vide dans fmodele
-	cout << "# New empty model loaded"<< endl;
+	OldModel = fmodele;
+	fmodele = Modele( );//Mets un nouveau modele vide dans fmodele
+	cout << "# New empty model loaded" << endl;
 }
 
 
-void ClearCommand::Undo (Modele& fmodele)
+void ClearCommand::Undo ( Modele& fmodele )
 // Algorithme : Met OldModel dans fmodele
 //
 {
 	fmodele = OldModel;
-	cout << "# Precedent model loaded"<< endl;
+	cout << "# Precedent model loaded" << endl;
 }
 
 
-bool ClearCommand::IsNewModel ()
+bool ClearCommand::IsNewModel ( )
 // Algorithme :
 //
 {
 	return true;
 }
 
+//------------------------------------------------- Surcharge d'opérateurs
+
+//-------------------------------------------- Constructeurs - destructeur
+ClearCommand::ClearCommand ( )
+//Algorithme
+//
+{
+
+}
 
 ClearCommand::~ClearCommand ( )
 // Algorithme :

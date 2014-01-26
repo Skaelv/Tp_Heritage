@@ -11,10 +11,10 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-using namespace std;
 #include <iostream>
 #include<string>
 
+using namespace std;
 //------------------------------------------------------ Include personnel
 #include "AjouterRectangleCommand.h"
 
@@ -24,10 +24,39 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
+void AjouterRectangleCommand::Execute ( Modele& fmodele )
+// Algorithme :
+//
+{
+	fmodele.AjouterRectangle( name, commande, x1, y1, x2, y2 );
+}
+
+void AjouterRectangleCommand::Undo ( Modele& fmodele )
+// Algorithme :
+//
+{
+	fmodele.SupprimerObjet( name );
+}
+
+bool AjouterRectangleCommand::IsNewModel ( )
+// Algorithme :
+//
+{
+	return false;
+}
+
+string AjouterRectangleCommand::GetCommande( )
+//Algorithme :
+//
+{
+	return commande;
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 
-AjouterRectangleCommand::AjouterRectangleCommand (string fname, string fcommande,long int fx1,long int fy1,long int fx2,long int fy2)
+//-------------------------------------------- Constructeurs - destructeur
+
+AjouterRectangleCommand::AjouterRectangleCommand ( string fname, string fcommande, long int fx1, long int fy1, long int fx2, long int fy2 )
 //Algorithme
 //
 {
@@ -39,46 +68,14 @@ AjouterRectangleCommand::AjouterRectangleCommand (string fname, string fcommande
 	y2 = fy2;
 }
 
-void AjouterRectangleCommand::Execute (Modele& fmodele)
-// Algorithme :
-//
-{
-	fmodele.AjouterRectangle(name,commande,x1,y1,x2,y2);
-}
-
-
-void AjouterRectangleCommand::Undo (Modele& fmodele)
-// Algorithme :
-//
-{
-	fmodele.SupprimerObjet(name);
-}
-
-bool AjouterRectangleCommand::IsNewModel ()
-// Algorithme :
-//
-{
-	return false;
-}
-
-
-string AjouterRectangleCommand::GetCommande()
-//Algorithme :
-//
-{
-	return commande;
-}
-
-
 AjouterRectangleCommand::~AjouterRectangleCommand ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <AjouterRectangleCommand>" << endl;
+	cout << "Appel au destructeur de <AjouterRectangleCommand>" << endl;
 #endif
 } //----- Fin de ~AjouterRectangleCommand
-
 
 //------------------------------------------------------------------ PRIVE
 

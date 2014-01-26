@@ -11,10 +11,10 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-using namespace std;
 #include <iostream>
 #include<string>
 
+using namespace std;
 //------------------------------------------------------ Include personnel
 #include "AjouterLigneCommand.h"
 
@@ -24,10 +24,39 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
+void AjouterLigneCommand::Execute ( Modele& fmodele )
+// Algorithme :
+//
+{
+	fmodele.AjouterLigne( name, commande, x1, y1, x2, y2 );
+}
+
+
+void AjouterLigneCommand::Undo ( Modele& fmodele )
+// Algorithme :
+//
+{
+	fmodele.SupprimerObjet( name );
+}
+
+bool AjouterLigneCommand::IsNewModel ( )
+// Algorithme :
+//
+{
+	return false;
+}
+
+string AjouterLigneCommand::GetCommande( )
+//Algorithme :
+//
+{
+	return commande;
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 
-AjouterLigneCommand::AjouterLigneCommand (string fname, string fcommande,long int fx1, long int fy1,long int fx2,long int fy2)
+//-------------------------------------------- Constructeurs - destructeur
+AjouterLigneCommand::AjouterLigneCommand ( string fname, string fcommande, long int fx1, long int fy1, long int fx2, long int fy2 )
 //Algorithme
 //
 {
@@ -37,51 +66,16 @@ AjouterLigneCommand::AjouterLigneCommand (string fname, string fcommande,long in
 	y1 = fy1;
 	x2 = fx2;
 	y2 = fy2;
-
 }
-
-void AjouterLigneCommand::Execute (Modele& fmodele)
-// Algorithme :
-//
-{
-	fmodele.AjouterLigne(name,commande,x1,y1,x2,y2);
-}
-
-
-void AjouterLigneCommand::Undo (Modele& fmodele)
-// Algorithme :
-//
-{
-	fmodele.SupprimerObjet(name);
-}
-
-
-bool AjouterLigneCommand::IsNewModel ()
-// Algorithme :
-//
-{
-	return false;
-}
-
-
-string AjouterLigneCommand::GetCommande()
-//Algorithme :
-//
-{
-	return commande;
-}
-
-
 
 AjouterLigneCommand::~AjouterLigneCommand ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <AjouterLigneCommand>" << endl;
+	cout << "Appel au destructeur de <AjouterLigneCommand>" << endl;
 #endif
 } //----- Fin de ~AjouterLigneCommand
-
 
 //------------------------------------------------------------------ PRIVE
 

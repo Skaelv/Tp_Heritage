@@ -10,10 +10,10 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-using namespace std;
 #include <iostream>
 #include <sstream>
 
+using namespace std;
 //------------------------------------------------------ Include personnel
 #include "Cercle.h"
 
@@ -28,19 +28,17 @@ void Cercle::Translater ( long int dx,long int dy )
 {
 	stringstream ssr;
 	ssr << rayon;
-	string strr = " " + ssr.str();
-	commande ="";
-	commande = "C " + name  + centre.Translater(dx,dy) + strr;
+	string strr = " " + ssr.str( );
+	commande = "";
+	commande = "C " + name + centre.Translater( dx, dy ) + strr;
 } //----- Fin de Méthode
 
-
-bool Cercle::IsAgrege()
+bool Cercle::IsAgrege( )
 //Algorithme
 //
 {
 	return false;
 }
-
 
 //------------------------------------------------- Surcharge d'opérateurs
 Cercle & Cercle::operator = ( const Cercle & unCercle )
@@ -50,14 +48,13 @@ Cercle & Cercle::operator = ( const Cercle & unCercle )
         return *this;
 } //----- Fin de operator =
 
-
 //-------------------------------------------- Constructeurs - destructeur
 Cercle::Cercle ( const Cercle & unCercle )
 // Algorithme :
 //
 {
-    centre=unCercle.centre;
-	rayon=unCercle.rayon;
+    centre = unCercle.centre;
+	rayon = unCercle.rayon;
 
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Cercle>" << endl;
@@ -65,13 +62,13 @@ Cercle::Cercle ( const Cercle & unCercle )
 } //----- Fin de Cercle (constructeur de copie)
 
 
-Cercle::Cercle (long int fx,long int fy, long int frayon,string fname,string fcommande):EltGeo(fname,fcommande)
+Cercle::Cercle ( long int fx, long int fy, long int frayon, string fname, string fcommande ) : EltGeo( fname, fcommande )
 // Algorithme :
 //
 {
-        centre=Point(fx,fy);
-        rayon=frayon;
-    	Translater(0,0);//Réecrit la commande (Evite les nombres à virgules et les espaces multiples)
+        centre = Point( fx, fy );
+        rayon = frayon;
+    	Translater( 0, 0 );//Réecrit la commande (Evite les nombres à virgules et les espaces multiples)
 
 #ifdef MAP
     cout << "Appel au constructeur de <Cercle>" << endl;

@@ -11,10 +11,10 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-using namespace std;
 #include <iostream>
 #include<string>
 #include<vector>
+using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "TranslaterCommand.h"
@@ -24,33 +24,31 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
+void TranslaterCommand::Execute ( Modele& fmodele )
+// Algorithme :
+//
+{
+	fmodele.Translater( dx, dy, name );
+}
 
+void TranslaterCommand::Undo ( Modele& fmodele )
+// Algorithme
+{
+	fmodele.Translater( -dx, -dy, name );
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 
-TranslaterCommand::TranslaterCommand (int fdx, int fdy, string fname)
+//-------------------------------------------- Constructeurs - destructeur
+
+TranslaterCommand::TranslaterCommand ( int fdx, int fdy, string fname )
 //Algorithme
 //
 {
 	name = fname;
-	dx =fdx;
+	dx = fdx;
 	dy = fdy;
 }
-
-void TranslaterCommand::Execute (Modele& fmodele)
-// Algorithme :
-//
-{
-	fmodele.Translater(dx,dy, name);
-}
-
-
-void TranslaterCommand::Undo (Modele& fmodele)
-// Algorithme
-{
-	fmodele.Translater(-dx,-dy,name);
-}
-
 
 TranslaterCommand::~TranslaterCommand ( )
 // Algorithme :

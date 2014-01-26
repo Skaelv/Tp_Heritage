@@ -25,34 +25,21 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-
-AjouterObjetAgregeCommand::AjouterObjetAgregeCommand (set<string> flisteObjet,string fname, string fcommande)
-//Algorithme
-//
-{
-	name = fname;
-	commande = fcommande;
-	listeObjet=flisteObjet;
-}
-
-void AjouterObjetAgregeCommand::Execute (Modele& fmodele)
+void AjouterObjetAgregeCommand::Execute ( Modele& fmodele )
 // Algorithme :
 //
 {
-	fmodele.AjouterObjetAgrege(name,commande,listeObjet);
+	fmodele.AjouterObjetAgrege( name, commande, listeObjet );
 }
 
-
-void AjouterObjetAgregeCommand::Undo (Modele& fmodele)
+void AjouterObjetAgregeCommand::Undo ( Modele& fmodele )
 // Algorithme :
 //
 {
-	fmodele.SupprimerObjet(name);
+	fmodele.SupprimerObjet( name );
 }
 
-bool AjouterObjetAgregeCommand::IsNewModel ()
+bool AjouterObjetAgregeCommand::IsNewModel ( )
 // Algorithme :
 //
 {
@@ -60,24 +47,34 @@ bool AjouterObjetAgregeCommand::IsNewModel ()
 }
 
 
-string AjouterObjetAgregeCommand::GetCommande()
+string AjouterObjetAgregeCommand::GetCommande ( )
 //Algorithme :
 //
 {
 	return commande;
 }
 
+//------------------------------------------------- Surcharge d'opérateurs
 
+//-------------------------------------------- Constructeurs - destructeur
+
+AjouterObjetAgregeCommand::AjouterObjetAgregeCommand ( set< string > flisteObjet, string fname, string fcommande )
+//Algorithme
+//
+{
+	name = fname;
+	commande = fcommande;
+	listeObjet = flisteObjet;
+}
 
 AjouterObjetAgregeCommand::~AjouterObjetAgregeCommand ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <AjouterObjetAgregeCommand>" << endl;
+	cout << "Appel au destructeur de <AjouterObjetAgregeCommand>" << endl;
 #endif
 } //----- Fin de ~AjouterObjetAgregeCommand
-
 
 //------------------------------------------------------------------ PRIVE
 

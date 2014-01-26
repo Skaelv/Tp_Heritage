@@ -10,9 +10,9 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-using namespace std;
 #include <iostream>
 #include <sstream>
+using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Rectangle.h"
@@ -22,23 +22,22 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void Rectangle::Translater (long int dx,long int dy )
+void Rectangle::Translater ( long int dx, long int dy )
 // Algorithme :
 //
 {
-	commande ="";
-    commande ="R " + name + p1.Translater(dx,dy) + p2.Translater(dx,dy);
+	commande = "";
+    commande = "R " + name + p1.Translater( dx, dy ) + p2.Translater( dx, dy );
 } //----- Fin de Méthode
 
 
 
-bool Rectangle::IsAgrege()
+bool Rectangle::IsAgrege( )
 //Algorithme
 //
 {
 	return false;
 }
-
 
 //------------------------------------------------- Surcharge d'opérateurs
 Rectangle & Rectangle::operator = ( const Rectangle & unRectangle )
@@ -48,9 +47,8 @@ Rectangle & Rectangle::operator = ( const Rectangle & unRectangle )
 	return *this;
 } //----- Fin de operator =
 
-
 //-------------------------------------------- Constructeurs - destructeur
-Rectangle::Rectangle ( const Rectangle & unRectangle ):p1(unRectangle.p1),p2(unRectangle.p2)
+Rectangle::Rectangle ( const Rectangle & unRectangle ) : p1( unRectangle.p1 ), p2( unRectangle.p2 )
 // Algorithme :
 //
 {
@@ -60,11 +58,11 @@ Rectangle::Rectangle ( const Rectangle & unRectangle ):p1(unRectangle.p1),p2(unR
 } //----- Fin de Rectangle (constructeur de copie)
 
 
-Rectangle::Rectangle (long int fx1,long int fy1,long int fx2,long int fy2,string fname,string fcommande ):EltGeo(fname,fcommande),p1(Point(fx1,fy1)),p2(Point(fx2,fy2))
+Rectangle::Rectangle ( long int fx1, long int fy1, long int fx2, long int fy2, string fname, string fcommande ) : EltGeo( fname, fcommande ), p1( Point( fx1, fy1 ) ), p2( Point( fx2, fy2) )
 // Algorithme :
 //
 {
-	Translater(0,0);//Réecrit la commande (Evite les nombres à virgules et les espaces multiples)
+	Translater( 0, 0);//Réecrit la commande (Evite les nombres à virgules et les espaces multiples)
 #ifdef MAP
     cout << "Appel au constructeur de <Rectangle>" << endl;
 #endif

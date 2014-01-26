@@ -11,10 +11,10 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-using namespace std;
 #include <iostream>
 #include<string>
 
+using namespace std;
 //------------------------------------------------------ Include personnel
 #include "AjouterPolyligneCommand.h"
 
@@ -24,58 +24,55 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-
-AjouterPolyligneCommand::AjouterPolyligneCommand (string fname, string fcommande,vector<pair<long int,long int> > fligne)
-//Algorithme
-//
-{
-	name = fname;
-	commande = fcommande;
-	lignes =fligne;
-}
-
-void AjouterPolyligneCommand::Execute (Modele& fmodele)
+void AjouterPolyligneCommand::Execute ( Modele& fmodele )
 // Algorithme :
 //
 {
-	fmodele.AjouterPolyligne(name,commande,lignes);
+	fmodele.AjouterPolyligne( name, commande, lignes );
 }
 
-
-void AjouterPolyligneCommand::Undo (Modele& fmodele)
+void AjouterPolyligneCommand::Undo ( Modele& fmodele )
 // Algorithme :
 //
 {
-	fmodele.SupprimerObjet(name);
+	fmodele.SupprimerObjet( name );
 }
 
-bool AjouterPolyligneCommand::IsNewModel ()
+bool AjouterPolyligneCommand::IsNewModel ( )
 // Algorithme :
 //
 {
 	return false;
 }
 
-
-string AjouterPolyligneCommand::GetCommande()
+string AjouterPolyligneCommand::GetCommande( )
 //Algorithme :
 //
 {
 	return commande;
 }
 
+//------------------------------------------------- Surcharge d'opérateurs
+
+//-------------------------------------------- Constructeurs - destructeur
+
+AjouterPolyligneCommand::AjouterPolyligneCommand ( string fname, string fcommande, vector< pair< long int, long int> > fligne )
+//Algorithme
+//
+{
+	name = fname;
+	commande = fcommande;
+	lignes = fligne;
+}
 
 AjouterPolyligneCommand::~AjouterPolyligneCommand ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <AjouterPolyligneCommand>" << endl;
+	cout << "Appel au destructeur de <AjouterPolyligneCommand>" << endl;
 #endif
 } //----- Fin de ~AjouterPolyligneCommand
-
 
 //------------------------------------------------------------------ PRIVE
 

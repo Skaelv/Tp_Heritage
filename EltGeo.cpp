@@ -10,8 +10,8 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-using namespace std;
 #include <iostream>
+using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "EltGeo.h"
@@ -21,21 +21,21 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type EltGeo::Méthode ( liste des paramètres )
-void EltGeo::Translater(int fdx, int fdy)
+
+void EltGeo::Translater( int fdx, int fdy )
 // Algorithme :
 //
 {
 } //----- Fin de Méthode
 
-string EltGeo::GetCommande()
+string EltGeo::GetCommande( )
 // Algorithme :
 //
 {
 	return commande;
 } //----- Fin de Méthode
 
-string EltGeo::GetName()
+string EltGeo::GetName( )
 // Algorithme :
 //
 {
@@ -43,21 +43,21 @@ string EltGeo::GetName()
 } //----- Fin de Méthode
 
 
-bool EltGeo::IsAgrege()
+bool EltGeo::IsAgrege( )
 //Algorithme :
 //
 {
 	return false;
 }
 
-string EltGeo::DeleteElement(string objetASupprimer)
+string EltGeo::DeleteElement( string objetASupprimer )
 //Algorithme :
 //
 {
 	return "";
 }
 
-void EltGeo::AddElement(EltGeo * objetAInserer)
+void EltGeo::AddElement( EltGeo * objetAInserer )
 //Algorithme :
 //
 {
@@ -83,7 +83,7 @@ EltGeo::EltGeo ( const EltGeo & unEltGeo )
 } //----- Fin de EltGeo (constructeur de copie)
 
 
-EltGeo::EltGeo ( string fname,string fcommande ):name(fname),commande(fcommande)
+EltGeo::EltGeo ( string fname, string fcommande ) : name( fname ), commande( fcommande )
 // Algorithme :
 //
 {

@@ -1,20 +1,32 @@
-/*
- * main.cpp
- *
- *  Created on: 22 déc. 2013
- *      Author: kevin
- */
+/*************************************************************************
+                           Main  -  description
+                             -------------------
+    début                : 20 déc. 2013
+    copyright            : (C) 2013 par kantoine
+*************************************************************************/
 
+//---------- Réalisation de la classe <Main> (fichier Main.cpp) -------
 
+//---------------------------------------------------------------- INCLUDE
 
-#include "Controller.h"
-using namespace std;
+//-------------------------------------------------------- Include système
 #include <iostream>
 
+using namespace std;
 
-int main ()
+//------------------------------------------------------ Include personnel
+
+#include "Controller.h"
+
+//------------------------------------------------------------- Constantes
+
+//----------------------------------------------------------------- PUBLIC
+
+//----------------------------------------------------- Méthodes publiques
+
+int main ( )
 {
-Controller Cont;
+	Controller Cont;
 	string commande;
 	cout << " # Entrez une commande" << endl;
 	getline(cin,commande);
@@ -27,3 +39,11 @@ Controller Cont;
 
 	return 0;
 }
+
+//------------------------------------------------- Surcharge d'opérateurs
+
+//-------------------------------------------- Constructeurs - destructeur
+
+//------------------------------------------------------------------ PRIVE
+
+//----------------------------------------------------- Méthodes protégées

@@ -23,7 +23,38 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-AjouterCercleCommand::AjouterCercleCommand (string fname, string fcommande,long int fx, long int fy,long int fr)
+bool AjouterCercleCommand::IsNewModel ( )
+// Algorithme :
+//
+{
+	return false;
+}
+
+string AjouterCercleCommand::GetCommande( )
+//Algorithme :
+//
+{
+	return commande;
+}
+
+void AjouterCercleCommand::Execute ( Modele& fmodele )
+// Algorithme :
+//
+{
+	fmodele.AjouterCercle( name, commande, x, y, r );
+}
+
+void AjouterCercleCommand::Undo ( Modele& fmodele )
+// Algorithme :
+//
+{
+	fmodele.SupprimerObjet( name );
+}
+
+//------------------------------------------------- Surcharge d'opérateurs
+
+//-------------------------------------------- Constructeurs - destructeur
+AjouterCercleCommand::AjouterCercleCommand ( string fname, string fcommande, long int fx, long int fy, long int fr )
 //Algorithme
 //
 {
@@ -34,48 +65,12 @@ AjouterCercleCommand::AjouterCercleCommand (string fname, string fcommande,long 
 	r = fr;
 }
 
-//------------------------------------------------- Surcharge d'opérateurs
-
-
-
-bool AjouterCercleCommand::IsNewModel ()
-// Algorithme :
-//
-{
-	return false;
-}
-
-
-string AjouterCercleCommand::GetCommande()
-//Algorithme :
-//
-{
-	return commande;
-}
-
-void AjouterCercleCommand::Execute (Modele& fmodele)
-// Algorithme :
-//
-{
-	fmodele.AjouterCercle(name,commande,x,y,r);
-}
-
-
-void AjouterCercleCommand::Undo (Modele& fmodele)
-// Algorithme :
-//
-{
-	fmodele.SupprimerObjet(name);
-}
-
-
-
 AjouterCercleCommand::~AjouterCercleCommand ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <AjouterCercleCommand>" << endl;
+	cout << "Appel au destructeur de <AjouterCercleCommand>" << endl;
 #endif
 } //----- Fin de ~AjouterCercleCommand
 
