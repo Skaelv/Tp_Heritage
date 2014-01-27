@@ -22,7 +22,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void Rectangle::Translater ( long int dx, long int dy )
+void Rectangle::Translater ( int dx, int dy )
 // Algorithme :
 //
 {

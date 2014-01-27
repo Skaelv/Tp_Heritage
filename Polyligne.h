@@ -44,7 +44,7 @@ public:
     // Contrat :
     //
 
-    void Translater ( long int dx, long int dy );
+    void Translater ( int dx, int dy );
     // Mode d'emploi :
     //Appelle la fonction translater de ligne sur chaques lignes du vector lignes
     // Contrat :

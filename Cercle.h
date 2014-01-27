@@ -29,7 +29,7 @@ class Cercle : public EltGeo
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	void Translater ( long int dx, long int dy );
+	void Translater ( int dx, int dy );
     // Mode d'emploi :
     //	Translate le cercle par rapport au coordonnées passées en paramètre
     // Contrat :

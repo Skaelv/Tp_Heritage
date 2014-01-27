@@ -22,7 +22,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void Cercle::Translater ( long int dx,long int dy )
+void Cercle::Translater ( int dx, int dy )
 // Algorithme :
 //
 {

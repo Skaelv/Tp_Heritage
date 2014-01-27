@@ -30,7 +30,7 @@ bool Polyligne::AjouterLigne ( Ligne fligne )
 	return true;
 } //----- Fin de Méthode
 
-void Polyligne::Translater ( long int dx, long int dy )
+void Polyligne::Translater ( int dx, int dy )
 // Algorithme :
 //
 {

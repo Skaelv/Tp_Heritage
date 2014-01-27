@@ -30,7 +30,7 @@ class Rectangle : public EltGeo
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	void Translater ( long int dx, long int dy );
+	void Translater ( int dx, int dy );
     // Mode d'emploi :
     //Appelle la méthode Point::Translater(dx,dy) des sommets p1 et p2 du rectangle
     // Contrat :
